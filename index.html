@@ -3,447 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>上海 → 长白山滑雪攻略 · 11/12–11/16</title>
+<title>YXM Plan B · 旅行攻略空间</title>
 <style>
-:root{
-  --ink:#0f2440; --ink2:#38506f; --muted:#7489a3;
-  --snow:#f4f8fd; --card:#ffffff; --line:#e4edf6;
-  --blue:#2f7fd6; --blue2:#1b5fb0; --ice:#e8f3ff;
-  --gold:#d9a441; --green:#2fa36b; --red:#d9534f;
-  --sh:0 6px 24px rgba(20,60,110,.10); --sh2:0 2px 10px rgba(20,60,110,.07);
-}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  color:var(--ink);background:var(--snow);line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:var(--blue2);text-decoration:none}
-.wrap{max-width:960px;margin:0 auto;padding:0 18px}
-
-/* hero */
-.hero{position:relative;color:#fff;overflow:hidden;
-  background:linear-gradient(135deg,#0d2b54 0%,#1b5fb0 55%,#3f93dd 100%)}
-.hero::after{content:"";position:absolute;inset:0;opacity:.5;
-  background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 40%),
-             radial-gradient(circle at 80% 10%,rgba(255,255,255,.12),transparent 35%),
-             radial-gradient(circle at 60% 90%,rgba(255,255,255,.10),transparent 40%)}
-.hero .wrap{position:relative;z-index:1;padding:46px 18px 40px}
+  color:#0f2440;background:#f4f8fd;line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh}
+.hero{color:#fff;background:linear-gradient(135deg,#0d2b54,#1b5fb0 55%,#3f93dd);padding:60px 20px 54px;text-align:center}
 .hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
-  padding:5px 14px;border-radius:30px;font-size:13px;letter-spacing:1px;margin-bottom:16px}
-.hero h1{font-size:34px;line-height:1.3;font-weight:800;letter-spacing:.5px}
-.hero h1 small{display:block;font-size:15px;font-weight:500;opacity:.9;margin-top:8px;letter-spacing:2px}
-.route{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px;font-size:14px}
-.route span.node{background:rgba(255,255,255,.14);padding:6px 12px;border-radius:8px;white-space:nowrap}
-.route span.arr{opacity:.7}
-.metfor{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
-.metf{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;
-  padding:12px 16px;min-width:140px;flex:1}
-.metf b{display:block;font-size:22px;font-weight:800}
-.metf i{font-style:normal;font-size:12.5px;opacity:.85}
-
-/* sticky nav */
-.daynav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line)}
-.daynav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 18px}
-.daynav a{flex:0 0 auto;font-size:13px;color:var(--ink2);background:var(--ice);
-  padding:7px 13px;border-radius:20px;font-weight:600;border:1px solid transparent;transition:.2s}
-.daynav a:hover{background:var(--blue);color:#fff}
-
-section{padding:34px 0}
-.sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
-.sec-h h2{font-size:23px;font-weight:800;color:var(--ink)}
-.sec-h .en{font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-
-/* day card */
-.day{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh);
-  overflow:hidden;margin-bottom:26px}
-.day-top{display:flex;gap:16px;align-items:center;padding:20px 22px;
-  background:linear-gradient(120deg,#eaf3fd,#f6fbff);border-bottom:1px solid var(--line)}
-.day-badge{flex:0 0 auto;width:62px;height:62px;border-radius:14px;color:#fff;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;flex-direction:column;
-  align-items:center;justify-content:center;box-shadow:var(--sh2)}
-.day-badge b{font-size:22px;font-weight:800;line-height:1}
-.day-badge i{font-style:normal;font-size:11px;opacity:.9;margin-top:2px}
-.day-top h3{font-size:18px;font-weight:800}
-.day-top p{font-size:13px;color:var(--muted);margin-top:3px}
-.day-body{padding:8px 22px 20px}
-
-/* timeline */
-.tl{position:relative;padding-left:26px}
-.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
-.tl .item{position:relative;padding:14px 0}
-.tl .item::before{content:"";position:absolute;left:-23px;top:20px;width:12px;height:12px;border-radius:50%;
-  background:#fff;border:3px solid var(--blue)}
-.tl .item.hl::before{border-color:var(--gold);background:#fff7e6}
-.tl .time{display:inline-block;font-size:12.5px;font-weight:700;color:var(--blue2);
-  background:var(--ice);padding:2px 9px;border-radius:6px;margin-bottom:5px}
-.tl .item.hl .time{color:#9a6f14;background:#fdf2d8}
-.tl h4{font-size:15.5px;font-weight:700;margin-bottom:3px}
-.tl p{font-size:14px;color:var(--ink2)}
-.tl .meta{font-size:12.5px;color:var(--muted);margin-top:4px}
-.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
-.pill.train{background:#e9f6ef;color:#1f7a4d}
-.pill.fly{background:#eaf1fe;color:#2a5bbf}
-.pill.ski{background:#fff0e6;color:#c2601f}
-.pill.hotel{background:#f3ecfb;color:#6b3fb0}
-
-/* generic cards grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--sh2)}
-.c h4{font-size:15px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:7px}
-.c p{font-size:13.5px;color:var(--ink2)}
-.c .k{font-size:12px;color:var(--muted);margin-top:8px}
-.dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
-.dot.b{background:var(--blue)}.dot.g{background:var(--green)}.dot.o{background:var(--gold)}.dot.r{background:var(--red)}
-
-.note{background:#fff8ec;border:1px solid #f1e0bb;border-left:4px solid var(--gold);
-  border-radius:10px;padding:13px 16px;font-size:13.5px;color:#6b531d;margin:10px 0}
-.note.blue{background:#eef5ff;border-color:#cfe1fa;border-left-color:var(--blue);color:#294a74}
-.note b{color:inherit}
-
-.callbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.callbar .b{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;
-  padding:12px 14px;box-shadow:var(--sh2)}
-.callbar .b b{font-size:13px;color:var(--blue2)}
-.callbar .b p{font-size:13px;color:var(--ink2);margin-top:3px}
-
-ul.clean{list-style:none}
-ul.clean li{font-size:14px;color:var(--ink2);padding:6px 0 6px 22px;position:relative;border-bottom:1px dashed var(--line)}
-ul.clean li:last-child{border-bottom:none}
-ul.clean li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
-ul.clean li b{color:var(--ink)}
-
-.tbl{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--sh2);font-size:13.5px}
-.tbl th{background:#eef5ff;color:var(--ink);text-align:left;padding:11px 14px;font-weight:700}
-.tbl td{padding:10px 14px;border-top:1px solid var(--line);color:var(--ink2)}
-
-footer{background:#0d2b54;color:#bcd2ee;padding:26px 0;font-size:13px;text-align:center}
-footer b{color:#fff}
-
-@media(max-width:600px){
-  .hero h1{font-size:26px}
-  .metf{min-width:calc(50% - 7px)}
-  .day-top{flex-wrap:wrap}
-}
-/*BODYPLACEHOLDER*/
+  padding:5px 16px;border-radius:30px;font-size:13px;letter-spacing:2px;margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:1px}
+.hero p{margin-top:12px;font-size:15px;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:38px 20px 60px}
+.sec-t{font-size:15px;color:#7489a3;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.trip{display:block;background:#fff;border:1px solid #e4edf6;border-radius:18px;overflow:hidden;
+  box-shadow:0 6px 24px rgba(20,60,110,.10);text-decoration:none;color:inherit;transition:.22s}
+.trip:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(20,60,110,.18)}
+.trip .top{background:linear-gradient(120deg,#1b5fb0,#3f93dd);color:#fff;padding:22px 20px}
+.trip .top .ico{font-size:30px}
+.trip .top h2{font-size:20px;font-weight:800;margin-top:8px}
+.trip .top span{font-size:13px;opacity:.9}
+.trip .body{padding:16px 20px}
+.trip .body p{font-size:13.5px;color:#38506f}
+.trip .body .go{margin-top:12px;font-size:13px;font-weight:700;color:#1b5fb0}
+.empty{background:#fff;border:1px dashed #cfe1fa;border-radius:16px;padding:22px;color:#7489a3;font-size:14px;text-align:center}
+footer{text-align:center;color:#7489a3;font-size:12.5px;padding:0 20px 40px}
+@media(max-width:600px){.hero h1{font-size:30px}}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="wrap">
-    <span class="tag">5天4夜 · 2026 初冬雪季</span>
-    <h1>上海 → 长白山 滑雪之旅
-      <small>11月12日晚 — 11月17日凌晨 · 沈阳中转 · 华美胜地滑雪</small>
-    </h1>
-    <div class="route">
-      <span class="node">上海浦东</span><span class="arr">✈</span>
-      <span class="node">沈阳桃仙</span><span class="arr">🚄</span>
-      <span class="node">长白山西</span><span class="arr">🎿</span>
-      <span class="node">华美滑雪场</span><span class="arr">✈</span>
-      <span class="node">浦东 T2</span>
-    </div>
-    <div class="metfor">
-      <div class="metf"><b>5天</b><i>4 晚行程 · 2 整天滑雪</i></div>
-      <div class="metf"><b>2°C / −18°C</b><i>沈阳白天 · 长白山雪场体感</i></div>
-      <div class="metf"><b>11/14</b><i>华美滑雪场正式开板日</i></div>
-      <div class="metf"><b>红眼进 · 红眼出</b><i>首尾两段为夜间航班</i></div>
-    </div>
-  </div>
+  <span class="tag">TRAVEL PLANS</span>
+  <h1>YXM Plan B</h1>
+  <p>我的旅行攻略空间 · 每次行程一个独立页面</p>
 </header>
-
-<nav class="daynav">
-  <div class="wrap">
-    <a href="#d1">Day1 · 飞沈阳</a>
-    <a href="#d2">Day2 · 沈阳+转场</a>
-    <a href="#d3">Day3 · 滑雪</a>
-    <a href="#d4">Day4 · 滑雪</a>
-    <a href="#d5">Day5 · 返程</a>
-    <a href="#traffic">交通速查</a>
-    <a href="#ski">滑雪攻略</a>
-    <a href="#food">美食</a>
-    <a href="#pack">打包 & 提醒</a>
-  </div>
-</nav>
-
 <main class="wrap">
-<section id="d1">
-  <div class="sec-h"><h2>Day 1 · 上海飞沈阳</h2><span class="en">11/12 Wed night</span></div>
-  <div class="day">
-    <div class="day-top">
-      <div class="day-badge"><b>12</b><i>周三</i></div>
-      <div><h3>浦东起飞 → 入住沈阳北 <span class="pill fly">航班</span><span class="pill hotel">住宿</span></h3>
-        <p>夜航红眼，当晚只做一件事：顺利落地、睡个好觉。</p></div>
-    </div>
-    <div class="day-body">
-      <div class="tl">
-        <div class="item hl"><span class="time">22:00 → 次日 00:35</span>
-          <h4>上海 ✈ 沈阳桃仙 T3（已订）</h4>
-          <p>约 2 小时 35 分航程。建议登机前在浦东吃好晚饭、备点热水，飞机上小睡。</p>
-          <p class="meta">落地已是深夜，行李尽量精简，出关直奔打车点。</p></div>
-        <div class="item"><span class="time">00:35 → 01:30</span>
-          <h4>桃仙机场 → 橘子酒店（沈阳北站店）</h4>
-          <p>桃仙机场距市区约 20 公里。深夜无地铁，<b>打车约 60–80 元、40 分钟</b>到沈阳北站一带。</p>
-          <p class="meta">可提前在酒店备注“红眼航班凌晨入住”，确保前台值守、不被取消房间。</p></div>
-        <div class="item"><span class="time">01:30</span>
-          <h4>入住 橘子酒店 · 沈阳北 <span class="pill hotel">已订</span></h4>
-          <p>洗漱休息。明早不用赶大早，睡到自然醒，为白天的沈阳暴走养精蓄锐。</p></div>
+  <div class="sec-t">行程列表</div>
+  <div class="cards">
+    <a class="trip" href="./changbaishan-ski/">
+      <div class="top">
+        <div class="ico">🎿</div>
+        <h2>长白山滑雪之旅</h2>
+        <span>2026/11/12 – 11/17 · 上海→沈阳→长白山</span>
       </div>
-      <div class="note blue"><b>红眼小贴士：</b>随身带一件厚外套，沈阳 11 月凌晨已近 0℃；手机、充电宝提前充满，深夜打车走正规出租或网约车。</div>
-    </div>
-  </div>
-</section>
-
-<section id="d2">
-  <div class="sec-h"><h2>Day 2 · 沈阳一日游 + 转场长白山</h2><span class="en">11/13 Thu</span></div>
-  <div class="day">
-    <div class="day-top">
-      <div class="day-badge"><b>13</b><i>周四</i></div>
-      <div><h3>沈阳老城暴走 → 傍晚高铁进山 <span class="pill train">高铁</span><span class="pill hotel">住宿</span></h3>
-        <p>紧凑但不赶：故宫—帅府—中街连成一线，16:30 前回到沈阳北站。</p></div>
-    </div>
-    <div class="day-body">
-      <div class="tl">
-        <div class="item"><span class="time">09:30</span>
-          <h4>退房 / 行李寄存</h4>
-          <p>行李可寄存在酒店或沈阳北站。轻装进老城，傍晚回来取。</p></div>
-        <div class="item"><span class="time">10:00 – 11:30</span>
-          <h4>沈阳故宫（盛京皇宫）</h4>
-          <p>清朝入关前的皇家宫殿，大政殿、十王亭、凤凰楼是精华。门票约 50 元，建议请讲解或租电子导览。</p>
-          <p class="meta">从沈阳北站乘地铁 2 号线转 10 号线 / 打车约 20 分钟可达。</p></div>
-        <div class="item"><span class="time">11:30 – 12:30</span>
-          <h4>张氏帅府（大帅府）</h4>
-          <p>紧邻故宫，张作霖、张学良父子的官邸，中西合璧的大青楼、小青楼。了解近代东北历史的最佳一站。</p></div>
-        <div class="item hl"><span class="time">12:30 – 14:00</span>
-          <h4>中街午餐 · 东北味道</h4>
-          <p>中街是故宫旁的百年商业步行街。午餐推荐 <b>老边饺子（中街总店）</b> 或 <b>马家烧麦</b>，再来份锅包肉、熏肉大饼。</p>
-          <p class="meta">吃完可在中街逛逛、买点伴手礼（溜达鸡架、糖葫芦）。</p></div>
-        <div class="item"><span class="time">14:00 – 15:30</span>
-          <h4>二选一：九·一八历史博物馆 / 北陵公园</h4>
-          <p><b>历史控</b>选九·一八历史博物馆（残历碑震撼，免费需预约）；<b>想轻松</b>选北陵公园·清昭陵，初冬松林雪景好拍，且<b>离沈阳北站近</b>，方便收尾。</p></div>
-        <div class="item"><span class="time">15:30 – 16:30</span>
-          <h4>返回沈阳北站 · 取行李</h4>
-          <p>预留充足时间，高铁站安检 + 找站台。买瓶热饮，准备上车。</p></div>
-        <div class="item hl"><span class="time">17:27 → 19:06</span>
-          <h4>沈阳北 🚄 长白山西（已订）</h4>
-          <p>沈白高铁约 1 小时 40 分，一路穿越长白林海。长白山西站 2025 年 9 月底启用，崭新又好找。</p></div>
-        <div class="item"><span class="time">19:06 – 19:40</span>
-          <h4>长白山西站 → 华美胜地 · 桔子酒店 <span class="pill hotel">已订</span></h4>
-          <p>出站在游客集散中心换乘<b>景区公交专线</b>（有直达华美胜地的线路），或打车约 20–30 分钟。西站距西坡仅 6.5 公里，各度假区都很近。</p></div>
-        <div class="item"><span class="time">20:00 起</span>
-          <h4>长白山第一晚 · 轻松收尾</h4>
-          <p>办理入住后，在<b>华美瑞士小镇商业街</b>吃顿热乎的东北铁锅炖 / 火锅，逛逛小镇夜景、补齐次日滑雪要用的护脸、暖宝宝。早点休息，明天开板首滑！</p>
-          <p class="meta">体力有余且酒店含温泉券，可泡一泡“灵舍丹姿火山温泉”解乏（以酒店 / 景区当日开放为准）。</p></div>
+      <div class="body">
+        <p>5天4夜：沈阳中转一日游，华美胜地滑雪 2 天，温泉 + 娱雪，含逐日时间线、交通、美食与打包清单。</p>
+        <div class="go">查看攻略 →</div>
       </div>
-      <div class="note"><b>时间弹性：</b>若上午起不来，可砍掉下午那站，把故宫—帅府—中街走透即可，务必 16:30 前回到沈阳北站，这趟高铁不等人。</div>
-    </div>
+    </a>
   </div>
-</section>
-<section id="d3">
-  <div class="sec-h"><h2>Day 3 · 华美滑雪场（开板日）</h2><span class="en">11/14 Fri</span></div>
-  <div class="day">
-    <div class="day-top">
-      <div class="day-badge"><b>14</b><i>周五</i></div>
-      <div><h3>整天滑雪 · 粉雪初体验 <span class="pill ski">滑雪</span></h3>
-        <p>恰逢 Wild World 山地滑雪场 <b>11/14 正式开板</b>，今冬国内最早开门的雪场之一。</p></div>
-    </div>
-    <div class="day-body">
-      <div class="tl">
-        <div class="item"><span class="time">07:30 – 08:20</span>
-          <h4>早餐 + 装备</h4>
-          <p>吃饱、穿好速干内层。酒店离雪场近，8:30 开板即可第一波上雪、吃到最好的雪质。</p></div>
-        <div class="item hl"><span class="time">08:30 – 12:00</span>
-          <h4>上午场：租装备 + 新手上道</h4>
-          <p>滑雪大厅今冬整体焕新，雪具租赁上线 ATOMIC、SALOMON 等品牌。新手建议先约<b>滑雪学校（九级教学体系 3.0）</b>的入门课，掌握刹车/转弯再上魔毯、初级道。</p>
-          <p class="meta">雪场 15 条超宽雪道，以初中级为主，非常适合练习。全程务必戴头盔。</p></div>
-        <div class="item"><span class="time">12:00 – 13:00</span>
-          <h4>雪场午餐 · 回血</h4>
-          <p>在滑雪大厅 / 小镇简餐解决，热汤热饭为主，补充热量和水分。</p></div>
-        <div class="item"><span class="time">13:00 – 16:00</span>
-          <h4>下午场：进阶 + 娱雪乐园</h4>
-          <p>上午练稳了，下午挑战更多初中级道；滑累了去<b>娱雪乐园</b>玩超级大雪圈（近 1 公里雪道、百米落差）、萌宠互动（驯鹿 / 矮马 / 哈士奇雪橇），或狂野机车区的雪地摩托、UTV。</p></div>
-        <div class="item"><span class="time">16:30</span>
-          <h4>收装备 · 泡温泉解乏</h4>
-          <p>白天场 16:30 结束。还板后直奔<b>灵舍丹姿火山温泉</b>——引 2400 米地下火山温泉入池，零下飘雪里泡露天汤，“冰火两重天”，第一天雪后的最佳收尾。</p></div>
-        <div class="item hl"><span class="time">18:30 起</span>
-          <h4>晚上攻略</h4>
-          <p>晚餐在瑞士小镇商业街觅食（东北菜 / 烧烤 / 火锅）。饭后可看<b>BBC《地球脉动 III》视听音乐会</b>（转入国际会议中心室内举办，长影乐团现场演奏，大银幕自然影像配交响乐），或逛小镇灯光夜景、喝杯热红酒。早睡，明天再战一天。</p>
-          <p class="meta">提示：华美“奇幻夜游”预计 12 月才上线，11 月中旬以小镇夜景 + 室内音乐会 + 温泉为主。具体场次以当日公告为准。</p></div>
-      </div>
-      <div class="note blue"><b>新手节奏：</b>第一天别贪多，上午 1–2 小时打基础最关键；滑 40 分钟歇 15 分钟，多喝水，感觉腿软立刻停，避免受伤影响第二天。</div>
-    </div>
-  </div>
-</section>
-
-<section id="d4">
-  <div class="sec-h"><h2>Day 4 · 滑雪进阶日</h2><span class="en">11/15 Sat</span></div>
-  <div class="day">
-    <div class="day-top">
-      <div class="day-badge"><b>15</b><i>周六</i></div>
-      <div><h3>整天滑雪 · 把昨天学的滑顺 <span class="pill ski">滑雪</span></h3>
-        <p>有了第一天底子，今天可以真正“玩”起来。</p></div>
-    </div>
-    <div class="day-body">
-      <div class="tl">
-        <div class="item"><span class="time">08:30 – 12:00</span>
-          <h4>上午场：巩固 + 刷道</h4>
-          <p>从熟悉的初级道热身，逐步过渡到中级道。可再约一节私教纠正动作，进步最快。会滑的话多刷几条超宽道，享受长白山粉雪。</p></div>
-        <div class="item"><span class="time">12:00 – 13:00</span>
-          <h4>午餐 + 休整</h4>
-          <p>中途小憩，给膝盖和核心肌群恢复时间。</p></div>
-        <div class="item hl"><span class="time">13:00 – 16:00</span>
-          <h4>下午场：挑战 + 趣味公园</h4>
-          <p>体验融入东北民俗的<b>趣味地形公园</b>、高峰期的趣味通关活动；不想再滑可全程泡在娱雪乐园，玩雪圈、机车、萌宠拍照。</p></div>
-        <div class="item"><span class="time">16:30 – 18:00</span>
-          <h4>还板 · 二刷温泉</h4>
-          <p>连滑两天，今晚温泉一定要泡够。火山温泉 + 林海雪景，彻底放松肌肉。</p></div>
-        <div class="item hl"><span class="time">18:30 起</span>
-          <h4>晚上攻略 · 犒劳自己</h4>
-          <p>找一家口碑铁锅炖 / 炭火烤肉搓一顿，配东北特色的酸菜、血肠、冻梨。饭后逛瑞士小镇买人参、蓝莓干、松子等长白山特产当伴手礼（明天就走，今晚买齐）。</p></div>
-      </div>
-      <div class="note"><b>把握最后的雪：</b>明天上午大概率还能再滑半天，但也要留出还装备、退房、赶机场的缓冲。今晚先把特产、行李收拾妥当。</div>
-    </div>
-  </div>
-</section>
-
-<section id="d5">
-  <div class="sec-h"><h2>Day 5 · 悠闲白天 + 夜航返沪</h2><span class="en">11/16 Sun → 11/17</span></div>
-  <div class="day">
-    <div class="day-top">
-      <div class="day-badge"><b>16</b><i>周日</i></div>
-      <div><h3>慢节奏收尾 → 长白山机场飞浦东 <span class="pill fly">航班</span></h3>
-        <p>白天轻松玩，傍晚从容赶机场，深夜红眼回上海。</p></div>
-    </div>
-    <div class="day-body">
-      <div class="tl">
-        <div class="item"><span class="time">08:30 – 09:30</span>
-          <h4>睡到自然醒 · 早餐</h4>
-          <p>连滑两天，今天不设闹钟。吃完早饭办理退房，行李寄存前台。</p></div>
-        <div class="item"><span class="time">09:30 – 12:00</span>
-          <h4>上午 · 三选一（看体力）</h4>
-          <p>
-            <b>① 再滑半天：</b>还有瘾就买半日票，中午前还板；<br>
-            <b>② 雪场娱雪 + 温泉：</b>不滑了就玩雪圈、喂驯鹿、拍雪景，再泡个温泉；<br>
-            <b>③ 小镇慢逛：</b>瑞士小镇咖啡、旅拍、补货特产，彻底休闲。
-          </p></div>
-        <div class="item hl"><span class="time">12:00 – 14:00</span>
-          <h4>告别午餐 · 吃回东北菜</h4>
-          <p>把没吃够的东北菜再点一轮：锅包肉、小鸡炖蘑菇、杀猪菜。吃饱有力气赶路。</p></div>
-        <div class="item"><span class="time">14:00 – 16:30</span>
-          <h4>万良人参小镇（可选）/ 泡温泉 / 休息</h4>
-          <p>时间富余可从景区坐专线去<b>万良人参小镇</b>逛逛、采购人参；或回酒店再泡一次温泉、大堂喝茶发呆，养足精神应对红眼航班。</p></div>
-        <div class="item"><span class="time">18:30 – 19:30</span>
-          <h4>取行李 → 前往长白山机场</h4>
-          <p>长白山机场（NBS）距西坡 / 松江河约 18–20 公里、车程约 20–30 分钟。打车约 100 元，或乘景区 / 酒店机场巴士（班次依航班时刻，提前向前台确认）。</p></div>
-        <div class="item"><span class="time">20:00 – 22:20</span>
-          <h4>机场值机 · 安检候机</h4>
-          <p>支线机场不大，但红眼航班建议提前 2 小时到。托运雪具 / 行李、吃点东西，候机。</p></div>
-        <div class="item hl"><span class="time">22:20 → 次日 01:15</span>
-          <h4>长白山 ✈ 上海浦东 T2（已订）</h4>
-          <p>约 2 小时 55 分航程，凌晨 01:15 落地浦东 T2。深夜回家注意打车 / 接送安排，行程圆满结束。</p></div>
-      </div>
-      <div class="note blue"><b>赶机提醒：</b>长白山机场航班少、天气影响大，务必关注航班动态；冬季道路有雪，去机场车程留足余量，别卡点。</div>
-    </div>
-  </div>
-</section>
-<section id="traffic">
-  <div class="sec-h"><h2>交通速查</h2><span class="en">Getting Around</span></div>
-  <table class="tbl">
-    <tr><th>行程段</th><th>方式</th><th>用时 / 提示</th></tr>
-    <tr><td>浦东 → 沈阳桃仙 T3</td><td>航班 22:00–00:35</td><td>约 2h35m，已订</td></tr>
-    <tr><td>桃仙机场 → 沈阳北站酒店</td><td>打车</td><td>约 20km / 40min / 60–80 元，深夜无地铁</td></tr>
-    <tr><td>沈阳北站 → 故宫·中街</td><td>地铁 / 打车</td><td>打车约 20min；地铁 2 号线换乘</td></tr>
-    <tr><td>沈阳北 → 长白山西</td><td>高铁 17:27–19:06</td><td>沈白高铁约 1h40m，已订</td></tr>
-    <tr><td>长白山西站 → 华美胜地</td><td>景区公交专线 / 打车</td><td>约 20–30min；站内集散中心换乘，7 条专线直达各度假区</td></tr>
-    <tr><td>华美度假区内（酒店⇄雪场⇄温泉）</td><td>步行 / 度假区摆渡</td><td>区内集中，步行或免费摆渡</td></tr>
-    <tr><td>度假区 → 长白山机场</td><td>机场巴士 / 打车</td><td>约 18–20km / 20–30min / 打车约 100 元</td></tr>
-    <tr><td>长白山 → 浦东 T2</td><td>航班 22:20–01:15</td><td>约 2h55m，已订</td></tr>
-  </table>
-  <div class="note blue"><b>关于“西坡天池”：</b>长白山西坡（含西坡登天池）冬季不开放，<b>仅夏季</b>可上。11 月想看天池雪景只能去<b>北坡</b>，但北坡距松江河约 140 公里、单程 2 小时以上，当天往返太赶，本行程不安排；重心放在滑雪 + 温泉 + 娱雪更省心。</div>
-</section>
-
-<section id="ski">
-  <div class="sec-h"><h2>滑雪攻略 · 长白山华美胜地</h2><span class="en">Ski Guide</span></div>
-  <div class="grid">
-    <div class="c"><h4><span class="dot b"></span>雪场概况</h4>
-      <p>Wild World 山地滑雪场，依托长白山优质粉雪，设 <b>15 条超宽雪道</b>，以初中级为主，含趣味地形公园。</p>
-      <p class="k">2026–2027 雪季：11/10 试营业，<b>11/14 正式开板</b></p></div>
-    <div class="c"><h4><span class="dot g"></span>开放时间</h4>
-      <p>白天场约 <b>8:30–16:30</b>（以当日公告为准）。初冬日照短，尽量上午第一波上雪。</p>
-      <p class="k">夜场一般雪季中后期才开，11 月以白天场为主</p></div>
-    <div class="c"><h4><span class="dot o"></span>装备租赁</h4>
-      <p>滑雪大厅焕新，雪具租赁上线 ATOMIC、SALOMON 等品牌，雪板 / 雪鞋 / 雪服齐全，<b>不用自带装备</b>也能滑。</p>
-      <p class="k">头盔必戴；雪镜、防风面罩、厚手套建议自备更贴合</p></div>
-    <div class="c"><h4><span class="dot b"></span>教学</h4>
-      <p>滑雪学校“九级教学体系 3.0”，含儿童友好教学。新手<b>强烈建议第一天上一节课</b>，再自己练。</p>
-      <p class="k">约课可让酒店 / 雪场前台协助预订</p></div>
-    <div class="c"><h4><span class="dot r"></span>娱雪乐园</h4>
-      <p>不滑雪也好玩：超级大雪圈（近 1 公里 / 百米落差）、萌宠互动（驯鹿 / 矮马 / 哈士奇雪橇）、狂野机车（雪地摩托 / UTV）。</p>
-      <p class="k">适合滑累了换换花样、拍照</p></div>
-    <div class="c"><h4><span class="dot g"></span>温泉</h4>
-      <p>灵舍丹姿长白山火山温泉，引 2400 米地下火山温泉入池，露天私汤看雪，滑雪后解乏神器。</p>
-      <p class="k">多数度假酒店房卡可含滑雪 / 温泉等权益，订房时问清</p></div>
-  </div>
-  <div class="note"><b>省心建议：</b>长白山度假酒店常推“一张房卡解锁滑雪 + 娱雪 + 温泉”的套餐，订房时确认你的桔子酒店 / 套票包含哪些权益，能省不少门票钱。实时雪况、开放雪道以雪场当日公告为准。</div>
-</section>
-
-<section id="food">
-  <div class="sec-h"><h2>美食推荐</h2><span class="en">Eat</span></div>
-  <div class="grid">
-    <div class="c"><h4>🥟 沈阳 · 中街午餐</h4>
-      <p><b>老边饺子</b>（百年老字号煸馅饺子）、<b>马家烧麦</b>（清真牛肉烧麦）、锅包肉、熏肉大饼。</p>
-      <p class="k">故宫 / 中街一带集中，逛吃一条龙</p></div>
-    <div class="c"><h4>🍜 沈阳 · 地道小吃</h4>
-      <p>东北<b>鸡架</b>（熏 / 炒 / 拌）、老四季鸡架抻面、西塔朝鲜族<b>烤肉 + 大冷面</b>、杨家吊炉饼。</p>
-      <p class="k">宵夜或候车前垫肚子都合适</p></div>
-    <div class="c"><h4>🍲 长白山 · 东北硬菜</h4>
-      <p>小鸡炖蘑菇、<b>铁锅炖</b>、杀猪菜（酸菜血肠白肉）、锅包肉、地三鲜。滑雪后吃一锅热乎的最治愈。</p>
-      <p class="k">瑞士小镇商业街有东北菜 / 火锅 / 烧烤</p></div>
-    <div class="c"><h4>🫐 长白山 · 山货特产</h4>
-      <p>长白山<b>人参</b>、蓝莓（蓝莓干 / 果酒）、红松子、黑木耳、林下参蜜；冰天雪地来个<b>冻梨 / 冻柿子</b>。</p>
-      <p class="k">伴手礼可在瑞士小镇或万良人参小镇买</p></div>
-  </div>
-</section>
-
-<section id="pack">
-  <div class="sec-h"><h2>打包清单 & 重要提醒</h2><span class="en">Packing & Tips</span></div>
-  <div class="grid">
-    <div class="c"><h4>🧥 保暖（重中之重）</h4>
-      <ul class="clean">
-        <li><b>长款厚羽绒服</b> + 防风冲锋衣外层</li>
-        <li>速干内衣 + 抓绒中层（<b>切忌纯棉贴身</b>，出汗湿冷）</li>
-        <li>防水防滑雪地靴、厚羊毛袜（多备几双）</li>
-        <li>防风帽、围脖 / 面罩、防水厚手套</li>
-      </ul></div>
-    <div class="c"><h4>🎿 滑雪 & 防护</h4>
-      <ul class="clean">
-        <li>雪镜（防雪盲）、头盔（雪场也可租）</li>
-        <li><b>高倍防晒霜 + 润唇膏</b>，雪地反射强</li>
-        <li>暖宝宝若干、护膝、运动护腕</li>
-        <li>备用手套 / 袜子，湿了能换</li>
-      </ul></div>
-    <div class="c"><h4>📄 证件 & 杂物</h4>
-      <ul class="clean">
-        <li>身份证（高铁 / 值机 / 酒店 / 雪卡实名）</li>
-        <li>充电宝（低温掉电快，多带）、数据线</li>
-        <li>常用药、保温杯、润肤霜（干燥）</li>
-        <li>现金少量备用（偏远网点）</li>
-      </ul></div>
-    <div class="c"><h4>⚠️ 关键提醒</h4>
-      <ul class="clean">
-        <li><b>首尾红眼航班</b>：安排好深夜打车 / 接送</li>
-        <li>13 日高铁 17:27 发车，<b>16:30 前回沈阳北站</b></li>
-        <li>西坡天池冬季关闭，看天池需去北坡（本行程不排）</li>
-        <li>雪场雪况 / 温泉 / 音乐会开放<b>以当日公告为准</b></li>
-      </ul></div>
-  </div>
-  <div class="note blue"><b>低温体感：</b>长白山雪季白天山上体感常低至 −15℃ 以下，风大更冷。分层穿衣、裸露皮肤尽量少、手机贴身保温，玩雪再冷也要适时进室内 / 温暖驿站回温。</div>
-</section>
+  <p class="empty" style="margin-top:18px">更多行程陆续加入这个空间…</p>
 </main>
-
-<footer>
-  <div class="wrap">
-    <p><b>上海 → 长白山滑雪攻略</b> · 行程 11/12–11/17</p>
-    <p style="margin-top:8px;opacity:.8">价格、班次、开放时间等信息会随雪季与天气调整，出行前请以航司 / 12306 / 景区官方公告为准。祝雪季愉快，滑得尽兴！</p>
-  </div>
-</footer>
+<footer>YXM Plan B · 由 GitHub Pages 托管 · 可随时更新</footer>
 </body>
 </html>
