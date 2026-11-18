@@ -100,17 +100,17 @@ body.editing .resort{outline:2px dashed #cfe1fa}
   <div class="wrap">
     <button class="ebtn" id="editToggle">✏️ 编辑模式</button>
     <button class="ebtn add" id="addBtn">＋ 添加雪场</button>
-    <button class="ebtn" id="exportBtn">⤓ 导出我的改动</button>
+    <button class="ebtn" id="exportBtn">⤓ 导出数据</button>
     <button class="ebtn" id="resetBtn">↺ 还原默认</button>
-    <span class="hint">改动保存在本浏览器；要同步给所有人，点「导出」把文件发我即可</span>
+    <span class="hint" id="syncState">多人实时同步 · 任何人都能增删，所有人即时可见</span>
   </div>
 </nav>
 <main class="wrap">
   <section id="addedSec" style="display:none">
-    <h3 class="addhead">⭐ 我添加的雪场</h3>
-    <div class="grid" id="addedGrid"></div>
+    <h3 class="addhead">⭐ 大家添加的雪场</h3>
+    <div class="grid" id="addedGrid" data-grp="custom"></div>
   </section>
-  <div class="grid" id="grid">
+  <div class="grid" id="grid" data-grp="top20">
     <article class="resort" data-region="新疆">
       <div class="r-head"><span class="rank">01</span>
         <div><h3>禾木（吉克普林）国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰布尔津</span></div>
@@ -399,7 +399,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
     <p class="lead">以下为按需补充：雪道总长偏短、未进入全国 TOP20，但各有亮点或地利。数据综合 geocarver 与公开资料，以官方为准。</p>
 
     <h3 class="subh">🎿 指定收录 · 长白山华美</h3>
-    <div class="grid">
+    <div class="grid" data-grp="huamei">
       <article class="resort">
         <div class="r-head"><span class="rank cn">指</span>
           <div><h3>长白山华美胜地滑雪场</h3><span class="loc">吉林 · 抚松（原鲁能胜地）</span></div>
@@ -416,7 +416,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
       </article>
     </div>
     <h3 class="subh">🌾 河南 · 本省 TOP 3</h3>
-    <div class="grid">
+    <div class="grid" data-grp="henan">
       <article class="resort">
         <div class="r-head"><span class="rank hn">豫</span>
           <div><h3>洛阳伏牛山滑雪度假乐园</h3><span class="loc">河南 · 洛阳栾川</span></div>
@@ -461,7 +461,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
       </article>
     </div>
     <h3 class="subh">🚄 周边省份 · 自河南出发 TOP 3</h3>
-    <div class="grid">
+    <div class="grid" data-grp="neighbor">
       <article class="resort">
         <div class="r-head"><span class="rank nb">鄂</span>
           <div><h3>神农架国际滑雪场</h3><span class="loc">湖北 · 神农架林区</span></div>
@@ -507,7 +507,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
     </div>
 
     <h3 class="subh">🚄 从上海出发 · 方便来回 5 选</h3>
-    <div class="grid">
+    <div class="grid" data-grp="shanghai">
       <article class="resort">
         <div class="r-head"><span class="rank sh">沪</span>
           <div><h3>上海耀雪冰雪世界</h3><span class="loc">上海 · 临港滴水湖</span></div>
@@ -608,102 +608,125 @@ body.editing .resort{outline:2px dashed #cfe1fa}
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  const LS='yxm_ski_custom_v1';
+  const SB_URL='https://jfvktpiumonhsgsgwbcc.supabase.co';
+  const SB_KEY='sb_publishable_iwjdJ0BVThvZVEpq2t2tgw_OskNS6U1';
+  const sb=window.supabase.createClient(SB_URL,SB_KEY);
   const $=s=>document.querySelector(s);
-  function load(){try{return JSON.parse(localStorage.getItem(LS))||{added:[],deleted:[]}}catch(e){return{added:[],deleted:[]}}}
-  const state=load();
-  function save(){localStorage.setItem(LS,JSON.stringify(state));}
-  function idOf(card){return card.querySelector('h3').textContent.trim();}
-  function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-
-  // 顶部区域筛选（仅作用于 TOP20 主榜）
-  const btns=document.querySelectorAll('.fbtn');
-  btns.forEach(b=>b.addEventListener('click',()=>{
-    btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');
-    const f=b.dataset.f;
-    document.querySelectorAll('#grid .resort').forEach(c=>{
-      c.style.display=(f==='all'||c.dataset.region===f)?'':'none';});
-  }));
-  // 给每张卡片加删除按钮（编辑模式下显示）
-  function addDelBtn(card){
-    if(card.querySelector('.del'))return;
-    const b=document.createElement('button');b.className='del';b.textContent='×';b.title='删除此卡片';
-    b.addEventListener('click',()=>{
-      const id=idOf(card);
-      if(!confirm('确定删除「'+id+'」？'))return;
-      if(!state.deleted.includes(id))state.deleted.push(id);
-      state.added=state.added.filter(o=>o.name!==id);
-      save();card.remove();
+  const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const COLS=['s_len','s_lift','s_drop','s_open','s_feat','s_price'];
+  const labelsFor=g=>g==='shanghai'?['雪道','缆车','距沪','开放','特色','价格']:['雪道总长','缆车','落差','开放','特色','价格'];
+  function banner(m){const el=$('#syncState');if(el){el.textContent=m;el.style.color='#ffd59a';}console.warn(m);}
+  // 把页面里现有的默认卡片解析为“种子数据”
+  function parseDefaults(){
+    const out=[];let i=0;
+    document.querySelectorAll('[data-grp] .resort').forEach(card=>{
+      const grp=card.closest('[data-grp]').dataset.grp;
+      const rk=card.querySelector('.rank');
+      const specs=card.querySelectorAll('.specs .spec');
+      const row={sort:i++,grp,
+        rank:rk?rk.textContent.trim():'＋',
+        rank_class:rk?rk.className.replace('rank','').trim():'add',
+        region:card.dataset.region||'',
+        name:card.querySelector('h3').textContent.trim(),
+        loc:(card.querySelector('.loc')||{}).textContent||'',
+        tier:(card.querySelector('.tier')||{}).textContent||'',
+        descr:(card.querySelector('.desc')||{}).textContent||''};
+      COLS.forEach((c,idx)=>row[c]=specs[idx]?specs[idx].querySelector('.val').textContent.trim():'');
+      out.push(row);
     });
-    card.appendChild(b);
+    return out;
   }
-  document.querySelectorAll('.resort').forEach(addDelBtn);
+  const defaults=parseDefaults();
 
-  // 应用已保存的删除
-  document.querySelectorAll('#grid .resort, .addsec .resort').forEach(c=>{
-    if(state.deleted.includes(idOf(c)))c.remove();
-  });
-
-  // 渲染“我添加的雪场”
-  const addedGrid=$('#addedGrid'),addedSec=$('#addedSec');
-  function buildCard(o){
-    const specs=[['雪道',o.s1,true],['缆车',o.s2],['落差/海拔',o.s3],['开放',o.s4],['特色',o.s5],['价格',o.s6]]
-      .filter(x=>x[1]).map(x=>'<div class="spec'+(x[2]?' key':'')+'"><span class="lab">'+x[0]+'</span><span class="val">'+esc(x[1])+'</span></div>').join('');
-    const art=document.createElement('article');art.className='resort';
-    art.innerHTML='<div class="r-head"><span class="rank add">＋</span>'
-      +'<div><h3>'+esc(o.name)+'</h3><span class="loc">'+esc(o.loc||'')+'</span></div>'
-      +(o.tier?'<span class="tier">'+esc(o.tier)+'</span>':'')+'</div>'
-      +(o.desc?'<p class="desc">'+esc(o.desc)+'</p>':'')
-      +'<div class="specs">'+specs+'</div>';
-    addDelBtn(art);
-    return art;
+  function cardHTML(r){
+    const labs=labelsFor(r.grp);let specs='';
+    COLS.forEach((c,idx)=>{if(r[c])specs+='<div class="spec'+(idx===0?' key':'')+'"><span class="lab">'+labs[idx]+'</span><span class="val">'+esc(r[c])+'</span></div>';});
+    const rc=r.rank_class?(' '+r.rank_class):'';
+    return '<div class="r-head"><span class="rank'+rc+'">'+esc(r.rank)+'</span>'
+      +'<div><h3>'+esc(r.name)+'</h3><span class="loc">'+esc(r.loc)+'</span></div>'
+      +(r.tier?'<span class="tier">'+esc(r.tier)+'</span>':'')+'</div>'
+      +(r.descr?'<p class="desc">'+esc(r.descr)+'</p>':'')
+      +'<div class="specs">'+specs+'</div><button class="del" title="删除">×</button>';
   }
-  function renderAdded(){
-    addedGrid.innerHTML='';
-    state.added.forEach(o=>addedGrid.appendChild(buildCard(o)));
-    addedSec.style.display=state.added.length?'':'none';
+  function render(rows){
+    document.querySelectorAll('[data-grp]').forEach(g=>g.innerHTML='');
+    rows.slice().sort((a,b)=>(a.sort||0)-(b.sort||0)).forEach(r=>{
+      const grid=document.querySelector('[data-grp="'+r.grp+'"]')||$('#addedGrid');
+      const art=document.createElement('article');art.className='resort';
+      if(r.region)art.dataset.region=r.region;art.dataset.id=r.id;
+      art.innerHTML=cardHTML(r);
+      art.querySelector('.del').addEventListener('click',()=>removeCard(r,art));
+      grid.appendChild(art);
+    });
+    $('#addedSec').style.display=rows.some(r=>r.grp==='custom')?'':'none';
+    applyFilter();
   }
-  renderAdded();
-  // 编辑模式开关
-  $('#editToggle').addEventListener('click',function(){
-    document.body.classList.toggle('editing');
-    this.classList.toggle('on');
-    this.textContent=document.body.classList.contains('editing')?'✓ 完成编辑':'✏️ 编辑模式';
-  });
+  // 区域筛选
+  let curFilter='all';
+  const btns=document.querySelectorAll('.fbtn');
+  btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');curFilter=b.dataset.f;applyFilter();}));
+  function applyFilter(){document.querySelectorAll('#grid .resort').forEach(c=>{c.style.display=(curFilter==='all'||c.dataset.region===curFilter)?'':'none';});}
 
-  // 添加弹窗
-  const modal=$('#modal');
-  const fields=['f_name','f_loc','f_tier','f_desc','f_s1','f_s2','f_s3','f_s4','f_s5','f_s6'];
+  // 读取（首次为空则写入默认种子）
+  async function startup(){
+    let {data,error}=await sb.from('resorts').select('*');
+    if(error){banner('⚠ 实时同步未连接：请确认已在 Supabase 运行建表 SQL（当前显示默认内容）');return;}
+    if(!data||!data.length){
+      const {error:e2}=await sb.from('resorts').insert(defaults);
+      if(e2){banner('⚠ 初始化写入失败：'+e2.message);return;}
+      ({data}=await sb.from('resorts').select('*'));
+    }
+    render(data||[]);
+  }
+  async function refresh(){const {data,error}=await sb.from('resorts').select('*');if(!error)render(data||[]);}
+
+  async function removeCard(r,art){
+    if(!confirm('确定删除「'+r.name+'」？所有人都会同步删除。'))return;
+    art.remove();
+    const {error}=await sb.from('resorts').delete().eq('id',r.id);
+    if(error)alert('删除失败：'+error.message);
+  }
+
+  // 编辑模式
+  $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'✓ 完成编辑':'✏️ 编辑模式';});
+
+  // 添加
+  const modal=$('#modal'),fields=['f_name','f_loc','f_tier','f_desc','f_s1','f_s2','f_s3','f_s4','f_s5','f_s6'];
   $('#addBtn').addEventListener('click',()=>modal.classList.add('open'));
   $('#mCancel').addEventListener('click',()=>modal.classList.remove('open'));
   modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
-  $('#mSave').addEventListener('click',()=>{
-    const name=$('#f_name').value.trim();
-    if(!name){alert('请填写名称');return;}
-    state.added.push({name,loc:$('#f_loc').value.trim(),tier:$('#f_tier').value.trim(),desc:$('#f_desc').value.trim(),
-      s1:$('#f_s1').value.trim(),s2:$('#f_s2').value.trim(),s3:$('#f_s3').value.trim(),
-      s4:$('#f_s4').value.trim(),s5:$('#f_s5').value.trim(),s6:$('#f_s6').value.trim()});
-    state.deleted=state.deleted.filter(d=>d!==name);
-    save();renderAdded();
-    fields.forEach(id=>$('#'+id).value='');
-    modal.classList.remove('open');
+  $('#mSave').addEventListener('click',async()=>{
+    const name=$('#f_name').value.trim();if(!name){alert('请填写名称');return;}
+    const row={grp:'custom',sort:9999,rank:'＋',rank_class:'add',region:'',name,
+      loc:$('#f_loc').value.trim(),tier:$('#f_tier').value.trim(),descr:$('#f_desc').value.trim(),
+      s_len:$('#f_s1').value.trim(),s_lift:$('#f_s2').value.trim(),s_drop:$('#f_s3').value.trim(),
+      s_open:$('#f_s4').value.trim(),s_feat:$('#f_s5').value.trim(),s_price:$('#f_s6').value.trim()};
+    const {error}=await sb.from('resorts').insert(row);
+    if(error){alert('添加失败：'+error.message);return;}
+    fields.forEach(id=>$('#'+id).value='');modal.classList.remove('open');
     if(!document.body.classList.contains('editing'))$('#editToggle').click();
-    addedSec.scrollIntoView({behavior:'smooth'});
+  });
+  // 导出当前数据
+  $('#exportBtn').addEventListener('click',async()=>{
+    const {data}=await sb.from('resorts').select('*');
+    const blob=new Blob([JSON.stringify(data||[],null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ski-resorts.json';a.click();
   });
 
-  // 导出改动（发我即可同步到线上给所有人看）
-  $('#exportBtn').addEventListener('click',()=>{
-    const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-ski-cards.json';a.click();
+  // 还原默认（清空并重置，影响所有人）
+  $('#resetBtn').addEventListener('click',async()=>{
+    if(!confirm('还原默认会清空数据库所有卡片并重置为默认，影响所有人。确定？'))return;
+    await sb.from('resorts').delete().neq('id','00000000-0000-0000-0000-000000000000');
+    await sb.from('resorts').insert(defaults);
   });
 
-  // 还原默认
-  $('#resetBtn').addEventListener('click',()=>{
-    if(!confirm('还原为默认？将清除你在本浏览器的所有添加与删除。'))return;
-    localStorage.removeItem(LS);location.reload();
-  });
+  // 实时同步：任何人增删，所有人即时更新
+  sb.channel('resorts-rt').on('postgres_changes',{event:'*',schema:'public',table:'resorts'},refresh).subscribe();
+
+  startup();
 })();
 </script>
 </body>
