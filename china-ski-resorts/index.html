@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国最值得去的 20 家滑雪场</title>
+<title>中国滑雪场 TOP 20 · 按雪道总长排名</title>
 <style>
 :root{--ink:#0f2440;--ink2:#38506f;--muted:#7489a3;--snow:#f4f8fd;--card:#fff;--line:#e4edf6;
   --blue:#2f7fd6;--blue2:#1b5fb0;--ice:#e8f3ff;--gold:#d9a441;--green:#2fa36b;
@@ -16,9 +16,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .hero{color:#fff;background:linear-gradient(135deg,#0d2b54,#1b5fb0 55%,#3f93dd);padding:50px 18px 44px;text-align:center;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;opacity:.5;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 40%),radial-gradient(circle at 82% 12%,rgba(255,255,255,.12),transparent 35%)}
 .hero>*{position:relative;z-index:1}
-.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:5px 15px;border-radius:30px;font-size:13px;letter-spacing:2px;margin-bottom:16px}
-.hero h1{font-size:34px;font-weight:800;letter-spacing:.5px}
-.hero p{margin-top:12px;font-size:14.5px;opacity:.92}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:5px 15px;border-radius:30px;font-size:13px;letter-spacing:1px;margin-bottom:16px}
+.hero h1{font-size:33px;font-weight:800;letter-spacing:.5px}
+.hero p{margin-top:12px;font-size:14px;opacity:.92}
 .back{display:inline-block;margin-top:18px;font-size:13px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:6px 14px;border-radius:20px;text-decoration:none}
 .filter{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .filter .wrap{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px}
@@ -29,291 +29,327 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .resort{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh);padding:20px 20px 16px;display:flex;flex-direction:column}
 .r-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
 .rank{flex:0 0 auto;width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh2)}
-.r-head h3{font-size:17.5px;font-weight:800;line-height:1.3}
+.r-head h3{font-size:17px;font-weight:800;line-height:1.3}
 .r-head .loc{font-size:12.5px;color:var(--muted)}
 .tier{margin-left:auto;font-size:11.5px;font-weight:700;color:#9a6f14;background:#fdf2d8;padding:3px 9px;border-radius:20px;white-space:nowrap}
-.desc{font-size:13.5px;color:var(--ink2);margin:2px 0 14px}
+.desc{font-size:13px;color:var(--ink2);margin:2px 0 14px}
 .specs{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:auto}
-.spec{display:flex;gap:10px;background:#fbfdff;padding:9px 13px}
-.spec .lab{flex:0 0 72px;font-size:12.5px;font-weight:700;color:var(--blue2)}
-.spec .val{font-size:13px;color:var(--ink2)}
+.spec{display:flex;gap:10px;background:#fbfdff;padding:8px 13px}
+.spec .lab{flex:0 0 68px;font-size:12.5px;font-weight:700;color:var(--blue2)}
+.spec .val{font-size:12.8px;color:var(--ink2)}
+.spec.key{background:#eef5ff}.spec.key .val{font-weight:700;color:var(--ink)}
 .note{background:#fff8ec;border:1px solid #f1e0bb;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13px;color:#6b531d;margin:14px 0 6px}
 footer{background:#0d2b54;color:#bcd2ee;padding:26px 0;font-size:13px;text-align:center;margin-top:24px}
-footer b{color:#fff}
-@media(max-width:600px){.hero h1{font-size:26px}}
+footer b{color:#fff}footer a{color:#9fc4ee}
+@media(max-width:600px){.hero h1{font-size:25px}}
 </style>
 </head>
 <body>
 <header class="hero">
   <div class="wrap">
-    <span class="tag">2026–2027 雪季</span>
-    <h1>中国最值得去的 20 家滑雪场</h1>
-    <p>按区域精选 · 每家含开放时间、雪道数量、特色项目、预期价格与简介</p>
+    <span class="tag">数据来源 · geocarver（按实测雪道总长排名）</span>
+    <h1>中国滑雪场 TOP 20</h1>
+    <p>依据 geocarver.com 对各雪场「实测雪道总长（含子区域）」重新排名<br>每家含雪道总长 · 缆车 · 垂直落差 · 海拔 · 开放时间 · 特色 · 预期价格</p>
     <a class="back" href="../">← 返回 YXM Plan B</a>
   </div>
 </header>
 <nav class="filter">
   <div class="wrap">
     <span class="fbtn on" data-f="all">全部 20</span>
-    <span class="fbtn" data-f="东北">东北 · 吉林黑龙江</span>
+    <span class="fbtn" data-f="东北">东北</span>
     <span class="fbtn" data-f="崇礼">河北崇礼</span>
-    <span class="fbtn" data-f="新疆">新疆阿勒泰</span>
-    <span class="fbtn" data-f="北京">北京周边</span>
-    <span class="fbtn" data-f="南方">南方 · 室内</span>
+    <span class="fbtn" data-f="新疆">新疆</span>
+    <span class="fbtn" data-f="华北">北京·华北</span>
+    <span class="fbtn" data-f="其他">其他省份</span>
   </div>
 </nav>
 <main class="wrap">
   <div class="grid" id="grid">
-<!--CARDS-->
-    <article class="resort" data-region="东北">
+    <article class="resort" data-region="新疆">
       <div class="r-head"><span class="rank">01</span>
-        <div><h3>长白山万达国际度假区</h3><span class="loc">吉林 · 抚松</span></div>
-        <span class="tier">顶级度假</span></div>
-      <p class="desc">国内配套最成熟的滑雪度假区，冬奥团队打造的壶状地形「港湾滑雪」，十家星级酒店 + 欧式小镇一条龙。</p>
+        <div><h3>禾木（吉克普林）国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰布尔津</span></div>
+        <span class="tier">雪道之最</span></div>
+      <p class="desc">全站雪道总长第一、落差 1375m 国内最大的粉雪与野雪天堂，紧邻禾木童话雪村。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月下旬 – 次年 4 月初</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">43 条（约 33km，初中高 + 夜场）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">夜场灯光道 · 汉拿山温泉 · 水乐园 ·《天地长白》演出</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住滑套餐约 ¥1200–2800 / 人·晚（房含双人雪票）</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">85.2 km（全国第 1）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">10 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">1375 m（海拔 1382–2757 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 4 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">道外野雪 / FWT 世界野雪赛 · 禾木木屋 · 马拉雪橇</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥380–580/天；住+票 ¥800–2000/人·晚</span></div>
       </div>
     </article>
     <article class="resort" data-region="东北">
       <div class="r-head"><span class="rank">02</span>
-        <div><h3>长白山华美胜地</h3><span class="loc">吉林 · 抚松</span></div>
-        <span class="tier">新手亲子</span></div>
-      <p class="desc">原鲁能胜地，紧邻万达。山体落差小、雪道超宽、风小，是全年龄尤其亲子新手的舒适主场。</p>
+        <div><h3>北大湖滑雪度假区</h3><span class="loc">吉林 · 吉林市</span></div>
+        <span class="tier">亚洲单体最大</span></div>
+      <p class="desc">亚洲单体规模最大、雪期长粉雪厚，2027 大冬会核心赛场，夜滑规模国内领先。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 3 月下</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">15 条超宽（约 12km，初级为主）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">灵舍丹姿火山温泉 · 娱雪乐园 · 瑞士小镇 · 九级教学</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住滑套餐约 ¥1000–2200 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">58.6 km（全国第 2）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">13 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">891 m（海拔 502–1393 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 4 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">国内最大规模夜滑 · 极乐汤温泉 · 滑进滑出酒店</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥350–500/天；住+票 ¥1200–2600/人·晚</span></div>
       </div>
     </article>
-    <article class="resort" data-region="东北">
+    <article class="resort" data-region="新疆">
       <div class="r-head"><span class="rank">03</span>
-        <div><h3>北大湖滑雪度假区</h3><span class="loc">吉林 · 吉林市</span></div>
-        <span class="tier">粉雪进阶</span></div>
-      <p class="desc">亚洲单体规模最大雪场，主峰落差近 900m，粉雪深厚雪期长，2027 大冬会核心赛场。</p>
+        <div><h3>可可托海国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰富蕴</span></div>
+        <span class="tier">海拔最高</span></div>
+      <p class="desc">海拔达 3071m、全国最早开板（10 月）且雪季到次年 5 月，蓬松粉雪 + 5A 峡谷景观。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 4 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">81 条（总长约 80km，13+ 索道）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">国内最大规模夜滑 · 极乐汤温泉 · 滑进滑出酒店 · 竞技道</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住滑套餐约 ¥1200–2600 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">49.5 km（全国第 3）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">9 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">1331 m（海拔 1740–3071 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 10 月中 – 次年 5 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">超长雪季 · 蓬松粉雪 · 5A 景区 · 额尔齐斯河大峡谷</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥280–580/天；住+票 ¥700–1600/人·晚</span></div>
       </div>
     </article>
     <article class="resort" data-region="东北">
       <div class="r-head"><span class="rank">04</span>
-        <div><h3>松花湖滑雪度假区</h3><span class="loc">吉林 · 吉林市</span></div>
+        <div><h3>松花湖滑雪场</h3><span class="loc">吉林 · 吉林市</span></div>
         <span class="tier">长道练技</span></div>
-      <p class="desc">万科运营，依松花湖而建，招牌 5.23km 高山漫游长道从山顶滑到山脚，还能赏吉林雾凇。</p>
+      <p class="desc">万科运营，依松花湖而建，招牌 5.23km 长道从山顶滑到山脚，可赏吉林雾凇。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月下 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">50 条（约 55km）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">5.23km 超长道 · 吉林雾凇 · FIS 竞技道 · 青山镇配套</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住滑套餐约 ¥1000–2400 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">32.1 km（全国第 4）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">13 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">597 m（海拔 310–907 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">5.23km 超长道 · 吉林雾凇 · FIS 竞技道</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥300–500/天；住+票 ¥1000–2400/人·晚</span></div>
       </div>
     </article>
-<!--CARDS2-->
-    <article class="resort" data-region="东北">
+    <article class="resort" data-region="崇礼">
       <div class="r-head"><span class="rank">05</span>
-        <div><h3>亚布力滑雪旅游度假区</h3><span class="loc">黑龙江 · 尚志</span></div>
-        <span class="tier">元老名场</span></div>
-      <p class="desc">国内滑雪「元老」，三大雪区联网，林海雪原风光，承办过亚冬会，专业与度假兼具。</p>
+        <div><h3>万龙滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
+        <span class="tier">粉雪野雪</span></div>
+      <p class="desc">崇礼开板最早、雪质口碑最佳，野雪量国内之冠，被称「中国的粉雪天堂」。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月上 – 次年 4 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">三山联网 56 条</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">三山连滑 · 阳光度假村 · 2680m 林海雪道 · 俄式风情</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住滑套餐约 ¥900–2200 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">31.4 km（全国第 5）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">7 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">569 m（海拔 1535–2104 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 10 月下 – 次年 4 月中</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">230万㎡ 树林野雪 · FIS 认证道 · ski-in/out</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票平日约 ¥390 / 周末 ¥520；住滑 ¥900–2200/人·晚</span></div>
       </div>
     </article>
     <article class="resort" data-region="崇礼">
       <div class="r-head"><span class="rank">06</span>
-        <div><h3>万龙滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
-        <span class="tier">粉雪野雪</span></div>
-      <p class="desc">崇礼每年开板最早、对雪质最讲究的场，野雪量国内之冠，被称「中国的粉雪天堂」。</p>
+        <div><h3>雪如意滑雪场</h3><span class="loc">河北 · 崇礼太子城</span></div>
+        <span class="tier">冬奥地标</span></div>
+      <p class="desc">崇礼太子城冬奥核心区，紧邻国家跳台滑雪中心「雪如意」地标，雪道与奥运配套俱全。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">10 月下 – 次年 4 月中</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">32 条（高级道 23 条，部分 FIS 认证）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">230 万㎡ 树林野雪 · ski-in/out 酒店 · 温泉中心</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥390 / 周末 ¥520；住滑 ¥900–2200 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">31.2 km（全国第 6）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">7 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">457 m（海拔 1668–2125 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">冬奥核心区 ·「雪如意」跳台地标 · 高铁太子城站旁</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥300–560/天；住滑 ¥900–2200/人·晚</span></div>
       </div>
     </article>
     <article class="resort" data-region="崇礼">
       <div class="r-head"><span class="rank">07</span>
         <div><h3>密苑云顶乐园</h3><span class="loc">河北 · 崇礼</span></div>
         <span class="tier">冬奥赛场</span></div>
-      <p class="desc">北京冬奥自由式 / 单板赛场，公园与赛道专业级，日夜场齐全，雪友竞技首选之一。</p>
+      <p class="desc">北京冬奥自由式 / 单板赛场，公园与赛道专业级，日夜场齐全。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 4 月上</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">约 41 条（含冬奥赛道）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">冬奥 U 型池 / 坡面障碍 · 15000㎡ 单板公园 · 夜场</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥370 / 节假日 ¥590；住滑 ¥1000–2400 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">28.1 km（全国第 7）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">7 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">445 m（海拔 1655–2100 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 4 月上</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">冬奥 U 型池 / 坡面障碍 · 大型单板公园 · 夜场</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票平日约 ¥370 / 节假日 ¥590；住滑 ¥1000–2400/人·晚</span></div>
       </div>
     </article>
-    <article class="resort" data-region="崇礼">
+    <article class="resort" data-region="东北">
       <div class="r-head"><span class="rank">08</span>
-        <div><h3>太舞滑雪小镇</h3><span class="loc">河北 · 崇礼</span></div>
-        <span class="tier">度假小镇</span></div>
-      <p class="desc">欧式滑雪小镇氛围最佳，雪场面积大、配套丰富，适合住下来慢享几天的度假型玩家。</p>
+        <div><h3>龙岗山滑雪场</h3><span class="loc">东北 ·（即将开业）</span></div>
+        <span class="tier">新场待开</span></div>
+      <p class="desc">新建大型雪场，落差约 781m、规划雪道里程可观；本雪季即将开业，细节与位置以官方为准。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 4 月上</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">约 45 条（雪场面积大）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">欧式滑雪小镇 · 住滑一体 · LED 全覆盖夜场 · 餐饮购物</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥350 / 周末 ¥470；住滑 ¥900–2200 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">28.1 km（全国第 8）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">4 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">781 m（海拔 551–1332 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">本雪季即将开业（以官方为准）</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">全新雪场 · 落差较大 · 规划雪道多</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">以官方公告为准</span></div>
       </div>
     </article>
-<!--CARDS3-->
-    <article class="resort" data-region="崇礼">
+    <article class="resort" data-region="华北">
       <div class="r-head"><span class="rank">09</span>
-        <div><h3>富龙滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
-        <span class="tier">亲子夜场</span></div>
-      <p class="desc">距崇礼城区最近，夜场雪道崇礼最多，亲子「雪人王国」丰富，通勤与家庭都友好。</p>
+        <div><h3>延庆国家高山滑雪中心</h3><span class="loc">北京 · 延庆（雪飞燕）</span></div>
+        <span class="tier">冬奥高山</span></div>
+      <p class="desc">北京冬奥高山滑雪场地「雪飞燕」，专业级赛道与超大落差，小海陀山巅视野震撼。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月上 – 次年 4 月上</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">37 条（夜场 10 条）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">崇礼最大夜场 · 雪人王国亲子乐园 · 城区 5 分钟</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥330 / 周末 ¥450；住滑 ¥800–1800 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">25.8 km（全国第 9）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">11 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">1264 m（海拔 907–2171 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">面向公众开放时段 / 票价以官方为准</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">冬奥高山赛道 · 超大落差 · 专业挑战</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">以官方公告为准（专业场地）</span></div>
       </div>
     </article>
-    <article class="resort" data-region="崇礼">
+    <article class="resort" data-region="新疆">
       <div class="r-head"><span class="rank">10</span>
-        <div><h3>翠云山银河滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
-        <span class="tier">家庭温泉</span></div>
-      <p class="desc">翠云山国际旅游度假区内，家庭型为主，坡度平缓，搭配温泉适合轻松度假。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月下 – 次年 3 月底</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">约 20+ 条</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">家庭亲子 · 温泉度假 · 银河夜场 · 价格较亲民</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥280 / 周末 ¥380；住滑 ¥700–1500 / 人·晚</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="新疆">
-      <div class="r-head"><span class="rank">11</span>
-        <div><h3>可可托海国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰富蕴</span></div>
-        <span class="tier">超长雪季</span></div>
-      <p class="desc">全国每年最早开板（10 月）、雪季延续到次年 5 月，地处「冰雪黄金纬度带」，落差与粉雪惊艳。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">10 月中 – 次年 5 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">23 条（最大落差约 1466m）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">全国最早开板 · 蓬松粉雪 · 5A 景区 · 额尔齐斯河大峡谷</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥280 / 节假日 ¥580；住+票 ¥700–1600 / 人·晚</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="新疆">
-      <div class="r-head"><span class="rank">12</span>
-        <div><h3>禾木吉克普林国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰布尔津</span></div>
-        <span class="tier">野雪天堂</span></div>
-      <p class="desc">落差 1466m 国内之最，103 条雪道、108km，粉雪与道外野雪一流，紧邻禾木童话雪村。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 4 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">103 条（总长约 108km）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">国内最大落差 · 道外野雪 / FWT 赛 · 禾木木屋 · 马拉雪橇</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票约 ¥380–580；住+票 ¥800–2000 / 人·晚</span></div>
-      </div>
-    </article>
-<!--CARDS4-->
-    <article class="resort" data-region="新疆">
-      <div class="r-head"><span class="rank">13</span>
         <div><h3>将军山国际滑雪度假区</h3><span class="loc">新疆 · 阿勒泰市</span></div>
         <span class="tier">日落派对</span></div>
       <p class="desc">全国离城市最近的大型雪场（市区 10 分钟），初中高均衡，日落雪道 + 山顶派对氛围感拉满。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">滑道总长约 17km，初中高均衡</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">市区 10 分钟 · 绝美日落雪道 · 山顶 DJ 派对 · 惠民政策</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票较亲民；住+票约 ¥700–1500 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">25.0 km（全国第 10）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">12 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">463 m（海拔 848–1311 m）</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">市区 10 分钟 · 绝美日落雪道 · 山顶派对 · 惠民政策</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票较亲民；住+票 ¥700–1500/人·晚</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="崇礼">
+      <div class="r-head"><span class="rank">11</span>
+        <div><h3>富龙滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
+        <span class="tier">亲子夜场</span></div>
+      <p class="desc">距崇礼城区最近，夜场雪道崇礼最多，亲子「雪人王国」丰富。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">19.9 km（全国第 11）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">9 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">423 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月上 – 次年 4 月上</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">崇礼最大夜场 · 雪人王国亲子乐园 · 城区 5 分钟</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票平日约 ¥330 / 周末 ¥450；住滑 ¥800–1800/人·晚</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="东北">
+      <div class="r-head"><span class="rank">12</span>
+        <div><h3>长白山万达国际度假区</h3><span class="loc">吉林 · 抚松</span></div>
+        <span class="tier">一条龙度假</span></div>
+      <p class="desc">国内配套最成熟的滑雪度假区，冬奥团队打造「港湾滑雪」，十家星级酒店 + 欧式小镇。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">18.9 km（全国第 12）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">11 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">367 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 4 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">夜场 · 汉拿山温泉 · 水乐园 ·《天地长白》演出</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">住滑套餐约 ¥1200–2800/人·晚（房含双人雪票）</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="华北">
+      <div class="r-head"><span class="rank">13</span>
+        <div><h3>金山岭滑雪场</h3><span class="loc">河北 · 承德（近北京）</span></div>
+        <span class="tier">长城脚下</span></div>
+      <p class="desc">位于金山岭长城一带、近北京的高落差雪场，雪道里程在华北居前。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">18.6 km（全国第 13）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">2 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">522 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 12 月 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">长城景观 · 高落差 · 近京津</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥150–400/天（以官方为准）</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="其他">
+      <div class="r-head"><span class="rank">14</span>
+        <div><h3>鳌山滑雪场</h3><span class="loc">陕西 · 宝鸡太白</span></div>
+        <span class="tier">西北高山</span></div>
+      <p class="desc">位于秦岭鳌山，海拔高、落差大（约 790m），是西北地区规模领先的高山雪场。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">18.5 km（全国第 14）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">7 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">790 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">秦岭高山 · 大落差 · 西北规模领先</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥200–500/天（以官方为准）</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="崇礼">
+      <div class="r-head"><span class="rank">15</span>
+        <div><h3>太舞滑雪场</h3><span class="loc">河北 · 崇礼</span></div>
+        <span class="tier">度假小镇</span></div>
+      <p class="desc">欧式滑雪小镇氛围最佳，雪场面积大、配套丰富，适合住下慢享几天。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">18.1 km（全国第 15）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">10 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">506 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月中 – 次年 4 月上</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">欧式滑雪小镇 · 住滑一体 · 全覆盖夜场</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票平日约 ¥350 / 周末 ¥470；住滑 ¥900–2200/人·晚</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="其他">
+      <div class="r-head"><span class="rank">16</span>
+        <div><h3>美林谷滑雪场</h3><span class="loc">内蒙古 · 赤峰</span></div>
+        <span class="tier">塞外高山</span></div>
+      <p class="desc">内蒙古赤峰的高山雪场，海拔与落差在华北东北之外独具特色，雪质干爽。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">16.5 km（全国第 16）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">3 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">465 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">塞外高山 · 干爽雪质 · 林地雪道</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥150–400/天（以官方为准）</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="东北">
+      <div class="r-head"><span class="rank">17</span>
+        <div><h3>亚布力阳光滑雪度假区</h3><span class="loc">黑龙江 · 尚志</span></div>
+        <span class="tier">元老名场</span></div>
+      <p class="desc">国内滑雪「元老」亚布力的核心度假区，林海雪原、长雪道，专业与度假兼具。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">16.1 km（全国第 17）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">7 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">543 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月上 – 次年 4 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">长雪道 · 阳光度假村 · 林海雪原 · 俄式风情</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥200–460/天；住+票 ¥900–2200/人·晚</span></div>
+      </div>
+    </article>
+    <article class="resort" data-region="东北">
+      <div class="r-head"><span class="rank">18</span>
+        <div><h3>万峰通化滑雪度假区</h3><span class="loc">吉林 · 通化</span></div>
+        <span class="tier">新晋大场</span></div>
+      <p class="desc">吉林通化新晋大型雪场，雪道里程可观，依托长白山余脉的优质降雪。</p>
+      <div class="specs">
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">15.9 km（全国第 18）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">8 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">528 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">新晋大型雪场 · 优质降雪 · 配套较新</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥200–460/天（以官方为准）</span></div>
       </div>
     </article>
     <article class="resort" data-region="新疆">
-      <div class="r-head"><span class="rank">14</span>
-        <div><h3>丝绸之路国际度假区</h3><span class="loc">新疆 · 乌鲁木齐</span></div>
-        <span class="tier">落机就滑</span></div>
-      <p class="desc">距乌鲁木齐市区约 1 小时，天山脚下海拔 1850–2500m，适合落地即滑、顺游天山大峡谷。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月中 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">21 条（玄奘大道落差约 700m）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">天山高海拔 · 高速缆车直达山顶 · 云海雪景 · 城市近</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥280–450；住+票约 ¥700–1500 / 人·晚</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="北京">
-      <div class="r-head"><span class="rank">15</span>
-        <div><h3>南山滑雪场</h3><span class="loc">北京 · 密云</span></div>
-        <span class="tier">京郊公园</span></div>
-      <p class="desc">华北最大、北京雪友的「主场」，单板公园与猫跳道专业，市区 1.5 小时可达，夜场人气高。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">12 月初 – 次年 3 月中</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">26 条（含公园、猫跳、娱雪道）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">麦罗单板公园 · 猫跳道 · 夜场 · 市区直通巴士</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票平日约 ¥210 / 周末 ¥350 / 夜场 ¥145 起</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="北京">
-      <div class="r-head"><span class="rank">16</span>
-        <div><h3>军都山滑雪场</h3><span class="loc">北京 · 昌平</span></div>
-        <span class="tier">宠物友好</span></div>
-      <p class="desc">昌平近明十三陵，综合性雪道初中高齐全，北京少有的宠物友好雪场，顺道可游长城。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">12 月初 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">7 条（初中高）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">宠物友好戏雪区 · 冬令营国风体验 · 近十三陵 · 夜场</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票较亲民（约 ¥100–260，分时段）</span></div>
-      </div>
-    </article>
-<!--CARDS5-->
-    <article class="resort" data-region="北京">
-      <div class="r-head"><span class="rank">17</span>
-        <div><h3>万科石京龙滑雪场</h3><span class="loc">北京 · 延庆</span></div>
-        <span class="tier">性价比</span></div>
-      <p class="desc">延庆近八达岭，开板早、落差在京郊较大，价格亲民，是入门与性价比之选。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">11 月底 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">11 条（初中高）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">京郊落差较大 · 夜场灯光升级 · 价格亲民 · 近八达岭</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票较亲民；周边住宿 ¥300–800 / 晚</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="南方">
-      <div class="r-head"><span class="rank">18</span>
-        <div><h3>西岭雪山滑雪场</h3><span class="loc">四川 · 成都</span></div>
-        <span class="tier">南方高山</span></div>
-      <p class="desc">「窗含西岭千秋雪」所在，成都近郊南方规模领先的高山雪场，常见云海与日照金山。</p>
-      <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">12 月 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">多条，初中级为主</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">南方高山阳光雪场 · 云海日出 · 雪地娱乐 · 索道观景</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住+票约 ¥600–1400 / 人·晚</span></div>
-      </div>
-    </article>
-    <article class="resort" data-region="南方">
       <div class="r-head"><span class="rank">19</span>
-        <div><h3>神农架国际滑雪场</h3><span class="loc">湖北 · 神农架</span></div>
-        <span class="tier">华中代表</span></div>
-      <p class="desc">华中地区规模领先的雪场，让南方雪友「不出省」也能滑雪，林区生态与雪景俱佳。</p>
+        <div><h3>赛里木湖滑雪场</h3><span class="loc">新疆 · 博州博乐</span></div>
+        <span class="tier">高湖落差</span></div>
+      <p class="desc">新疆赛里木湖畔的高落差雪场（落差约 1149m），湖山雪景独特，天山西段风光迷人。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">12 月 – 次年 3 月</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">初中高多条</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">华中最大之一 · 南方不出省滑雪 · 林海雪原 · 亲子娱雪</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">住+票约 ¥600–1300 / 人·晚</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">14.3 km（全国第 19）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">5 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">1149 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 11 月下 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">高落差 · 赛里木湖雪景 · 天山西段</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥200–480/天（以官方为准）</span></div>
       </div>
     </article>
-    <article class="resort" data-region="南方">
+    <article class="resort" data-region="东北">
       <div class="r-head"><span class="rank">20</span>
-        <div><h3>哈尔滨热雪奇迹</h3><span class="loc">黑龙江 · 哈尔滨（室内）</span></div>
-        <span class="tier">全年室内</span></div>
-      <p class="desc">全年开放的大型室内雪场，不受季节影响，与冰雪大世界同城，适合随时体验、新手友好。</p>
+        <div><h3>金龙山滑雪场</h3><span class="loc">黑龙江 · 哈尔滨</span></div>
+        <span class="tier">冰城近郊</span></div>
+      <p class="desc">哈尔滨近郊雪场，交通便利，适合搭配冰雪大世界、冰城游一起玩。</p>
       <div class="specs">
-        <div class="spec"><span class="lab">开放时间</span><span class="val">全年开放（室内恒温）</span></div>
-        <div class="spec"><span class="lab">雪道数量</span><span class="val">室内多条（含初级练习道）</span></div>
-        <div class="spec"><span class="lab">特色项目</span><span class="val">全年可滑 · 恒温室内 · 同城冰雪大世界 · 新手友好</span></div>
-        <div class="spec"><span class="lab">预期价格</span><span class="val">雪票约 ¥200–400 / 场</span></div>
+        <div class="spec key"><span class="lab">雪道总长</span><span class="val">10.2 km（全国第 20）</span></div>
+        <div class="spec"><span class="lab">缆车</span><span class="val">4 条</span></div>
+        <div class="spec"><span class="lab">落差</span><span class="val">281 m</span></div>
+        <div class="spec"><span class="lab">开放</span><span class="val">约 12 月 – 次年 3 月</span></div>
+        <div class="spec"><span class="lab">特色</span><span class="val">冰城近郊 · 交通便利 · 搭配冰雪游</span></div>
+        <div class="spec"><span class="lab">价格</span><span class="val">雪票约 ¥150–350/天（以官方为准）</span></div>
       </div>
     </article>
   </div>
-  <div class="note"><b>说明：</b>本页为 2026–2027 雪季公开资料整理，雪道数量 / 开放时间 / 价格会随雪季与天气调整，<b>请以各雪场官方公告为准</b>。价格为大致参考：度假型雪场多为「住滑套餐（含雪票）/ 人·晚」，城市近郊雪场多为「雪票 / 天 + 周边住宿」。</div>
+  <div class="note"><b>排名说明：</b>本页名次依据 <b>geocarver.com</b> 统计的「实测雪道总长（含子区域）」，故与按名气 / 规模的主观榜单不同；<b>雪道总长、缆车数、垂直落差、海拔</b>均取自该站。开放时间与预期价格为综合公开资料的大致参考，会随雪季与天气调整，<b>请以各雪场官方公告为准</b>。</div>
 </main>
 <footer>
-  <div class="wrap"><p><b>中国滑雪场 TOP 20</b> · 收录于 YXM Plan B</p></div>
+  <div class="wrap"><p><b>中国滑雪场 TOP 20</b> · 收录于 YXM Plan B · 排名数据源 <a href="https://geocarver.com/land/CN/">geocarver.com</a></p></div>
 </footer>
 <script>
   const btns=document.querySelectorAll('.fbtn'),cards=document.querySelectorAll('.resort');
