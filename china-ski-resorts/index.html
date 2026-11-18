@@ -56,9 +56,11 @@ footer b{color:#fff}footer a{color:#9fc4ee}
 .ebtn.add{background:var(--green)}.ebtn.add:hover{filter:brightness(1.08)}
 .etoolbar .hint{color:#9fc4ee;font-size:12px}
 .resort{position:relative}
-.del{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:none;cursor:pointer;
-  background:var(--red);color:#fff;font-size:15px;font-weight:800;line-height:1;display:none;z-index:3;box-shadow:var(--sh2)}
-body.editing .del{display:block}
+.del,.edit{position:absolute;top:10px;width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;
+  color:#fff;font-size:15px;font-weight:800;line-height:1;display:none;z-index:3;box-shadow:var(--sh2)}
+.del{right:10px;background:var(--red)}
+.edit{right:46px;background:var(--blue)}
+body.editing .del,body.editing .edit{display:flex;align-items:center;justify-content:center}
 body.editing .resort{outline:2px dashed #cfe1fa}
 .rank.add{background:linear-gradient(135deg,var(--green),#1f7a4d)}
 .modal{position:fixed;inset:0;background:rgba(10,25,50,.55);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:30px 14px;overflow:auto}
@@ -586,7 +588,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
 </footer>
 <div class="modal" id="modal">
   <div class="mcard">
-    <h3>添加一个雪场</h3>
+    <h3 id="mTitle">添加一个雪场</h3>
     <p class="sub">填好后点「保存」，卡片会即时出现在「我添加的雪场」里（保存在本浏览器）。</p>
     <label>名称 *</label><input id="f_name" placeholder="如：某某滑雪场">
     <label>地点</label><input id="f_loc" placeholder="如：浙江 · 杭州">
@@ -649,7 +651,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
       +'<div><h3>'+esc(r.name)+'</h3><span class="loc">'+esc(r.loc)+'</span></div>'
       +(r.tier?'<span class="tier">'+esc(r.tier)+'</span>':'')+'</div>'
       +(r.descr?'<p class="desc">'+esc(r.descr)+'</p>':'')
-      +'<div class="specs">'+specs+'</div><button class="del" title="删除">×</button>';
+      +'<div class="specs">'+specs+'</div><button class="edit" title="编辑">✎</button><button class="del" title="删除">×</button>';
   }
   function render(rows){
     document.querySelectorAll('[data-grp]').forEach(g=>g.innerHTML='');
@@ -659,6 +661,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
       if(r.region)art.dataset.region=r.region;art.dataset.id=r.id;
       art.innerHTML=cardHTML(r);
       art.querySelector('.del').addEventListener('click',()=>removeCard(r,art));
+      art.querySelector('.edit').addEventListener('click',()=>openModal(r));
       grid.appendChild(art);
     });
     $('#addedSec').style.display=rows.some(r=>r.grp==='custom')?'':'none';
@@ -693,21 +696,38 @@ body.editing .resort{outline:2px dashed #cfe1fa}
   // 编辑模式
   $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'✓ 完成编辑':'✏️ 编辑模式';});
 
-  // 添加
-  const modal=$('#modal'),fields=['f_name','f_loc','f_tier','f_desc','f_s1','f_s2','f_s3','f_s4','f_s5','f_s6'];
-  $('#addBtn').addEventListener('click',()=>modal.classList.add('open'));
+  // 添加 / 编辑（同一个弹窗）
+  const modal=$('#modal');
+  let editId=null;
+  function openModal(r){
+    editId=r?r.id:null;
+    $('#mTitle').textContent=r?'编辑雪场':'添加一个雪场';
+    $('#f_name').value=r?(r.name||''):'';
+    $('#f_loc').value=r?(r.loc||''):'';
+    $('#f_tier').value=r?(r.tier||''):'';
+    $('#f_desc').value=r?(r.descr||''):'';
+    $('#f_s1').value=r?(r.s_len||''):'';
+    $('#f_s2').value=r?(r.s_lift||''):'';
+    $('#f_s3').value=r?(r.s_drop||''):'';
+    $('#f_s4').value=r?(r.s_open||''):'';
+    $('#f_s5').value=r?(r.s_feat||''):'';
+    $('#f_s6').value=r?(r.s_price||''):'';
+    modal.classList.add('open');
+  }
+  $('#addBtn').addEventListener('click',()=>openModal(null));
   $('#mCancel').addEventListener('click',()=>modal.classList.remove('open'));
   modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
   $('#mSave').addEventListener('click',async()=>{
     const name=$('#f_name').value.trim();if(!name){alert('请填写名称');return;}
-    const row={grp:'custom',sort:9999,rank:'＋',rank_class:'add',region:'',name,
-      loc:$('#f_loc').value.trim(),tier:$('#f_tier').value.trim(),descr:$('#f_desc').value.trim(),
+    const vals={name,loc:$('#f_loc').value.trim(),tier:$('#f_tier').value.trim(),descr:$('#f_desc').value.trim(),
       s_len:$('#f_s1').value.trim(),s_lift:$('#f_s2').value.trim(),s_drop:$('#f_s3').value.trim(),
       s_open:$('#f_s4').value.trim(),s_feat:$('#f_s5').value.trim(),s_price:$('#f_s6').value.trim()};
-    const {error}=await sb.from('resorts').insert(row);
-    if(error){alert('添加失败：'+error.message);return;}
+    let error;
+    if(editId){({error}=await sb.from('resorts').update(vals).eq('id',editId));}
+    else{({error}=await sb.from('resorts').insert(Object.assign({grp:'custom',sort:9999,rank:'＋',rank_class:'add',region:''},vals)));}
+    if(error){alert('保存失败：'+error.message);return;}
     await refresh();
-    fields.forEach(id=>$('#'+id).value='');modal.classList.remove('open');
+    modal.classList.remove('open');editId=null;
     if(!document.body.classList.contains('editing'))$('#editToggle').click();
   });
   // 导出当前数据
