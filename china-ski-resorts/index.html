@@ -706,6 +706,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
       s_open:$('#f_s4').value.trim(),s_feat:$('#f_s5').value.trim(),s_price:$('#f_s6').value.trim()};
     const {error}=await sb.from('resorts').insert(row);
     if(error){alert('添加失败：'+error.message);return;}
+    await refresh();
     fields.forEach(id=>$('#'+id).value='');modal.classList.remove('open');
     if(!document.body.classList.contains('editing'))$('#editToggle').click();
   });
@@ -721,6 +722,7 @@ body.editing .resort{outline:2px dashed #cfe1fa}
     if(!confirm('还原默认会清空数据库所有卡片并重置为默认，影响所有人。确定？'))return;
     await sb.from('resorts').delete().neq('id','00000000-0000-0000-0000-000000000000');
     await sb.from('resorts').insert(defaults);
+    await refresh();
   });
 
   // 实时同步：任何人增删，所有人即时更新
