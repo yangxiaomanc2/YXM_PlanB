@@ -48,6 +48,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei
 .note{background:#fff8ec;border:1px solid #f1e0bb;border-left:4px solid var(--gold);border-radius:10px;padding:13px 16px;font-size:13px;color:#6b531d;margin:14px 0 6px}
 footer{background:#0d2b54;color:#bcd2ee;padding:26px 0;font-size:13px;text-align:center;margin-top:24px}
 footer b{color:#fff}footer a{color:#9fc4ee}
+.etoolbar{background:#0f2440;border-bottom:1px solid #16304f}
+.etoolbar .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:10px 18px}
+.ebtn{cursor:pointer;font-size:13px;font-weight:700;border:none;border-radius:20px;padding:7px 15px;color:#fff;background:rgba(255,255,255,.14);transition:.2s}
+.ebtn:hover{background:rgba(255,255,255,.26)}
+.ebtn.on{background:var(--gold);color:#3a2b06}
+.ebtn.add{background:var(--green)}.ebtn.add:hover{filter:brightness(1.08)}
+.etoolbar .hint{color:#9fc4ee;font-size:12px}
+.resort{position:relative}
+.del{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-size:15px;font-weight:800;line-height:1;display:none;z-index:3;box-shadow:var(--sh2)}
+body.editing .del{display:block}
+body.editing .resort{outline:2px dashed #cfe1fa}
+.rank.add{background:linear-gradient(135deg,var(--green),#1f7a4d)}
+.modal{position:fixed;inset:0;background:rgba(10,25,50,.55);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:30px 14px;overflow:auto}
+.modal.open{display:flex}
+.mcard{background:#fff;border-radius:16px;max-width:460px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mcard h3{font-size:18px;font-weight:800;margin-bottom:4px}
+.mcard p.sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.mcard label{display:block;font-size:12.5px;font-weight:700;color:var(--ink2);margin:9px 0 3px}
+.mcard input,.mcard textarea,.mcard select{width:100%;font-size:13.5px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;font-family:inherit;color:var(--ink)}
+.mcard textarea{resize:vertical;min-height:46px}
+.mrow{display:flex;gap:10px}.mrow>div{flex:1}
+.mact{display:flex;gap:10px;margin-top:16px}
+.mact button{flex:1;cursor:pointer;border:none;border-radius:10px;padding:10px;font-size:14px;font-weight:700}
+.mact .save{background:var(--blue2);color:#fff}.mact .cancel{background:var(--ice);color:var(--ink2)}
+.addhead{font-size:15.5px;font-weight:800;color:var(--green);margin:24px 0 2px}
 @media(max-width:600px){.hero h1{font-size:25px}}
 </style>
 </head>
@@ -70,7 +96,20 @@ footer b{color:#fff}footer a{color:#9fc4ee}
     <span class="fbtn" data-f="其他">其他省份</span>
   </div>
 </nav>
+<nav class="etoolbar">
+  <div class="wrap">
+    <button class="ebtn" id="editToggle">✏️ 编辑模式</button>
+    <button class="ebtn add" id="addBtn">＋ 添加雪场</button>
+    <button class="ebtn" id="exportBtn">⤓ 导出我的改动</button>
+    <button class="ebtn" id="resetBtn">↺ 还原默认</button>
+    <span class="hint">改动保存在本浏览器；要同步给所有人，点「导出」把文件发我即可</span>
+  </div>
+</nav>
 <main class="wrap">
+  <section id="addedSec" style="display:none">
+    <h3 class="addhead">⭐ 我添加的雪场</h3>
+    <div class="grid" id="addedGrid"></div>
+  </section>
   <div class="grid" id="grid">
     <article class="resort" data-region="新疆">
       <div class="r-head"><span class="rank">01</span>
@@ -545,13 +584,127 @@ footer b{color:#fff}footer a{color:#9fc4ee}
 <footer>
   <div class="wrap"><p><b>中国滑雪场 TOP 20</b> · 收录于 YXM Plan B · 排名数据源 <a href="https://geocarver.com/land/CN/">geocarver.com</a></p></div>
 </footer>
+<div class="modal" id="modal">
+  <div class="mcard">
+    <h3>添加一个雪场</h3>
+    <p class="sub">填好后点「保存」，卡片会即时出现在「我添加的雪场」里（保存在本浏览器）。</p>
+    <label>名称 *</label><input id="f_name" placeholder="如：某某滑雪场">
+    <label>地点</label><input id="f_loc" placeholder="如：浙江 · 杭州">
+    <label>标签</label><input id="f_tier" placeholder="如：新手友好 / 高山粉雪">
+    <label>简介</label><textarea id="f_desc" placeholder="一句话介绍这个雪场"></textarea>
+    <div class="mrow">
+      <div><label>雪道</label><input id="f_s1" placeholder="如：12 条 / 8 km"></div>
+      <div><label>缆车</label><input id="f_s2" placeholder="如：5 条"></div>
+    </div>
+    <div class="mrow">
+      <div><label>落差 / 海拔</label><input id="f_s3" placeholder="如：500 m"></div>
+      <div><label>开放时间</label><input id="f_s4" placeholder="如：12 月–次年 3 月"></div>
+    </div>
+    <label>特色项目</label><input id="f_s5" placeholder="如：夜场 · 温泉 · 单板公园">
+    <label>预期价格</label><input id="f_s6" placeholder="如：雪票约 ¥300/天">
+    <div class="mact">
+      <button class="cancel" id="mCancel">取消</button>
+      <button class="save" id="mSave">保存</button>
+    </div>
+  </div>
+</div>
 <script>
-  const btns=document.querySelectorAll('.fbtn'),cards=document.querySelectorAll('#grid .resort');
+(function(){
+  const LS='yxm_ski_custom_v1';
+  const $=s=>document.querySelector(s);
+  function load(){try{return JSON.parse(localStorage.getItem(LS))||{added:[],deleted:[]}}catch(e){return{added:[],deleted:[]}}}
+  const state=load();
+  function save(){localStorage.setItem(LS,JSON.stringify(state));}
+  function idOf(card){return card.querySelector('h3').textContent.trim();}
+  function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+  // 顶部区域筛选（仅作用于 TOP20 主榜）
+  const btns=document.querySelectorAll('.fbtn');
   btns.forEach(b=>b.addEventListener('click',()=>{
     btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');
     const f=b.dataset.f;
-    cards.forEach(c=>{c.style.display=(f==='all'||c.dataset.region===f)?'':'none';});
+    document.querySelectorAll('#grid .resort').forEach(c=>{
+      c.style.display=(f==='all'||c.dataset.region===f)?'':'none';});
   }));
+  // 给每张卡片加删除按钮（编辑模式下显示）
+  function addDelBtn(card){
+    if(card.querySelector('.del'))return;
+    const b=document.createElement('button');b.className='del';b.textContent='×';b.title='删除此卡片';
+    b.addEventListener('click',()=>{
+      const id=idOf(card);
+      if(!confirm('确定删除「'+id+'」？'))return;
+      if(!state.deleted.includes(id))state.deleted.push(id);
+      state.added=state.added.filter(o=>o.name!==id);
+      save();card.remove();
+    });
+    card.appendChild(b);
+  }
+  document.querySelectorAll('.resort').forEach(addDelBtn);
+
+  // 应用已保存的删除
+  document.querySelectorAll('#grid .resort, .addsec .resort').forEach(c=>{
+    if(state.deleted.includes(idOf(c)))c.remove();
+  });
+
+  // 渲染“我添加的雪场”
+  const addedGrid=$('#addedGrid'),addedSec=$('#addedSec');
+  function buildCard(o){
+    const specs=[['雪道',o.s1,true],['缆车',o.s2],['落差/海拔',o.s3],['开放',o.s4],['特色',o.s5],['价格',o.s6]]
+      .filter(x=>x[1]).map(x=>'<div class="spec'+(x[2]?' key':'')+'"><span class="lab">'+x[0]+'</span><span class="val">'+esc(x[1])+'</span></div>').join('');
+    const art=document.createElement('article');art.className='resort';
+    art.innerHTML='<div class="r-head"><span class="rank add">＋</span>'
+      +'<div><h3>'+esc(o.name)+'</h3><span class="loc">'+esc(o.loc||'')+'</span></div>'
+      +(o.tier?'<span class="tier">'+esc(o.tier)+'</span>':'')+'</div>'
+      +(o.desc?'<p class="desc">'+esc(o.desc)+'</p>':'')
+      +'<div class="specs">'+specs+'</div>';
+    addDelBtn(art);
+    return art;
+  }
+  function renderAdded(){
+    addedGrid.innerHTML='';
+    state.added.forEach(o=>addedGrid.appendChild(buildCard(o)));
+    addedSec.style.display=state.added.length?'':'none';
+  }
+  renderAdded();
+  // 编辑模式开关
+  $('#editToggle').addEventListener('click',function(){
+    document.body.classList.toggle('editing');
+    this.classList.toggle('on');
+    this.textContent=document.body.classList.contains('editing')?'✓ 完成编辑':'✏️ 编辑模式';
+  });
+
+  // 添加弹窗
+  const modal=$('#modal');
+  const fields=['f_name','f_loc','f_tier','f_desc','f_s1','f_s2','f_s3','f_s4','f_s5','f_s6'];
+  $('#addBtn').addEventListener('click',()=>modal.classList.add('open'));
+  $('#mCancel').addEventListener('click',()=>modal.classList.remove('open'));
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
+  $('#mSave').addEventListener('click',()=>{
+    const name=$('#f_name').value.trim();
+    if(!name){alert('请填写名称');return;}
+    state.added.push({name,loc:$('#f_loc').value.trim(),tier:$('#f_tier').value.trim(),desc:$('#f_desc').value.trim(),
+      s1:$('#f_s1').value.trim(),s2:$('#f_s2').value.trim(),s3:$('#f_s3').value.trim(),
+      s4:$('#f_s4').value.trim(),s5:$('#f_s5').value.trim(),s6:$('#f_s6').value.trim()});
+    state.deleted=state.deleted.filter(d=>d!==name);
+    save();renderAdded();
+    fields.forEach(id=>$('#'+id).value='');
+    modal.classList.remove('open');
+    if(!document.body.classList.contains('editing'))$('#editToggle').click();
+    addedSec.scrollIntoView({behavior:'smooth'});
+  });
+
+  // 导出改动（发我即可同步到线上给所有人看）
+  $('#exportBtn').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-ski-cards.json';a.click();
+  });
+
+  // 还原默认
+  $('#resetBtn').addEventListener('click',()=>{
+    if(!confirm('还原为默认？将清除你在本浏览器的所有添加与删除。'))return;
+    localStorage.removeItem(LS);location.reload();
+  });
+})();
 </script>
 </body>
 </html>
