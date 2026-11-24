@@ -3,61 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YXM Plan B</title>
+<title>YXM Plan B · 行程与榜单</title>
 <meta name="description" content="下一篇章，从这里开始。">
 <style>
-  :root {
-    --bg: #faf9f5;
-    --ink: #141413;
-    --accent: #a54830;
-    --accent-hover: #873a27;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); }
-  main {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: grid;
-    place-items: center;
-    padding: clamp(24px, 6vw, 96px);
-    text-align: center;
-  }
-  h1 {
-    max-width: 22ch;
-    margin: 0;
-    font: 400 clamp(2.5rem, 7.5vw, 7rem)/1.03 Georgia, "Songti SC", "Noto Serif SC", serif;
-    letter-spacing: -.045em;
-    text-wrap: balance;
-  }
-  .translation {
-    display: block;
-    margin-top: .9em;
-    font-size: clamp(1.125rem, 2.7vw, 2rem);
-    line-height: 1.5;
-    letter-spacing: .02em;
-  }
-  .enter {
-    display: inline-grid;
-    place-items: center;
-    min-height: 48px;
-    margin-top: clamp(28px, 4.5vw, 52px);
-    padding: 10px 30px;
-    border-radius: 8px;
-    background: var(--accent);
-    color: white;
-    font: 600 1rem/1.25 system-ui, sans-serif;
-    text-decoration: none;
-  }
-  .enter:hover { background: var(--accent-hover); }
-  .enter:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+:root{--bg:#faf9f5;--surface:#ffffff;--ink:#141413;--muted:#6b6a65;--line:#e8e6dc;
+--accent:#d97757;--soft:#f0eee6;
+--serif:"Tiempos Headline",Georgia,"Songti SC","Noto Serif SC",serif;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;
+-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.bar{position:sticky;top:0;z-index:20;height:56px;display:flex;align-items:center;
+background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .site{font-family:var(--serif);font-size:16px;color:var(--ink)}
+.bar .site:hover{text-decoration:none}
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vw, 96px);
+  text-align: center;
+}
+.hero h1 {
+  max-width: 22ch;
+  font: 400 clamp(2.5rem, 7.5vw, 7rem)/1.03 var(--serif);
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.hero-translation {
+  display: block;
+  margin-top: .9em;
+  font-size: clamp(1.125rem, 2.7vw, 2rem);
+  line-height: 1.5;
+  letter-spacing: .02em;
+}
+.start {
+  display: inline-grid;
+  place-items: center;
+  min-height: 48px;
+  margin-top: clamp(28px, 4.5vw, 52px);
+  padding: 10px 30px;
+  border-radius: 8px;
+  background: #a54830;
+  color: #fff;
+  font-weight: 600;
+}
+.start:hover { background: #873a27; text-decoration: none; }
+.start:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+#contents {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:48px}
+.card{display:flex;flex-direction:column;background:var(--surface);
+border:1px solid var(--line);border-radius:16px;padding:24px;color:inherit}
+.card:hover{border-color:var(--ink);text-decoration:none}
+.card .tg{align-self:flex-start;font-size:12px;color:var(--muted);background:var(--soft);
+border-radius:999px;padding:3px 10px;margin-bottom:12px}
+.card h2{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.35}
+.card .st{font-size:13px;color:var(--muted);margin-top:4px}
+.card p{font-size:14px;color:#3f3e3a;margin-top:12px}
+.card .go{margin-top:auto;padding-top:16px;font-size:13px;color:var(--accent)}
+footer.wrap{border-top:1px solid var(--line);margin-top:64px;padding-block:20px 40px;
+color:var(--muted);font-size:12.5px}
+@media(max-width:600px){.wrap{padding-inline:18px}
+.grid{grid-template-columns:1fr;margin-top:32px}}
 </style>
 </head>
 <body>
 <main>
-  <div>
-    <h1><span lang="en">Your Next Chapter Starts Here.</span><span class="translation">下一篇章，从这里开始。</span></h1>
-    <a class="enter" href="./contents.html">进入</a>
-  </div>
+  <section class="hero" aria-labelledby="home-title">
+    <div>
+      <h1 id="home-title">
+        <span lang="en">Our Next Chapter Starts Here.</span>
+        <span class="hero-translation">下一篇章，从这里开始。</span>
+      </h1>
+      <a class="start" href="#contents" lang="en">Start</a>
+    </div>
+  </section>
+
+  <section id="contents" tabindex="-1" aria-label="行程与榜单">
+    <header class="bar"><div class="wrap"><a class="site" href="./">YXM Plan B</a></div></header>
+    <div class="wrap">
+      <div class="grid">
+        <a class="card" href="./changbaishan-ski/">
+          <span class="tg">行程攻略</span>
+          <h2>上海 → 长白山滑雪 5 天</h2>
+          <div class="st">11/12 晚出发 · 沈阳中转 · 华美胜地</div>
+          <p>逐日时间线、交通班次、天气穿衣、美食与打包清单，含漂流停开时的备选方案。</p>
+          <div class="go">查看攻略 →</div>
+        </a>
+        <a class="card" href="./china-ski-resorts/">
+          <span class="tg">榜单</span>
+          <h2>中国滑雪场 TOP 20</h2>
+          <div class="st">2026–2027 雪季 · 按实测雪道总长排名</div>
+          <p>每家含雪道总长、缆车、落差、海拔、开放时间、特色与预期价格，支持按区域筛选；另收录河南、周边省份与上海出发的方便选择。</p>
+          <div class="go">查看榜单 →</div>
+        </a>
+      </div>
+    </div>
+    <footer class="wrap">
+      <p>YXM Plan B · GitHub Pages 托管</p>
+    </footer>
+  </section>
 </main>
 </body>
 </html>
