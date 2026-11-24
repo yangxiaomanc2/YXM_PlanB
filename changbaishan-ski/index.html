@@ -5,65 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>上海 → 长白山滑雪攻略</title>
 <style>
-:root{--ink:#0f2440;--ink2:#38506f;--muted:#7489a3;--snow:#f4f8fd;--card:#fff;--line:#e4edf6;
-  --blue:#2f7fd6;--blue2:#1b5fb0;--ice:#e8f3ff;--gold:#d9a441;--green:#2fa36b;--red:#d9534f;
-  --sh:0 6px 24px rgba(20,60,110,.10);--sh2:0 2px 10px rgba(20,60,110,.07)}
+/* YXM_PlanB 统一 Anthropic 风格样式：沿用旧类名，只换视觉 */
+:root{--bg:#faf9f5;--surface:#ffffff;--ink:#141413;--muted:#6b6a65;--line:#e8e6dc;
+--accent:#d97757;--accent-2:#f38020;--soft:#f0eee6;
+--serif:"Tiempos Headline",Georgia,"Songti SC","Noto Serif SC",serif;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--snow);line-height:1.7;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
-.hero{color:#fff;background:linear-gradient(135deg,#0d2b54,#1b5fb0 55%,#3f93dd);padding:46px 18px 40px;text-align:center;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:0;opacity:.5;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 40%)}
-.hero>*{position:relative;z-index:1}
-.hero h1{font-size:30px;font-weight:800}
-.hero p{margin-top:10px;font-size:14px;opacity:.92}
-.back{display:inline-block;margin-top:16px;font-size:13px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:6px 14px;border-radius:20px;text-decoration:none}
-.etoolbar{background:#0f2440;border-bottom:1px solid #16304f;position:sticky;top:0;z-index:20}
-.etoolbar .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:10px 18px}
-.ebtn{cursor:pointer;font-size:13px;font-weight:700;border:none;border-radius:20px;padding:7px 15px;color:#fff;background:rgba(255,255,255,.14)}
-.ebtn:hover{background:rgba(255,255,255,.26)}.ebtn.on{background:var(--gold);color:#3a2b06}.ebtn.add{background:var(--green)}
-.etoolbar .hint{color:#9fc4ee;font-size:12px}
-.sec{padding:26px 0 4px}
-.sec h2{font-size:21px;font-weight:800;margin-bottom:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:16px 18px}
-.card h3{font-size:15.5px;font-weight:800}
-.card .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
-.card .tg{display:inline-block;font-size:11.5px;font-weight:700;color:#9a6f14;background:#fdf2d8;padding:2px 9px;border-radius:20px;margin-top:8px}
-.card .bd{font-size:13.5px;color:var(--ink2);margin-top:9px}
-.card .nt{font-size:12.5px;color:#6b531d;background:#fff8ec;border-left:3px solid var(--gold);border-radius:8px;padding:8px 10px;margin-top:10px}
-.del,.edit{position:absolute;top:10px;width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;color:#fff;font-size:15px;font-weight:800;display:none;align-items:center;justify-content:center;z-index:3;box-shadow:var(--sh2)}
-.del{right:10px;background:var(--red)}.edit{right:46px;background:var(--blue)}
-body.editing .del,body.editing .edit{display:flex}body.editing .card{outline:2px dashed #cfe1fa}
-.modal{position:fixed;inset:0;background:rgba(10,25,50,.55);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:28px 14px;overflow:auto}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;
+-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* 顶栏（原 .etoolbar） */
+.etoolbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.etoolbar .wrap{display:flex;gap:12px;align-items:center;min-height:56px;flex-wrap:wrap;padding:8px 24px}
+.etoolbar .site{font-family:var(--serif);font-size:16px;color:var(--ink);margin-right:auto}
+.etoolbar .site:hover{text-decoration:none;color:var(--accent)}
+.ebtn{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:7px 15px;
+border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.ebtn:hover{background:var(--soft)}
+.ebtn.on{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+.ebtn.add{border-style:dashed}
+.etoolbar .hint{font-size:12px;color:var(--muted);flex-basis:100%}
+
+/* 首屏 */
+.hero{padding:88px 0 0;background:none;color:inherit;text-align:left}
+.hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;
+font-size:clamp(36px,6vw,72px);line-height:1.1;margin:18px 0 0;color:var(--ink)}
+.hero .lead{color:var(--muted);max-width:42ch;margin-top:20px;font-size:16px;opacity:1}
+.facts{display:flex;flex-wrap:wrap;gap:44px;margin-top:44px;padding-top:28px;
+border-top:1px solid var(--line)}
+.facts .v{font-family:var(--serif);font-size:clamp(28px,4vw,44px);color:var(--accent);line-height:1.1}
+.facts .l{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* 板块与卡片 */
+.sec{padding:80px 0 0}
+.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,34px);
+letter-spacing:-.01em;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);
+border-radius:16px;padding:24px;box-shadow:none}
+.card:hover{border-color:var(--ink)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.4}
+.card .sub{font-size:13px;color:var(--muted);margin-top:4px}
+.card .tg{display:inline-block;font-size:12px;color:var(--muted);background:var(--soft);
+padding:3px 10px;border-radius:999px;margin-bottom:10px;font-weight:400}
+.card .bd{font-size:14px;color:#3f3e3a;margin-top:12px}
+.card .nt{font-size:13px;color:var(--muted);background:var(--soft);
+border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 12px;margin-top:14px}
+
+/* 编辑按钮 */
+.del,.edit{position:absolute;top:14px;width:28px;height:28px;border-radius:8px;
+border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--muted);
+font-size:13px;line-height:1;display:none;align-items:center;justify-content:center;z-index:3}
+.del{right:14px}.edit{right:48px}
+.del:hover,.edit:hover{border-color:var(--ink);color:var(--ink)}
+body.editing .del,body.editing .edit{display:flex}
+body.editing .card{border-style:dashed}
+
+/* 弹窗 */
+.modal{position:fixed;inset:0;background:rgba(20,20,19,.38);display:none;
+align-items:flex-start;justify-content:center;z-index:50;padding:40px 20px;overflow:auto}
 .modal.open{display:flex}
-.mcard{background:#fff;border-radius:16px;max-width:460px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.mcard h3{font-size:18px;font-weight:800;margin-bottom:12px}
-.mcard label{display:block;font-size:12.5px;font-weight:700;color:var(--ink2);margin:9px 0 3px}
-.mcard input,.mcard textarea{width:100%;font-size:13.5px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;font-family:inherit;color:var(--ink)}
-.mcard textarea{resize:vertical;min-height:70px}
-.mrow{display:flex;gap:10px}.mrow>div{flex:1}
-.mact{display:flex;gap:10px;margin-top:16px}
-.mact button{flex:1;cursor:pointer;border:none;border-radius:10px;padding:10px;font-size:14px;font-weight:700}
-.mact .save{background:var(--blue2);color:#fff}.mact .cancel{background:var(--ice);color:var(--ink2)}
-footer{background:#0d2b54;color:#bcd2ee;padding:24px 0;font-size:13px;text-align:center;margin-top:24px}
-@media(max-width:600px){.hero h1{font-size:24px}}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+max-width:560px;width:100%;padding:24px}
+.mcard h3{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px}
+.mcard label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
+.mcard input,.mcard textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);
+background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 11px}
+.mcard textarea{resize:vertical;min-height:92px}
+.mrow{display:flex;gap:12px}.mrow>div{flex:1}
+.mact{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.mact button{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:9px 20px;
+border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.mact .save{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+
+footer{border-top:1px solid var(--line);margin-top:96px;padding:28px 0 56px;
+background:none;color:var(--muted);font-size:12.5px;text-align:left}
+footer p+p{margin-top:4px}
+
+@media(max-width:600px){.hero{padding-top:56px}.wrap{padding:0 18px}
+.facts{gap:22px}.grid{grid-template-columns:1fr}.sec{padding-top:56px}
+.etoolbar .wrap{padding:8px 18px}}
 </style>
 </head>
 <body>
 <header class="hero"><div class="wrap">
-  <h1>上海 → 长白山滑雪攻略</h1>
-  <p>11/12 晚 – 11/17 凌晨 · 沈阳中转 · 华美胜地滑雪 · 多人可实时编辑</p>
-  <a class="back" href="../">← 返回 YXM Plan B</a>
+  <div class="eyebrow">上海 → 长白山 · 5 天 4 夜滑雪</div>
+  <h1>11 月 12–17 日，上海出发长白山滑雪</h1>
+  <p class="lead">沈阳中转一日游，华美胜地滑雪两整天，含逐日时间线、交通、美食与打包清单。</p>
+  <div class="facts">
+    <div><div class="v">5 天</div><div class="l">行程长度</div></div>
+    <div><div class="v">2 天</div><div class="l">滑雪</div></div>
+    <div><div class="v">11/14</div><div class="l">雪场开板</div></div>
+    <div><div class="v">-10℃</div><div class="l">山上体感</div></div>
+  </div>
 </div></header>
 <nav class="etoolbar"><div class="wrap">
-  <button class="ebtn" id="editToggle">✏️ 编辑模式</button>
+  <a class="site" href="../">YXM Plan B</a>
+  <button class="ebtn" id="editToggle">编辑</button>
   <button class="ebtn add" id="addBtn">＋ 添加卡片</button>
-  <button class="ebtn" id="exportBtn">⤓ 导出</button>
-  <button class="ebtn" id="resetBtn">↺ 还原默认</button>
-  <span class="hint" id="syncState">多人实时同步 · 任何人可增删改，所有人即时可见</span>
+  <button class="ebtn" id="exportBtn">导出</button>
+  <button class="ebtn" id="resetBtn">还原默认</button>
+  <span class="hint" id="syncState">多人实时同步：任何人可增删改，所有人即时可见</span>
 </div></nav>
 <main class="wrap"><div id="app"></div></main>
-<footer><div class="wrap">上海 → 长白山滑雪攻略 · 收录于 YXM Plan B · Supabase 多人实时</div></footer>
+<footer><div class="wrap">
+  <p>上海 → 长白山滑雪攻略 · 收录于 YXM Plan B · 内容存 Supabase，支持多人实时编辑。</p>
+  <p>气温为预报值，门票 / 开放时间以官方为准。</p>
+</div></footer>
 <div class="modal" id="modal"><div class="mcard">
   <h3 id="mTitle">添加卡片</h3>
   <div class="mrow"><div><label>板块 key</label><input id="f_section" placeholder="如 day2 / food"></div><div><label>排序 sort</label><input id="f_sort" placeholder="如 310"></div></div>
@@ -84,7 +136,7 @@ footer{background:#0d2b54;color:#bcd2ee;padding:24px 0;font-size:13px;text-align
   const sb=window.supabase.createClient(SB_URL,SB_KEY);
   const $=s=>document.querySelector(s);
   const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  function banner(m){const el=$('#syncState');if(el){el.textContent=m;el.style.color='#ffd59a';}console.warn(m);}
+  function banner(m){const el=$('#syncState');if(el){el.textContent=m;el.style.color='#d97757';}console.warn(m);}
   const DEFAULTS=[
    {section:'intro',sort:100,data:{sectionTitle:'🧭 行程概览',title:'路线 & 日期',subtitle:'11/12 晚 – 11/17 凌晨',tag:'5天4夜',body:'上海浦东 ✈ 沈阳桃仙 🚄 长白山西 🎿 华美滑雪 ✈ 浦东T2\n2 整天滑雪 · 温泉 + 雾凇 + 古城'}},
    {section:'day1',sort:200,data:{sectionTitle:'Day 1 · 11/12 周四 · 上海飞沈阳',title:'22:00→次日00:35 浦东 ✈ 沈阳桃仙 T3',tag:'航班',body:'约 2h35m，已订。登机前吃好晚饭、备热水，机上小睡。'}},
@@ -166,10 +218,10 @@ footer{background:#0d2b54;color:#bcd2ee;padding:24px 0;font-size:13px;text-align
   }
   async function startup(){
     let {data,error}=await sb.from('pages_blocks').select('*').eq('page',PAGE);
-    if(error){banner('⚠ 实时同步未连接：请确认已在 Supabase 建好 pages_blocks 表并授权');return;}
+    if(error){banner('实时同步未连接：请确认已在 Supabase 建好 pages_blocks 表并授权');return;}
     if(!data||!data.length){
       const {error:e2}=await sb.from('pages_blocks').insert(DEFAULTS.map(d=>Object.assign({page:PAGE},d)));
-      if(e2){banner('⚠ 初始化写入失败：'+e2.message);return;}
+      if(e2){banner('初始化写入失败：'+e2.message);return;}
       ({data}=await sb.from('pages_blocks').select('*').eq('page',PAGE));
     }
     render(data||[]);
@@ -181,7 +233,7 @@ footer{background:#0d2b54;color:#bcd2ee;padding:24px 0;font-size:13px;text-align
     if(error){alert('删除失败：'+error.message);return;}
     await refresh();
   }
-  $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'✓ 完成编辑':'✏️ 编辑模式';});
+  $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'完成':'编辑';});
   const modal=$('#modal');let editId=null;
   function v(id){return $('#'+id).value.trim();}
   function openModal(r){
