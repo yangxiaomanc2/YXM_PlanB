@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="中国观星地点、观星时间、流星雨活动与星空观测基础知识。">
+<title>中国观星指南 · YXM Plan B</title>
+<style>
+:root{--bg:#faf9f5;--surface:#fff;--ink:#141413;--muted:#6b6a65;--line:#e8e6dc;
+--accent:#d97757;--accent-2:#f38020;--soft:#f0eee6;--serif:Georgia,"Songti SC","Noto Serif SC",serif;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.etoolbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.etoolbar .wrap{display:flex;gap:12px;align-items:center;min-height:56px;flex-wrap:wrap;padding:8px 24px}
+.site{font-family:var(--serif);font-size:16px;color:var(--ink);margin-right:auto}.site:hover{text-decoration:none}
+.ebtn{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:7px 15px;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.ebtn:hover{background:var(--soft)}.ebtn.on{background:var(--accent-2);border-color:var(--accent-2);color:#fff}.ebtn.add{border-style:dashed}
+.hint{font-size:12px;color:var(--muted);flex-basis:100%}
+.hero{padding:88px 0 0}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clamp(36px,6vw,72px);line-height:1.1;margin-top:18px}
+.lead{color:var(--muted);max-width:48ch;margin-top:20px;font-size:16px}
+.facts{display:flex;flex-wrap:wrap;gap:44px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.facts .v{font-family:var(--serif);font-size:clamp(28px,4vw,44px);color:var(--accent);line-height:1.1}.facts .l{font-size:12px;color:var(--muted);margin-top:6px}
+.sec{padding:80px 0 0}.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,34px);margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}.card:hover{border-color:var(--ink)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.4}.sub{font-size:13px;color:var(--muted);margin-top:4px}
+.tg{display:inline-block;font-size:12px;color:var(--muted);background:var(--soft);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+.bd{font-size:14px;color:#3f3e3a;margin-top:12px}.nt{font-size:13px;color:var(--muted);background:var(--soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 12px;margin-top:14px}
+.del,.edit{position:absolute;top:14px;width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--muted);font-size:13px;display:none;align-items:center;justify-content:center}
+.del{right:14px}.edit{right:48px}body.editing .del,body.editing .edit{display:flex}body.editing .card{border-style:dashed}
+.modal{position:fixed;inset:0;background:rgba(20,20,19,.38);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:40px 20px;overflow:auto}.modal.open{display:flex}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;padding:24px}.mcard h3{font-family:var(--serif);font-weight:500;font-size:20px}
+.mcard label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}.mrow{display:flex;gap:12px}.mrow>div{flex:1}
+.mcard input,.mcard textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 11px}.mcard textarea{resize:vertical;min-height:92px}
+.mact{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}.mact button{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:9px 20px;border:1px solid var(--ink);background:transparent}.mact .save{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+footer{border-top:1px solid var(--line);margin-top:96px;padding:28px 0 56px;background:none;color:var(--muted);font-size:12.5px}footer p+p{margin-top:5px}
+@media(max-width:600px){.hero{padding-top:56px}.wrap{padding:0 18px}.facts{gap:22px}.grid{grid-template-columns:1fr}.sec{padding-top:56px}.etoolbar .wrap{padding:8px 18px}.mrow{display:block}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">中国 · 暗夜地点 · 2026 天象</div>
+  <h1>把一晚留给星空</h1>
+  <p class="lead">从高原暗夜公园到城市近郊，按地点、月相和天象安排一次真正看得见银河的观星之旅。</p>
+  <div class="facts">
+    <div><div class="v">6 处</div><div class="l">重点观星目的地</div></div>
+    <div><div class="v">8 月</div><div class="l">英仙座流星雨</div></div>
+    <div><div class="v">12 月</div><div class="l">双子座流星雨</div></div>
+    <div><div class="v">15–20 分钟</div><div class="l">暗适应时间</div></div>
+  </div>
+</div></header>
+<nav class="etoolbar"><div class="wrap">
+  <a class="site" href="../#contents">YXM Plan B</a>
+  <button class="ebtn" id="editToggle">编辑</button><button class="ebtn add" id="addBtn">＋ 添加卡片</button>
+  <button class="ebtn" id="exportBtn">导出</button><button class="ebtn" id="resetBtn">还原默认</button>
+  <span class="hint" id="syncState">多人实时同步：任何人可增删改，所有人即时可见</span>
+</div></nav>
+<main class="wrap"><div id="app"></div></main>
+<footer><div class="wrap">
+  <p>中国观星指南 · 收录于 YXM Plan B · 内容存 Supabase，支持多人实时编辑。</p>
+  <p>开放时间、活动安排、道路和天气以目的地官方最新信息为准；天象时间为北京时间预报，实际可见度受天气、月光和光污染影响。</p>
+  <p>参考来源：<a href="https://www.thecover.cn/news/hEmO2KLBikqH90qSdq8Jkw==" target="_blank" rel="noreferrer">封面新闻 2026 天象预报</a> · <a href="https://www.xinhuanet.com/" target="_blank" rel="noreferrer">新华网流星雨科普</a> · <a href="https://laysky.com/" target="_blank" rel="noreferrer">天文通观星指数与光污染地图</a> · <a href="https://www.gov.cn/" target="_blank" rel="noreferrer">政府公开信息</a></p>
+</div></footer>
+<div class="modal" id="modal"><div class="mcard">
+  <h3 id="mTitle">添加卡片</h3>
+  <div class="mrow"><div><label>板块 key</label><input id="f_section" placeholder="如 locations / events"></div><div><label>排序 sort</label><input id="f_sort" placeholder="如 310"></div></div>
+  <label>板块标题（同板块填一样）</label><input id="f_sectitle" placeholder="如 重点观星地点">
+  <label>标题 *</label><input id="f_title" placeholder="如 阿里暗夜公园">
+  <label>副标题</label><input id="f_subtitle"><label>标签</label><input id="f_tag">
+  <label>正文（回车换行；行首“- ”变项目符号）</label><textarea id="f_body"></textarea>
+  <label>备注</label><input id="f_note"><div class="mact"><button id="mCancel">取消</button><button class="save" id="mSave">保存</button></div>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  const PAGE='stargazing-guide',SB_URL='https://jfvktpiumonhsgsgwbcc.supabase.co',SB_KEY='sb_publishable_iwjdJ0BVThvZVEpq2t2tgw_OskNS6U1';
+  const sb=window.supabase.createClient(SB_URL,SB_KEY),$=s=>document.querySelector(s);
+  const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function banner(m){const e=$('#syncState');e.textContent=m;e.style.color='var(--accent)';console.warn(m)}
+  const DEFAULTS=[
+   {section:'start',sort:100,data:{sectionTitle:'先确定一晚的条件',title:'看银河，先看月相和天气',tag:'核心原则',body:'- 选择新月前后、月亮较早落下或月出前的时段\n- 远离城市和景区强灯，寻找开阔、无遮挡的地平线\n- 出发前 24–48 小时看云量、降水、能见度和风力\n- 计划至少停留 2 小时，给眼睛暗适应，也给流星留等待时间'}},
+   {section:'start',sort:110,data:{sectionTitle:'先确定一晚的条件',title:'理想条件不等于保证看到',subtitle:'把 ZHR 当作上限参考',tag:'基础',body:'ZHR 是在辐射点位于天顶、天空足够黑、视野开阔且观测者视力良好时的理论每小时流星数。实际肉眼数量通常低得多，城市、薄云、月光和视野遮挡都会继续减少可见流星。'}},
+   {section:'locations',sort:200,data:{sectionTitle:'中国重点观星地点',title:'西藏阿里暗夜公园',subtitle:'极致暗夜 · 适合银河与星野摄影',tag:'高原进阶',body:'阿里狮泉河镇以南的暗夜公园和周边保护地拥有低光污染、高海拔、干燥少云的优势，适合拍银河拱桥、星轨和流星。可把它与阿里南线或冈仁波齐行程结合。',note:'海拔很高，必须预留适应时间，避免剧烈运动。园区开放、观测设备和道路状况出发前向当地官方核实。'}},
+   {section:'locations',sort:210,data:{sectionTitle:'中国重点观星地点',title:'西藏那曲暗夜星空保护地',subtitle:'高原晴空 · 适合追银河和流星',tag:'高原进阶',body:'那曲及周边保护地远离大城市，夜空透明度和晴天条件较好，适合把星空与草原、雪山、湖泊前景结合拍摄。',note:'高海拔、低温和偏远交通叠加，优先选择有正规住宿、通信和救援条件的路线。'}},
+   {section:'locations',sort:220,data:{sectionTitle:'中国重点观星地点',title:'内蒙古赛罕乌拉',subtitle:'暗夜保护与自然保护区结合',tag:'自然旅行',body:'赛罕乌拉国家级自然保护区已建设暗夜星空保护地，适合在北方草原和森林环境中观星，也能安排生态观察和自然教育。',note:'保护区有分区和管理要求，夜间进入、露营与拍摄须遵守当地规定。'}},
+   {section:'locations',sort:230,data:{sectionTitle:'中国重点观星地点',title:'深圳西涌国际暗夜社区',subtitle:'华南城市周边的周末选择',tag:'近郊入门',body:'西涌远离深圳中心城区，是适合周末观星、海边星空摄影和参加科普活动的近郊地点。对第一次观星的人，交通和住宿相对容易安排。',note:'海边天气变化快，重点看云量和湿度；沙滩、礁石和夜间道路要按管理方要求活动。'}},
+   {section:'locations',sort:240,data:{sectionTitle:'中国重点观星地点',title:'青海茶卡盐湖及柴达木盆地',subtitle:'盐湖倒影 · 适合星空摄影',tag:'摄影路线',body:'青海西部空气干燥、光污染较少，盐湖和荒漠能提供开阔地平线与倒影前景。茶卡、冷湖等地可按季节和道路情况组合安排。',note:'盐湖景区夜游、拍摄平台和住宿开放情况会变化，禁止在未开放区域夜间独自进入。'}},
+   {section:'locations',sort:250,data:{sectionTitle:'中国重点观星地点',title:'四川牛背山及川西高地',subtitle:'山地云海与星空前景',tag:'山地观星',body:'川西高地适合把银河、星轨与山脊、云海同框，牛背山及周边高山观景点有成熟的星空摄影需求。',note:'山顶风大、温差明显，云海不等于晴空。确认景区预约、接驳、住宿和夜间安全规定。'}},
+   {section:'seasons',sort:300,data:{sectionTitle:'观星时间怎么选',title:'春季 3–5 月',subtitle:'银河核心逐渐在后半夜升起',tag:'春季',body:'春季适合从后半夜开始找银河，也适合观测天琴座、宝瓶座η等流星雨。南方春季湿度和云量变化较快，出发前重点看透明度和低云。'}},
+   {section:'seasons',sort:310,data:{sectionTitle:'观星时间怎么选',title:'夏季 6–8 月',subtitle:'银河最容易被普通观测者看见',tag:'夏季',body:'夏季银河核心在夜间逐渐升高，是拍银河的黄金季节。8 月英仙座流星雨活跃，北半球观测条件通常较好。山区夜间仍冷，夏季也要带保暖层和防潮装备。'}},
+   {section:'seasons',sort:320,data:{sectionTitle:'观星时间怎么选',title:'秋季 9–11 月',subtitle:'晴朗夜晚与舒适温度较容易兼得',tag:'秋季',body:'秋季适合在西北、内蒙古和高原寻找干燥晴空，10 月猎户座、11 月狮子座流星雨可作为观测主题。秋夜降温快，提前准备坐垫和保暖衣物。'}},
+   {section:'seasons',sort:330,data:{sectionTitle:'观星时间怎么选',title:'冬季 12–2 月',subtitle:'空气透明，但保暖决定体验',tag:'冬季',body:'冬季常有清澈夜空，双子座流星雨在 12 月值得重点安排。寒冷会快速消耗相机电池和手机电量，备用电池贴身保温，避免镜头骤冷结露。'}},
+   {section:'events',sort:400,data:{sectionTitle:'2026 年值得安排的天象',title:'12 月 14 日前后 · 双子座流星雨',subtitle:'年度重点推荐 · 后半夜月光干扰较小',tag:'流星雨',body:'2026 年极大期预计在 12 月 14 日前后，理想 ZHR 约 120。13 日晚至 14 日黎明可安排连续观测，双子座流星速度适中、亮流星较多。实际流量取决于地点、天气和辐射点高度。'}},
+   {section:'events',sort:410,data:{sectionTitle:'2026 年值得安排的天象',title:'11 月 17 日晚至 18 日黎明 · 狮子座流星雨',subtitle:'月亮较早落下，适合耐心守候',tag:'流星雨',body:'2026 年预报 ZHR 约 15，通常不会达到暴雨级。辐射点午夜后升高，适合在无月光的后半夜观察，期待少量快速流星和偶发火流星。'}},
+   {section:'events',sort:420,data:{sectionTitle:'2026 年值得安排的天象',title:'下一次英仙座流星雨 · 7 月中旬至 8 月下旬',subtitle:'极大期通常在 8 月 12–13 日附近',tag:'流星雨',body:'英仙座流星雨是北半球三大流星雨之一，亮流星较多。安排时应优先选后半夜，辐射点升高后可见流星数通常增加。具体年份的月相和极大时刻出发前再查天文预报。'}},
+   {section:'events',sort:430,data:{sectionTitle:'2026 年值得安排的天象',title:'常规天文活动',subtitle:'把一次旅行变成可参与的观测',tag:'活动',body:'- 参加暗夜公园或天文馆的望远镜夜观、讲座和星图辨认\n- 在流星雨期间做简单目视计数，记录时间、方向和亮度\n- 参加星空摄影工作坊，学习三脚架、对焦和曝光\n- 选择有管理方组织的露营或观星团，减少夜间独行风险',note:'各地活动常按天气和客流临时调整，报名和开放信息以主办方公告为准。'}},
+   {section:'basic',sort:500,data:{sectionTitle:'观星基础知识',title:'肉眼先看什么',subtitle:'不带望远镜也能开始',tag:'入门',body:'先找北斗七星、北极星和夏季大三角，再用星图应用确认星座。观测流星时不要盯住辐射点，放宽视野看天空更容易发现长轨迹。'}},
+   {section:'basic',sort:510,data:{sectionTitle:'观星基础知识',title:'望远镜不是必需品',subtitle:'先用双筒望远镜扩大视野',tag:'装备',body:'流星、银河和大范围星座适合肉眼观察。双筒望远镜轻便，适合看月面、星团和地面前景。望远镜更适合月面、行星和深空目标，使用前要先学会调焦和稳固支撑。'}},
+   {section:'basic',sort:520,data:{sectionTitle:'观星基础知识',title:'拍星空的最低配置',subtitle:'手机也可以记录第一张星空照',tag:'摄影',body:'- 稳固三脚架和关闭防抖\n- 手动对焦到无限远附近，再放大检查星点\n- 大光圈、较高 ISO 和 10–30 秒曝光作为起点\n- 拍摄前让设备适应环境温度，镜头起雾时不要硬擦',note:'不同手机和镜头差异很大，参数只作起点，优先保证星点不拖线、画面不过曝。'}},
+   {section:'basic',sort:530,data:{sectionTitle:'观星基础知识',title:'暗适应与红光',subtitle:'让眼睛真正看见暗处的星',tag:'技巧',body:'到达后先关闭车灯和强手电，让眼睛适应黑暗约 15–20 分钟。查星图时把手机亮度调到最低，使用红光模式，避免频繁看白色屏幕破坏暗适应。'}},
+   {section:'safety',sort:600,data:{sectionTitle:'安全与环保',title:'高海拔地点先解决身体',subtitle:'阿里、那曲和部分川西路线需要特别谨慎',tag:'安全',body:'提前安排适应海拔的时间，初到高原不要熬夜观星或剧烈运动。出现持续头痛、恶心、呼吸困难、意识异常等情况，立即停止观星并寻求医疗帮助，不要用观星计划硬撑。'}},
+   {section:'safety',sort:610,data:{sectionTitle:'安全与环保',title:'夜间出行清单',subtitle:'同行、保暖、照明和返程都要有方案',tag:'安全',body:'- 结伴前往，提前把路线和返程时间告诉亲友\n- 带保暖层、坐垫、饮水、食物和备用电源\n- 使用低亮度红光，不把车灯和强光直接照向他人\n- 远离悬崖、水边、未开放区域和野生动物活动区\n- 带走垃圾，不踩踏植被，不为拍摄移动石块或破坏环境'}},
+   {section:'safety',sort:620,data:{sectionTitle:'安全与环保',title:'出发前最后检查',subtitle:'天气比目的地名气更重要',tag:'行前',body:'确认云量、降水、能见度、风力、月出月落、道路、景区预约、住宿和通信。若天气转坏，改为天文馆、科普展览或日间自然活动，保留下一次晴夜的机会。'}}
+  ];
+  const app=$('#app');function bodyHTML(b){return !b?'':esc(b).split('\n').map(l=>l.startsWith('- ')?'• '+l.slice(2):l).join('<br>')}
+  function cardEl(r){const d=r.data||{},a=document.createElement('article');a.className='card';a.dataset.id=r.id;
+    a.innerHTML=(d.tag?'<span class="tg">'+esc(d.tag)+'</span>':'')+'<h3>'+esc(d.title||'(未命名)')+'</h3>'+(d.subtitle?'<div class="sub">'+esc(d.subtitle)+'</div>':'')+(d.body?'<div class="bd">'+bodyHTML(d.body)+'</div>':'')+(d.note?'<div class="nt">'+bodyHTML(d.note)+'</div>':'')+'<button class="edit" title="编辑">✎</button><button class="del" title="删除">×</button>';
+    a.querySelector('.del').addEventListener('click',()=>removeCard(r));a.querySelector('.edit').addEventListener('click',()=>openModal(r));return a}
+  function render(rows){app.innerHTML='';const order=[],bySec={};rows.slice().sort((a,b)=>(a.sort||0)-(b.sort||0)).forEach(r=>{const s=r.section||'';if(!bySec[s]){bySec[s]=[];order.push(s)}bySec[s].push(r)});
+    order.forEach(s=>{const sec=document.createElement('section');sec.className='sec';sec.innerHTML='<h2>'+esc((bySec[s][0].data||{}).sectionTitle||s)+'</h2>';const grid=document.createElement('div');grid.className='grid';bySec[s].forEach(r=>grid.appendChild(cardEl(r)));sec.appendChild(grid);app.appendChild(sec)})}
+  async function startup(){let {data,error}=await sb.from('pages_blocks').select('*').eq('page',PAGE);if(error){banner('实时同步未连接：请确认 Supabase pages_blocks 表和权限');return}
+    if(!data||!data.length){const {error:e}=await sb.from('pages_blocks').insert(DEFAULTS.map(d=>Object.assign({page:PAGE},d)));if(e){banner('初始化写入失败：'+e.message);return}({data}=await sb.from('pages_blocks').select('*').eq('page',PAGE))}render(data||[])}
+  async function refresh(){const {data,error}=await sb.from('pages_blocks').select('*').eq('page',PAGE);if(!error)render(data||[])}
+  async function removeCard(r){if(!confirm('确定删除「'+((r.data||{}).title||'')+'」？所有人都会同步删除。'))return;const {error}=await sb.from('pages_blocks').delete().eq('id',r.id);if(error){alert('删除失败：'+error.message);return}await refresh()}
+  $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'完成':'编辑'});
+  const modal=$('#modal');let editId=null;const v=id=>$('#'+id).value.trim();
+  function openModal(r){const d=r?(r.data||{}):{};editId=r?r.id:null;$('#mTitle').textContent=r?'编辑卡片':'添加卡片';$('#f_section').value=r?(r.section||''):'';$('#f_sort').value=r?(r.sort||''):'';$('#f_sectitle').value=d.sectionTitle||'';$('#f_title').value=d.title||'';$('#f_subtitle').value=d.subtitle||'';$('#f_tag').value=d.tag||'';$('#f_body').value=d.body||'';$('#f_note').value=d.note||'';modal.classList.add('open')}
+  $('#addBtn').addEventListener('click',()=>openModal(null));$('#mCancel').addEventListener('click',()=>modal.classList.remove('open'));modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+  $('#mSave').addEventListener('click',async()=>{const title=v('f_title');if(!title){alert('请填写标题');return}const data={sectionTitle:v('f_sectitle'),title,subtitle:v('f_subtitle'),tag:v('f_tag'),body:$('#f_body').value,note:v('f_note')};const rec={page:PAGE,section:v('f_section')||'custom',sort:parseInt(v('f_sort'))||9999,data};let error;if(editId){({error}=await sb.from('pages_blocks').update(rec).eq('id',editId))}else{({error}=await sb.from('pages_blocks').insert(rec))}if(error){alert('保存失败：'+error.message);return}await refresh();modal.classList.remove('open');editId=null});
+  $('#exportBtn').addEventListener('click',async()=>{const {data}=await sb.from('pages_blocks').select('*').eq('page',PAGE);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data||[],null,2)],{type:'application/json'}));a.download=PAGE+'.json';a.click()});
+  $('#resetBtn').addEventListener('click',async()=>{if(!confirm('还原默认会清空本页所有卡片并重置为默认，影响所有人。确定？'))return;await sb.from('pages_blocks').delete().eq('page',PAGE);await sb.from('pages_blocks').insert(DEFAULTS.map(d=>Object.assign({page:PAGE},d)));await refresh()});
+  sb.channel('blocks-'+PAGE).on('postgres_changes',{event:'*',schema:'public',table:'pages_blocks'},refresh).subscribe();startup();
+})();
+</script>
+</body>
+</html>
