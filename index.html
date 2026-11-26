@@ -37,6 +37,9 @@ button{font:inherit}
 .scene:nth-child(3){background-image:url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=85")}
 .scene:nth-child(4){background-image:url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2400&q=85")}
 .scene:nth-child(5){background-image:url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(6){background-image:url("https://images.unsplash.com/photo-1551524164-687a55dd1126?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(7){background-image:url("https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(8){background-image:url("https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=2400&q=85")}
 .scene.final{background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2400&q=90")}
 .vignette{position:absolute;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 32%,rgba(0,0,0,.22) 72%,rgba(0,0,0,.72) 125%)}
 .warmth{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(115deg,rgba(115,75,43,.12),transparent 45%,rgba(0,0,0,.12))}
@@ -56,9 +59,11 @@ button{font:inherit}
  display:flex;align-items:center;gap:10px;color:rgba(255,244,224,.72);font-size:9px;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap}
 .projector .lamp{width:5px;height:5px;border-radius:50%;background:#d6b78a;box-shadow:0 0 12px 3px rgba(214,183,138,.5);animation:lamp 1.8s infinite}
 @keyframes lamp{50%{opacity:.35;box-shadow:0 0 4px 1px rgba(214,183,138,.2)}}
-.hero-copy{position:relative;z-index:6;width:min(900px,90vw);padding:28px 18px 44px;opacity:0;transform:translateY(18px);
- animation:copyIn 1.5s 6.3s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-copy{position:relative;z-index:6;width:min(900px,90vw);padding:28px 18px 44px;opacity:0;transform:translateY(18px)}
+.intro.show-title .hero-copy{animation:copyIn .9s cubic-bezier(.2,.7,.2,1) forwards}
+.intro.hide-title .hero-copy{animation:copyOut .65s ease forwards}
 @keyframes copyIn{to{opacity:1;transform:translateY(0)}}
+@keyframes copyOut{to{opacity:0;transform:translateY(-12px)}}
 .eyebrow{font-size:10px;letter-spacing:.34em;color:#e2c9a7;text-transform:uppercase;margin-bottom:24px}
 .hero-copy h1{font-family:var(--serif);font-weight:400;letter-spacing:-.045em;line-height:.98;
  font-size:clamp(3.15rem,8.5vw,7.6rem);text-shadow:0 3px 32px rgba(0,0,0,.35)}
@@ -147,6 +152,9 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
       <div class="scene"></div>
       <div class="scene"></div>
       <div class="scene"></div>
+      <div class="scene"></div>
+      <div class="scene"></div>
+      <div class="scene"></div>
       <div class="scene final"></div>
     </div>
     <div class="vignette" aria-hidden="true"></div>
@@ -162,7 +170,7 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
       <p class="translation">人生是一部正在拍摄的电影。我们的下一篇章，从这里开始。</p>
       <button class="enter" id="enterWorld" type="button"><span>ENTER OUR WORLD</span><span class="arrow">→</span></button>
     </div>
-    <div class="reel-meta"><span>35mm · Memories in the making</span><span class="counter" id="reelCounter">REEL 01 / 06</span></div>
+    <div class="reel-meta"><span>35mm · Memories in the making</span><span class="counter" id="reelCounter">REEL 01 / 09</span></div>
   </section>
 
   <section id="contents" tabindex="-1" aria-label="行程与榜单">
@@ -199,8 +207,7 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
     <footer class="wrap"><span>YXM PLAN B · A FILM BY US</span><span>THE NEXT CHAPTER IS OURS.</span></footer>
   </section>
 </main>
-<script>
-(function(){
+<script>(function(){
   const intro=document.getElementById('intro');
   const scenes=Array.from(document.querySelectorAll('.scene'));
   const counter=document.getElementById('reelCounter');
@@ -208,19 +215,54 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
   const enter=document.getElementById('enterWorld');
   const contents=document.getElementById('contents');
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let index=0,finished=false,timer=null;
-  function showScene(next){
+  const finalIndex=scenes.length-1;
+  const montageInterval=1350;
+  const titleHold=10000;
+  let index=0,finished=false,timers=[];
+  function later(fn,delay){timers.push(window.setTimeout(fn,delay));}
+  function clearTimers(){timers.forEach(window.clearTimeout);timers=[];}
+  function activate(next){
     scenes[index].classList.remove('active');
     index=next;
     scenes[index].classList.add('active');
-    counter.textContent='REEL 0'+(index+1)+' / 06';
+    counter.textContent='REEL '+String(index+1).padStart(2,'0')+' / '+String(scenes.length).padStart(2,'0');
+  }
+  function playCycle(){
+    if(finished)return;
+    intro.classList.remove('show-title','hide-title');
+    scenes.forEach((scene,i)=>scene.classList.toggle('active',i===0));
+    index=0;
+    counter.textContent='REEL 01 / '+String(scenes.length).padStart(2,'0');
+    function nextFrame(){
+      if(finished)return;
+      if(index<finalIndex-1){
+        activate(index+1);
+        later(nextFrame,montageInterval);
+        return;
+      }
+      activate(finalIndex);
+      counter.textContent='THE STORY BEGINS';
+      intro.classList.add('show-title');
+      later(function(){
+        if(finished)return;
+        intro.classList.remove('show-title');
+        intro.classList.add('hide-title');
+        later(function(){
+          if(finished)return;
+          intro.classList.remove('hide-title');
+          playCycle();
+        },700);
+      },titleHold);
+    }
+    later(nextFrame,montageInterval);
   }
   function finishIntro(){
     if(finished)return;
     finished=true;
-    if(timer)clearInterval(timer);
+    clearTimers();
+    intro.classList.remove('show-title','hide-title');
     intro.classList.add('is-done');
-    scenes.forEach((scene,i)=>scene.classList.toggle('active',i===5));
+    scenes.forEach((scene,i)=>scene.classList.toggle('active',i===finalIndex));
     counter.textContent='THE STORY BEGINS';
     skip.hidden=true;
   }
@@ -232,14 +274,8 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
   skip.addEventListener('click',finishIntro);
   enter.addEventListener('click',enterContent);
   if(reduced){finishIntro();return;}
-  timer=setInterval(function(){
-    if(finished)return;
-    if(index<5)showScene(index+1);
-    else finishIntro();
-  },1250);
-  // Keep the final landscape and title together after the short montage.
+  later(playCycle,2200);
   window.addEventListener('pageshow',function(){if(window.location.hash==='#contents')finishIntro();});
-})();
-</script>
+})();</script>
 </body>
 </html>
