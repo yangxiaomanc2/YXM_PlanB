@@ -17,7 +17,61 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wr
 footer{border-top:1px solid var(--line);margin-top:92px;padding:26px 0 56px;color:var(--muted);font-size:12px}footer p+p{margin-top:6px}
 .modal{display:none;position:fixed;inset:0;background:#14141366;z-index:50;overflow:auto;padding:32px 16px}.modal.open{display:flex;justify-content:center;align-items:flex-start}.panel{width:min(620px,100%);background:#fff;border-radius:16px;padding:22px}.panel h2{font:500 22px var(--serif);margin:0 0 14px}.panel label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}.panel input,.panel textarea{width:100%;font:14px var(--sans);padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}.panel textarea{min-height:120px;resize:vertical}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
 @media(max-width:600px){.wrap{padding:0 18px}.hero{padding-top:56px}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.sec{padding-top:56px}.grid{grid-template-columns:1fr}.top .wrap{padding-left:18px;padding-right:18px}.photo img{max-height:220px}}
+
+/* 星空序章：进入观星攻略前的沉浸式入口 */
+.sky-intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 42%,#1a2c49 0%,#101d33 42%,#080f1d 100%);color:#f7f3e9;opacity:1;visibility:visible;transition:opacity .9s ease,visibility .9s ease}
+.sky-intro::before{content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,rgba(117,145,180,.13),transparent 48%),radial-gradient(ellipse at 16% 20%,rgba(93,119,158,.12),transparent 38%);filter:blur(18px)}
+.sky-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.sky-stars{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.sky-grain{position:absolute;inset:0;pointer-events:none;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+.sky-meteor{position:absolute;width:190px;height:1px;pointer-events:none;opacity:0;transform:rotate(-34deg);transform-origin:right center;animation:sky-shoot var(--duration,5s) linear var(--delay,0s) infinite}
+.sky-meteor::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(190,216,255,.16) 34%,rgba(226,237,255,.95));box-shadow:0 0 8px rgba(196,220,255,.6);border-radius:100%}
+.sky-meteor::before{content:"";position:absolute;right:0;top:-2px;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 9px 2px rgba(213,230,255,.9)}
+@keyframes sky-shoot{0%{opacity:0;transform:translate3d(0,0,0) rotate(-34deg)}5%{opacity:.95}22%{opacity:.8}34%,100%{opacity:0;transform:translate3d(-58vw,48vh,0) rotate(-34deg)}}
+.sky-meteor.m1{top:20%;right:7%;--duration:7.8s;--delay:1s}
+.sky-meteor.m2{top:37%;right:22%;width:135px;--duration:9.5s;--delay:4.6s}
+.sky-meteor.m3{top:13%;right:42%;width:165px;--duration:11s;--delay:7.4s}
+.sky-meteor.m4{top:57%;right:5%;width:115px;--duration:10s;--delay:2.8s}
+.sky-intro-content{position:relative;width:min(900px,calc(100% - 40px));padding:40px 0;text-align:center;animation:sky-arrive 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes sky-arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.sky-brand{font-size:11px;letter-spacing:.28em;color:#b8c6d8;text-transform:uppercase}
+.sky-constellation{height:76px;display:flex;align-items:center;justify-content:center;margin:20px 0 12px;color:#e7d8b6}
+.sky-constellation svg{width:76px;height:76px;overflow:visible;filter:drop-shadow(0 0 13px rgba(222,210,179,.4))}
+.sky-intro h1{max-width:850px;margin:0 auto;color:#f7f3e9;font:500 clamp(36px,6.4vw,76px)/1.08 var(--serif);letter-spacing:-.035em;text-wrap:balance}
+.sky-translation{margin:22px 0 0;color:#d6c8ad;font:400 clamp(17px,2.2vw,22px)/1.6 var(--serif);letter-spacing:.12em}
+.sky-caption{margin:16px 0 0;color:#a9b7c9;font-size:11px;letter-spacing:.24em}
+.sky-enter{display:inline-flex;align-items:center;gap:14px;margin-top:44px;padding:14px 27px;border:1px solid rgba(221,211,190,.55);border-radius:999px;background:rgba(255,255,255,.055);color:#f7f3e9;font:13px var(--sans);letter-spacing:.12em;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.sky-enter:hover{background:rgba(255,255,255,.13);border-color:#e5d7b8;transform:translateY(-2px)}
+.sky-enter:focus-visible{outline:2px solid #e5d7b8;outline-offset:5px}
+.sky-enter span:last-child{font-size:18px;line-height:1}
+.sky-foot{position:absolute;bottom:26px;left:20px;right:20px;color:#8292a8;text-align:center;font-size:10px;letter-spacing:.2em}
+@media(max-width:600px){.sky-intro-content{width:calc(100% - 36px)}.sky-constellation{height:62px;margin:12px 0}.sky-constellation svg{width:62px;height:62px}.sky-translation{letter-spacing:.08em}.sky-enter{margin-top:36px;padding:13px 22px}.sky-foot{bottom:18px;font-size:9px}.sky-meteor{width:125px}}
+@media(prefers-reduced-motion:reduce){.sky-intro,.sky-intro-content{transition:none;animation:none}.sky-meteor{display:none}.sky-enter{transition:none}html{scroll-behavior:auto}}
+
 </style></head><body>
+
+<div class="sky-intro" id="skyIntro" role="dialog" aria-modal="true" aria-label="观星攻略星空入口">
+  <canvas class="sky-stars" id="skyStars" aria-hidden="true"></canvas>
+  <div class="sky-grain" aria-hidden="true"></div>
+  <i class="sky-meteor m1" aria-hidden="true"></i><i class="sky-meteor m2" aria-hidden="true"></i><i class="sky-meteor m3" aria-hidden="true"></i><i class="sky-meteor m4" aria-hidden="true"></i>
+  <div class="sky-intro-content">
+    <div class="sky-brand">YXM PLAN B&nbsp; · &nbsp;A JOURNEY UNDER THE STARS</div>
+    <div class="sky-constellation" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none">
+        <path d="M17 64L37 30L58 48L79 19" stroke="#cdbf9e" stroke-opacity=".65" stroke-width="1"/>
+        <path d="M37 30L45 76L58 48L82 72" stroke="#cdbf9e" stroke-opacity=".35" stroke-width=".8"/>
+        <circle cx="17" cy="64" r="2.2" fill="#f5e8c9"/><circle cx="37" cy="30" r="3" fill="#fff3d5"/><circle cx="58" cy="48" r="2.4" fill="#f5e8c9"/><circle cx="79" cy="19" r="3.2" fill="#fff3d5"/><circle cx="45" cy="76" r="1.7" fill="#d8c9a9"/><circle cx="82" cy="72" r="1.8" fill="#d8c9a9"/>
+        <path d="M79 8V13M74 19H69M79 25V30M85 19H90" stroke="#e8d9b8" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Chasing Stars,<br>Discovering Worlds.</h1>
+    <p class="sky-translation">追逐星辰，探索世界。</p>
+    <p class="sky-caption">LOOK UP · WANDER FAR · FIND YOUR UNIVERSE</p>
+    <button class="sky-enter" id="skyEnter" type="button"><span>开始探索</span><span aria-hidden="true">↗</span></button>
+  </div>
+  <div class="sky-foot">SOMEWHERE UNDER THE SAME SKY, OUR NEXT ADVENTURE AWAITS</div>
+</div>
+
 <header class="hero"><div class="wrap"><div id="hero"></div><figure class="photo"><img src="https://www.bjp.org.cn/upload/image/2023/09/07/1694065457989042764.jpg" alt="川西雪山与银河星空" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>川西雪山银河摄影 · 图片来源：<a href="https://www.bjp.org.cn/" target="_blank" rel="noreferrer">北京天文馆</a></figcaption></figure><nav class="toc" id="toc"></nav></div></header>
 <nav class="top"><div class="wrap"><a class="brand" href="../#contents">YXM Plan B</a><button class="btn" id="editToggle">编辑</button><button class="btn add" id="addBtn">＋ 添加卡片</button><button class="btn" id="exportBtn">导出</button><span class="sync" id="sync">内容加载中…</span></div></nav>
 <main class="wrap" id="app"></main>
@@ -43,4 +97,38 @@ $("#editToggle").onclick=()=>{document.body.classList.toggle("editing");$("#edit
 $("#addBtn").onclick=()=>openModal(null);$("#cancel").onclick=()=>$("#modal").classList.remove("open");$("#save").onclick=save;$("#exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(rows,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=PAGE+"-v2.json";a.click()};
 sb.channel("blocks-"+PAGE+"-v2").on("postgres_changes",{event:"*",schema:"public",table:"pages_blocks"},refresh).subscribe();load();
 })();
-</script></body></html>
+</script>
+<script>
+(()=> {
+  const intro=document.getElementById('skyIntro');
+  const canvas=document.getElementById('skyStars');
+  const ctx=canvas&&canvas.getContext('2d');
+  if(ctx){
+    let stars=[];
+    const drawStars=()=>{
+      const w=window.innerWidth,h=window.innerHeight,dpr=Math.min(window.devicePixelRatio||1,1.5);
+      canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+      const count=Math.min(260,Math.round(w*h/4800));stars=[];
+      for(let i=0;i<count;i++){
+        const x=Math.random()*w,y=Math.random()*h,r=Math.random()*1.25+.25,a=Math.random()*.62+.18;
+        stars.push({x,y,r,a});
+      }
+      stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(235,241,250,'+s.a+')';ctx.fill()});
+    };
+    drawStars();
+    let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(drawStars,160)},{passive:true});
+  }
+  const enter=document.getElementById('skyEnter');
+  const close=()=>{
+    if(!intro||intro.classList.contains('is-leaving'))return;
+    intro.classList.add('is-leaving');document.body.classList.remove('sky-locked');
+    window.setTimeout(()=>{intro.hidden=true;intro.setAttribute('aria-hidden','true')},950);
+  };
+  document.body.classList.add('sky-locked');
+  if(enter)enter.addEventListener('click',close);
+  if(intro){intro.addEventListener('keydown',e=>{if(e.key==='Escape')close()});}
+})();
+</script>
+
+</body></html>
