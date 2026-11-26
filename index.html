@@ -3,122 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YXM Plan B · 行程与榜单</title>
-<meta name="description" content="下一篇章，从这里开始。">
+<meta name="theme-color" content="#090909">
+<title>YXM Plan B · Our Next Chapter</title>
+<meta name="description" content="人生是一部正在拍摄的电影。我们的下一篇章，从这里开始。">
+<link rel="preconnect" href="https://images.unsplash.com">
 <style>
-:root{--bg:#faf9f5;--surface:#ffffff;--ink:#141413;--muted:#6b6a65;--line:#e8e6dc;
---accent:#d97757;--soft:#f0eee6;
---serif:"Tiempos Headline",Georgia,"Songti SC","Noto Serif SC",serif;
---sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
+:root{
+  color-scheme:dark;
+  --black:#080909;--paper:#f1eee7;--muted:#aaa49a;--gold:#c6a77a;
+  --serif:"Iowan Old Style","Baskerville","Times New Roman","Songti SC",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
+html{background:var(--black);scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--paper);background:var(--black);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.intro{
+  position:relative;isolation:isolate;min-height:100svh;height:100vh;overflow:hidden;
+  display:grid;place-items:center;background:#050505;text-align:center;
 }
-body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;
--webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.bar{position:sticky;top:0;z-index:20;height:56px;display:flex;align-items:center;
-background:var(--bg);border-bottom:1px solid var(--line)}
-.bar .site{font-family:var(--serif);font-size:16px;color:var(--ink)}
-.bar .site:hover{text-decoration:none}
-.hero {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: clamp(24px, 6vw, 96px);
-  text-align: center;
+.screen{position:absolute;inset:0;overflow:hidden;background:#050505;z-index:-3}
+.scene{
+  position:absolute;inset:-3%;opacity:0;transform:scale(1.08);
+  background-position:center;background-size:cover;
+  transition:opacity 1.25s ease,transform 7s cubic-bezier(.2,.65,.2,1);
+  filter:saturate(.78) contrast(1.04);
 }
-.hero h1 {
-  max-width: 22ch;
-  font: 400 clamp(2.5rem, 7.5vw, 7rem)/1.03 var(--serif);
-  letter-spacing: -.045em;
-  text-wrap: balance;
+.scene.active{opacity:1;transform:scale(1.015)}
+.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.24),rgba(0,0,0,.08) 42%,rgba(0,0,0,.58))}
+.scene:nth-child(1){background-image:url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(2){background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(3){background-image:url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(4){background-image:url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2400&q=85")}
+.scene:nth-child(5){background-image:url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2400&q=85")}
+.scene.final{background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2400&q=90")}
+.vignette{position:absolute;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 32%,rgba(0,0,0,.22) 72%,rgba(0,0,0,.72) 125%)}
+.warmth{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(115deg,rgba(115,75,43,.12),transparent 45%,rgba(0,0,0,.12))}
+.grain{position:absolute;inset:-50%;z-index:4;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+  animation:grain .22s steps(2) infinite;mix-blend-mode:soft-light}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}
+.gate{position:absolute;inset:0;z-index:5;pointer-events:none;background:#000;animation:gateOpen 2.2s cubic-bezier(.7,0,.2,1) forwards}
+.gate::before{content:"";position:absolute;left:50%;top:50%;width:0;height:1px;transform:translate(-50%,-50%);background:rgba(245,224,190,.85);box-shadow:0 0 30px 12px rgba(230,194,143,.25);animation:projectorBeam 1.4s .35s ease-out forwards}
+@keyframes gateOpen{0%,32%{opacity:1}55%{opacity:.88}100%{opacity:0;visibility:hidden}}
+@keyframes projectorBeam{0%{width:0;opacity:0}35%{opacity:1}100%{width:70vw;opacity:0}}
+.film-frame{position:absolute;inset:18px 0;z-index:3;pointer-events:none;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);opacity:.55}
+.film-frame::before,.film-frame::after{content:"";position:absolute;left:0;right:0;height:8px;opacity:.55;
+ background:repeating-linear-gradient(90deg,transparent 0 17px,rgba(235,226,210,.7) 17px 27px,transparent 27px 43px)}
+.film-frame::before{top:-5px}.film-frame::after{bottom:-5px}
+.projector{position:absolute;top:clamp(28px,5vh,58px);left:50%;transform:translateX(-50%);z-index:6;
+ display:flex;align-items:center;gap:10px;color:rgba(255,244,224,.72);font-size:9px;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap}
+.projector .lamp{width:5px;height:5px;border-radius:50%;background:#d6b78a;box-shadow:0 0 12px 3px rgba(214,183,138,.5);animation:lamp 1.8s infinite}
+@keyframes lamp{50%{opacity:.35;box-shadow:0 0 4px 1px rgba(214,183,138,.2)}}
+.hero-copy{position:relative;z-index:6;width:min(900px,90vw);padding:28px 18px 44px;opacity:0;transform:translateY(18px);
+ animation:copyIn 1.5s 6.3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes copyIn{to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:10px;letter-spacing:.34em;color:#e2c9a7;text-transform:uppercase;margin-bottom:24px}
+.hero-copy h1{font-family:var(--serif);font-weight:400;letter-spacing:-.045em;line-height:.98;
+ font-size:clamp(3.15rem,8.5vw,7.6rem);text-shadow:0 3px 32px rgba(0,0,0,.35)}
+.hero-copy h1 span{display:block}
+.hero-copy h1 span+span{font-style:italic;font-weight:400}
+.translation{margin-top:24px;color:rgba(255,248,236,.86);font-size:clamp(14px,2vw,19px);letter-spacing:.12em}
+.enter{
+ display:inline-flex;align-items:center;gap:16px;margin-top:42px;padding:12px 0;
+ border:0;border-bottom:1px solid rgba(235,215,185,.7);background:transparent;color:#f4e7d4;
+ font-size:10px;letter-spacing:.25em;cursor:pointer;transition:gap .3s,color .3s}
+.enter:hover{gap:24px;color:#fff}
+.enter .arrow{font-size:17px;line-height:1}
+.reel-meta{position:absolute;z-index:6;bottom:34px;left:clamp(24px,5vw,72px);right:clamp(24px,5vw,72px);
+ display:flex;justify-content:space-between;align-items:center;color:rgba(255,245,229,.58);font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.reel-meta .counter{font-variant-numeric:tabular-nums}
+.skip{position:absolute;z-index:8;right:clamp(22px,5vw,64px);top:clamp(26px,5vh,54px);
+ border:1px solid rgba(255,255,255,.32);border-radius:30px;background:rgba(0,0,0,.18);padding:7px 14px;
+ color:rgba(255,255,255,.76);font-size:9px;letter-spacing:.16em;cursor:pointer;backdrop-filter:blur(8px)}
+.skip:hover{border-color:rgba(255,255,255,.8);color:#fff}
+.intro.is-done .hero-copy{opacity:1;transform:none;animation:none}
+.intro.is-done .scene{transition:opacity 1s ease,transform 9s ease}
+.intro.is-done .gate{display:none}
+.intro.is-done .skip{display:none}
+.intro.is-done .scene:not(.final){opacity:0}
+.intro.is-done .scene.final{opacity:1;transform:scale(1.015)}
+#contents{background:#f2f0e9;color:#171715;min-height:100svh;scroll-margin-top:0}
+.bar{position:sticky;top:0;z-index:20;height:62px;display:flex;align-items:center;background:rgba(242,240,233,.9);
+ border-bottom:1px solid #dedbd1;backdrop-filter:blur(16px)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.bar .wrap{width:100%;display:flex;align-items:center;justify-content:space-between}
+.site{font-family:var(--serif);font-size:18px;letter-spacing:.01em;color:#171715}
+.bar-note{font-size:9px;letter-spacing:.2em;color:#817b70;text-transform:uppercase}
+.content-head{padding:clamp(68px,10vw,126px) 0 30px}
+.content-head .kicker{font-size:10px;letter-spacing:.25em;color:#a47e52;text-transform:uppercase}
+.content-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,4.8rem);line-height:1.05;letter-spacing:-.04em;margin-top:18px}
+.content-head p{color:#777269;margin-top:18px;font-size:14px;letter-spacing:.04em}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:38px 0 96px}
+.card{position:relative;display:flex;flex-direction:column;min-height:250px;background:#faf9f5;border:1px solid #e4e0d6;
+ padding:28px 28px 24px;color:inherit;transition:transform .35s,border-color .35s,box-shadow .35s}
+.card:hover{transform:translateY(-4px);border-color:#b7a58a;box-shadow:0 18px 44px rgba(39,32,22,.07);text-decoration:none}
+.card .tg{align-self:flex-start;font-size:9px;letter-spacing:.16em;color:#9a7852;text-transform:uppercase;
+ border:1px solid #e7dfd2;padding:5px 10px;margin-bottom:20px}
+.card h3{font-family:var(--serif);font-weight:500;font-size:clamp(19px,2.3vw,25px);line-height:1.35}
+.card .st{font-size:11px;color:#8b857a;margin-top:7px;letter-spacing:.035em}
+.card p{font-size:13px;color:#59564f;margin-top:16px;line-height:1.85}
+.card .go{margin-top:auto;padding-top:22px;font-size:10px;letter-spacing:.15em;color:#a16e45}
+footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;font-size:10px;letter-spacing:.1em;display:flex;justify-content:space-between}
+@media(max-width:640px){
+ .intro{min-height:100svh;height:100svh}
+ .film-frame{inset:14px 0}
+ .hero-copy{width:94vw;padding-inline:8px}
+ .hero-copy h1{font-size:clamp(3rem,13vw,5rem)}
+ .eyebrow{font-size:8px;letter-spacing:.24em;margin-bottom:20px}
+ .translation{letter-spacing:.06em}
+ .reel-meta{bottom:24px;font-size:8px}
+ .projector{top:28px;font-size:8px}
+ .skip{top:24px;right:18px;font-size:8px}
+ .wrap{padding-inline:20px}
+ .grid{grid-template-columns:1fr;padding-top:28px;gap:12px}
+ .card{min-height:220px;padding:24px}
+ .bar-note{display:none}
+ footer.wrap{gap:12px;flex-wrap:wrap}
 }
-.hero-translation {
-  display: block;
-  margin-top: .9em;
-  font-size: clamp(1.125rem, 2.7vw, 2rem);
-  line-height: 1.5;
-  letter-spacing: .02em;
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+ .hero-copy{opacity:1;transform:none}
+ .scene.final{opacity:1}
+ .scene:not(.final){display:none}
+ .gate{display:none}
 }
-.start {
-  display: inline-grid;
-  place-items: center;
-  min-height: 48px;
-  margin-top: clamp(28px, 4.5vw, 52px);
-  padding: 10px 30px;
-  border-radius: 8px;
-  background: #a54830;
-  color: #fff;
-  font-weight: 600;
-}
-.start:hover { background: #873a27; text-decoration: none; }
-.start:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-#contents {
-  min-height: 100vh;
-  min-height: 100svh;
-}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:48px}
-.card{display:flex;flex-direction:column;background:var(--surface);
-border:1px solid var(--line);border-radius:16px;padding:24px;color:inherit}
-.card:hover{border-color:var(--ink);text-decoration:none}
-.card .tg{align-self:flex-start;font-size:12px;color:var(--muted);background:var(--soft);
-border-radius:999px;padding:3px 10px;margin-bottom:12px}
-.card h2{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.35}
-.card .st{font-size:13px;color:var(--muted);margin-top:4px}
-.card p{font-size:14px;color:#3f3e3a;margin-top:12px}
-.card .go{margin-top:auto;padding-top:16px;font-size:13px;color:var(--accent)}
-footer.wrap{border-top:1px solid var(--line);margin-top:64px;padding-block:20px 40px;
-color:var(--muted);font-size:12.5px}
-@media(max-width:600px){.wrap{padding-inline:18px}
-.grid{grid-template-columns:1fr;margin-top:32px}}
 </style>
 </head>
 <body>
 <main>
-  <section class="hero" aria-labelledby="home-title">
-    <div>
-      <h1 id="home-title">
-        <span lang="en">Our Next Chapter Starts Here.</span>
-        <span class="hero-translation">下一篇章，从这里开始。</span>
-      </h1>
-      <a class="start" href="#contents" lang="en">Start</a>
+  <section class="intro" id="intro" aria-label="YXM Plan B 电影序章">
+    <div class="screen" aria-hidden="true">
+      <div class="scene active"></div>
+      <div class="scene"></div>
+      <div class="scene"></div>
+      <div class="scene"></div>
+      <div class="scene"></div>
+      <div class="scene final"></div>
     </div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="warmth" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="gate" aria-hidden="true"></div>
+    <div class="film-frame" aria-hidden="true"></div>
+    <div class="projector"><span class="lamp"></span><span>Now Showing · YXM Plan B</span></div>
+    <button class="skip" id="skipIntro" type="button">SKIP INTRO ↗</button>
+    <div class="hero-copy">
+      <p class="eyebrow">A LIFE IN MOTION · A FILM BY US</p>
+      <h1 id="home-title"><span>Our Next Chapter</span><span>Starts Here.</span></h1>
+      <p class="translation">人生是一部正在拍摄的电影。我们的下一篇章，从这里开始。</p>
+      <button class="enter" id="enterWorld" type="button"><span>ENTER OUR WORLD</span><span class="arrow">→</span></button>
+    </div>
+    <div class="reel-meta"><span>35mm · Memories in the making</span><span class="counter" id="reelCounter">REEL 01 / 06</span></div>
   </section>
 
   <section id="contents" tabindex="-1" aria-label="行程与榜单">
-    <header class="bar"><div class="wrap"><a class="site" href="./">YXM Plan B</a></div></header>
+    <header class="bar"><div class="wrap"><a class="site" href="./">YXM Plan B</a><span class="bar-note">A LIFE IN MOTION · OUR STORY CONTINUES</span></div></header>
     <div class="wrap">
+      <header class="content-head">
+        <p class="kicker">The story continues</p>
+        <h2>Every journey begins<br>with a little wonder.</h2>
+        <p>把想去的地方、想做的事，慢慢拍成我们自己的故事。</p>
+      </header>
       <div class="grid">
         <a class="card" href="./changbaishan-ski/">
-          <span class="tg">行程攻略</span>
-          <h2>上海 → 长白山滑雪 5 天</h2>
+          <span class="tg">Winter · Travel Journal</span>
+          <h3>上海 → 长白山滑雪 5 天</h3>
           <div class="st">11/12 晚出发 · 沈阳中转 · 华美胜地</div>
           <p>逐日时间线、交通班次、天气穿衣、美食与打包清单，含漂流停开时的备选方案。</p>
-          <div class="go">查看攻略 →</div>
+          <div class="go">EXPLORE THE JOURNEY　↗</div>
         </a>
         <a class="card" href="./china-ski-guide/">
-          <span class="tg">滑雪全指南</span><h2>中国滑雪场与冬日旅行攻略</h2>
+          <span class="tg">Winter · Field Guide</span><h3>中国滑雪场与冬日旅行攻略</h3>
           <div class="st">雪场参考 · 雪季日历 · 装备成长 · 多日路线</div>
           <p>合并全国重点雪场参考与目的地旅行攻略，从第一次上雪道到追逐粉雪，附上海出发行程、装备、安全和当季雪况提示。</p>
-          <div class="go">循着雪线，开始旅程 →</div>
+          <div class="go">FOLLOW THE SNOWLINE　↗</div>
         </a>
         <a class="card" href="./stargazing-guide/">
-          <span class="tg">观星指南</span>
-          <h2>中国观星地点与全年天象</h2>
+          <span class="tg">Night · Star Stories</span>
+          <h3>中国观星地点与全年天象</h3>
           <div class="st">暗夜地点 · 流星雨 · 月相 · 入门知识</div>
           <p>从阿里、那曲到城市近郊，按观星目标选择地点和时间，附 2026 年重点天象、活动方向、装备与安全清单。</p>
-          <div class="go">查看指南 →</div>
+          <div class="go">CHASE THE STARS　↗</div>
         </a>
       </div>
     </div>
-    <footer class="wrap">
-      <p>YXM Plan B · GitHub Pages 托管</p>
-    </footer>
+    <footer class="wrap"><span>YXM PLAN B · A FILM BY US</span><span>THE NEXT CHAPTER IS OURS.</span></footer>
   </section>
 </main>
+<script>
+(function(){
+  const intro=document.getElementById('intro');
+  const scenes=Array.from(document.querySelectorAll('.scene'));
+  const counter=document.getElementById('reelCounter');
+  const skip=document.getElementById('skipIntro');
+  const enter=document.getElementById('enterWorld');
+  const contents=document.getElementById('contents');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index=0,finished=false,timer=null;
+  function showScene(next){
+    scenes[index].classList.remove('active');
+    index=next;
+    scenes[index].classList.add('active');
+    counter.textContent='REEL 0'+(index+1)+' / 06';
+  }
+  function finishIntro(){
+    if(finished)return;
+    finished=true;
+    if(timer)clearInterval(timer);
+    intro.classList.add('is-done');
+    scenes.forEach((scene,i)=>scene.classList.toggle('active',i===5));
+    counter.textContent='THE STORY BEGINS';
+    skip.hidden=true;
+  }
+  function enterContent(){
+    finishIntro();
+    contents.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+    contents.focus({preventScroll:true});
+  }
+  skip.addEventListener('click',finishIntro);
+  enter.addEventListener('click',enterContent);
+  if(reduced){finishIntro();return;}
+  timer=setInterval(function(){
+    if(finished)return;
+    if(index<5)showScene(index+1);
+    else finishIntro();
+  },1250);
+  // Keep the final landscape and title together after the short montage.
+  window.addEventListener('pageshow',function(){if(window.location.hash==='#contents')finishIntro();});
+})();
+</script>
 </body>
 </html>
