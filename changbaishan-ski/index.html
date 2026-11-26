@@ -1,278 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>上海 → 长白山滑雪攻略</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101a27">
+<meta name="description" content="从上海出发，奔赴长白山的粉雪、森林温泉与冬日山野。包含雪场选择、雪季日历、交通、5天行程、滑雪安排和旅行准备。">
+<title>A Winter Journey to Changbai Mountain · YXM Plan B</title>
 <style>
-/* YXM_PlanB 统一 Anthropic 风格样式：沿用旧类名，只换视觉 */
-:root{--bg:#faf9f5;--surface:#ffffff;--ink:#141413;--muted:#6b6a65;--line:#e8e6dc;
---accent:#d97757;--accent-2:#f38020;--soft:#f0eee6;
---serif:"Tiempos Headline",Georgia,"Songti SC","Noto Serif SC",serif;
---sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.7;
--webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-
-/* 顶栏（原 .etoolbar） */
-.etoolbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.etoolbar .wrap{display:flex;gap:12px;align-items:center;min-height:56px;flex-wrap:wrap;padding:8px 24px}
-.etoolbar .site{font-family:var(--serif);font-size:16px;color:var(--ink);margin-right:auto}
-.etoolbar .site:hover{text-decoration:none;color:var(--accent)}
-.ebtn{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:7px 15px;
-border:1px solid var(--ink);background:transparent;color:var(--ink)}
-.ebtn:hover{background:var(--soft)}
-.ebtn.on{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
-.ebtn.add{border-style:dashed}
-.etoolbar .hint{font-size:12px;color:var(--muted);flex-basis:100%}
-
-/* 首屏 */
-.hero{padding:88px 0 0;background:none;color:inherit;text-align:left}
-.hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.hero h1{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;
-font-size:clamp(36px,6vw,72px);line-height:1.1;margin:18px 0 0;color:var(--ink)}
-.hero .lead{color:var(--muted);max-width:42ch;margin-top:20px;font-size:16px;opacity:1}
-.facts{display:flex;flex-wrap:wrap;gap:44px;margin-top:44px;padding-top:28px;
-border-top:1px solid var(--line)}
-.facts .v{font-family:var(--serif);font-size:clamp(28px,4vw,44px);color:var(--accent);line-height:1.1}
-.facts .l{font-size:12px;color:var(--muted);margin-top:6px}
-
-/* 板块与卡片 */
-.sec{padding:80px 0 0}
-.sec h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,34px);
-letter-spacing:-.01em;margin-bottom:24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-.card{position:relative;background:var(--surface);border:1px solid var(--line);
-border-radius:16px;padding:24px;box-shadow:none}
-.card:hover{border-color:var(--ink)}
-.card h3{font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.4}
-.card .sub{font-size:13px;color:var(--muted);margin-top:4px}
-.card .tg{display:inline-block;font-size:12px;color:var(--muted);background:var(--soft);
-padding:3px 10px;border-radius:999px;margin-bottom:10px;font-weight:400}
-.card .bd{font-size:14px;color:#3f3e3a;margin-top:12px}
-.card .nt{font-size:13px;color:var(--muted);background:var(--soft);
-border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 12px;margin-top:14px}
-
-/* 编辑按钮 */
-.del,.edit{position:absolute;top:14px;width:28px;height:28px;border-radius:8px;
-border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--muted);
-font-size:13px;line-height:1;display:none;align-items:center;justify-content:center;z-index:3}
-.del{right:14px}.edit{right:48px}
-.del:hover,.edit:hover{border-color:var(--ink);color:var(--ink)}
-body.editing .del,body.editing .edit{display:flex}
-body.editing .card{border-style:dashed}
-
-/* 弹窗 */
-.modal{position:fixed;inset:0;background:rgba(20,20,19,.38);display:none;
-align-items:flex-start;justify-content:center;z-index:50;padding:40px 20px;overflow:auto}
-.modal.open{display:flex}
-.mcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;
-max-width:560px;width:100%;padding:24px}
-.mcard h3{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px}
-.mcard label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
-.mcard input,.mcard textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);
-background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 11px}
-.mcard textarea{resize:vertical;min-height:92px}
-.mrow{display:flex;gap:12px}.mrow>div{flex:1}
-.mact{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
-.mact button{font:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:9px 20px;
-border:1px solid var(--ink);background:transparent;color:var(--ink)}
-.mact .save{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
-
-footer{border-top:1px solid var(--line);margin-top:96px;padding:28px 0 56px;
-background:none;color:var(--muted);font-size:12.5px;text-align:left}
-footer p+p{margin-top:4px}
-
-@media(max-width:600px){.hero{padding-top:56px}.wrap{padding:0 18px}
-.facts{gap:22px}.grid{grid-template-columns:1fr}.sec{padding-top:56px}
-.etoolbar .wrap{padding:8px 18px}}
+:root{--bg:#faf9f5;--surface:#fff;--ink:#191a1a;--muted:#74736d;--line:#e8e5dc;--accent:#c8795b;--accent2:#d98968;--soft:#f1eee7;--night:#101a27;--serif:"Tiempos Headline",Georgia,"Songti SC","Noto Serif SC",serif;--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.8 var(--sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button{font:inherit}
+.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
+.film{height:100svh;min-height:620px;position:relative;overflow:hidden;display:grid;place-items:center;color:#f8f7f1;background:radial-gradient(ellipse at 50% 68%,#52677a 0,#24374a 32%,#142334 66%,#0b1420 100%);isolation:isolate;transition:opacity .55s ease,filter .55s ease}
+.film:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#09132155 0%,transparent 48%,#0b1420 100%);z-index:-1}
+.film-sky{position:absolute;inset:0;overflow:hidden;z-index:-1}
+.aurora{position:absolute;inset:-20% -10% auto;height:65%;background:linear-gradient(115deg,transparent 10%,#91b8b055 31%,#c1d9d055 42%,#6d9ca344 56%,transparent 78%);filter:blur(42px);opacity:.48;transform:rotate(-8deg);animation:aurora 16s ease-in-out infinite alternate}
+.moon{position:absolute;width:86px;height:86px;border-radius:50%;right:17%;top:15%;background:radial-gradient(circle at 35% 35%,#fff 0,#e5e8e2 48%,#b5c2c5 100%);box-shadow:0 0 60px #dbe8ef55,0 0 140px #dbe8ef22}
+.mountain{position:absolute;left:-5%;right:-5%;bottom:0;height:48%;background:linear-gradient(150deg,#34495a,#17293a 60%,#0e1c2b);clip-path:polygon(0 64%,9% 38%,17% 58%,27% 17%,36% 56%,47% 6%,58% 53%,68% 23%,78% 61%,89% 31%,100% 58%,100% 100%,0 100%)}
+.mountain.back{height:38%;opacity:.58;filter:brightness(1.22);transform:translateY(-13%);clip-path:polygon(0 68%,12% 28%,22% 58%,35% 10%,48% 60%,62% 18%,75% 60%,88% 24%,100% 56%,100% 100%,0 100%)}
+.tree-line{position:absolute;bottom:0;left:0;right:0;height:26%;background:linear-gradient(180deg,transparent,#091522 82%);opacity:.88}
+.snow{position:absolute;inset:-10% 0 0;background-image:radial-gradient(2px 2px at 12% 18%,#fff 50%,transparent 60%),radial-gradient(1px 1px at 32% 44%,#fff 50%,transparent 60%),radial-gradient(2px 2px at 62% 12%,#fff 50%,transparent 60%),radial-gradient(1px 1px at 82% 37%,#fff 50%,transparent 60%),radial-gradient(1px 1px at 48% 72%,#fff 50%,transparent 60%);background-size:190px 190px,240px 240px,310px 310px,170px 170px,220px 220px;animation:snowfall 18s linear infinite;opacity:.55}
+.film-content{width:min(900px,calc(100% - 40px));text-align:center;padding:40px 0 90px;position:relative;z-index:2}
+.film-kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#d9cfc1}
+.film h1{font:400 clamp(40px,7vw,82px)/1.08 var(--serif);letter-spacing:-.035em;margin:25px auto 18px;max-width:900px;text-wrap:balance}
+.film p{margin:0 auto;color:#d4d9dc;font-size:15px;letter-spacing:.12em}
+.film .enter{margin-top:52px;border:1px solid #ffffff66;background:#ffffff0d;color:#f8f7f1;border-radius:999px;padding:11px 24px;cursor:pointer;backdrop-filter:blur(8px);transition:.25s}
+.film .enter:hover{background:#ffffff20;border-color:#fff;transform:translateY(-2px)}
+.film .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.22em;color:#c6cbd0;display:flex;align-items:center;gap:10px}
+.scroll-hint:after{content:"";width:36px;height:1px;background:#c6cbd0;display:block}
+@keyframes snowfall{from{transform:translateY(-4%)}to{transform:translateY(18%)}}
+@keyframes aurora{from{transform:translateX(-4%) rotate(-8deg);opacity:.28}to{transform:translateX(5%) rotate(-3deg);opacity:.58}}
+.top{position:sticky;top:0;z-index:30;background:#faf9f5ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{min-height:60px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font:500 17px var(--serif);color:var(--ink);margin-right:auto}.brand:hover{color:var(--accent);text-decoration:none}
+.btn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 14px;font-size:12px;cursor:pointer;transition:.2s}.btn:hover{border-color:var(--ink)}.btn.on,.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.add{border-style:dashed}
+.sync{font-size:11px;color:var(--muted);flex-basis:100%}
+.hero{padding:74px 0 26px}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}.hero h1{font:500 clamp(34px,5vw,60px)/1.12 var(--serif);letter-spacing:-.03em;max-width:900px;margin:17px 0 0}.hero .lead{font-size:15px;line-height:1.9;color:var(--muted);max-width:720px;margin:20px 0 0}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.hero-meta span{display:flex;align-items:center;gap:8px}.hero-meta b{font-weight:500;color:var(--ink)}
+.visuals{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;margin:24px 0 8px}.visual{min-height:178px;border-radius:14px;overflow:hidden;position:relative;background:linear-gradient(145deg,#9eabb0,#3d5668 58%,#172c3e)}.visual:nth-child(2){background:linear-gradient(145deg,#d8e2e2,#829ca8 48%,#344e60)}.visual:nth-child(3){background:linear-gradient(145deg,#b9c7cc,#667e8d 48%,#20384b)}.visual:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,#0a1728a8)}.visual:after{content:"";position:absolute;left:-5%;right:-5%;bottom:-2px;height:62%;background:#152a3b;clip-path:polygon(0 74%,14% 35%,27% 70%,42% 12%,55% 64%,70% 25%,84% 70%,100% 36%,100% 100%,0 100%);opacity:.9}.visual:nth-child(2):after{background:#405b6b;clip-path:polygon(0 70%,20% 28%,37% 72%,58% 14%,75% 65%,100% 35%,100% 100%,0 100%)}.visual:nth-child(3):after{background:#1b3445;clip-path:polygon(0 65%,18% 40%,33% 72%,50% 15%,69% 60%,84% 28%,100% 65%,100% 100%,0 100%)}
+.visual span{position:absolute;z-index:2;left:17px;bottom:13px;color:#fff;font-size:12px;letter-spacing:.08em}
+.main{padding-bottom:30px}.section{padding-top:72px;scroll-margin-top:85px}.section-head{margin-bottom:20px}.section-no{font-size:10px;letter-spacing:.2em;color:var(--accent)}.section h2{font:500 clamp(26px,3.4vw,38px)/1.22 var(--serif);letter-spacing:-.02em;margin:7px 0 0}.section-desc{font-size:13px;color:var(--muted);max-width:760px;margin-top:9px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:15px}
+.card{position:relative;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:21px 22px;transition:border-color .2s,transform .2s}.card:hover{border-color:#b7a99a;transform:translateY(-2px)}.card .tag{display:inline-block;font-size:10px;letter-spacing:.08em;color:#89634f;background:var(--soft);padding:3px 9px;border-radius:999px;margin-bottom:10px}.card h3{font:500 18px/1.4 var(--serif);margin:0}.card .sub{font-size:12px;color:var(--muted);margin-top:5px}.card .body{font-size:13px;color:#484742;white-space:pre-line;margin-top:12px;line-height:1.85}.card .note{font-size:12px;color:#74695e;background:#f5f1e9;border-left:2px solid var(--accent);padding:10px 12px;margin-top:13px;white-space:pre-line}.card .edit,.card .del{display:none;position:absolute;top:12px;border:1px solid var(--line);border-radius:7px;background:#fff;width:27px;height:27px;cursor:pointer;color:var(--muted);z-index:3}.card .edit{right:45px}.card .del{right:12px}body.editing .card .edit,body.editing .card .del{display:block}body.editing .card{border-style:dashed}
+.section-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.section-links a{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}.section-links a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+.footer{border-top:1px solid var(--line);margin-top:80px;padding:28px 0 58px;color:var(--muted);font-size:11px}.footer p+p{margin-top:8px}.sources{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
+.modal{position:fixed;inset:0;background:#14141366;display:none;align-items:flex-start;justify-content:center;z-index:60;padding:30px 16px;overflow:auto}.modal.open{display:flex}.panel{width:min(580px,100%);background:var(--surface);border-radius:16px;padding:24px;border:1px solid var(--line)}.panel h2{font:500 22px var(--serif);margin:0 0 14px}.panel label{display:block;font-size:11px;color:var(--muted);margin:11px 0 5px}.panel input,.panel textarea{width:100%;font:13px var(--sans);padding:10px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}.panel textarea{min-height:110px;resize:vertical}.panel .actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}
+@media(max-width:650px){.wrap{width:calc(100% - 36px)}.film{min-height:560px}.film h1{font-size:clamp(38px,11vw,58px)}.moon{width:58px;height:58px;right:12%;top:13%}.hero{padding-top:52px}.visuals{grid-template-columns:1fr 1fr}.visual:first-child{grid-column:span 2;min-height:190px}.visual{min-height:145px}.section{padding-top:54px}.grid{grid-template-columns:1fr}.top .wrap{gap:7px}.btn{padding:6px 11px}.sync{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header class="hero"><div class="wrap">
-  <div class="eyebrow">上海 → 长白山 · 5 天 4 夜滑雪</div>
-  <h1>11 月 12–17 日，上海出发长白山滑雪</h1>
-  <p class="lead">沈阳中转一日游，华美胜地滑雪两整天，含逐日时间线、交通、美食与打包清单。</p>
-  <div class="facts">
-    <div><div class="v">5 天</div><div class="l">行程长度</div></div>
-    <div><div class="v">2 天</div><div class="l">滑雪</div></div>
-    <div><div class="v">11/14</div><div class="l">雪场开板</div></div>
-    <div><div class="v">-10℃</div><div class="l">山上体感</div></div>
+<section class="film" id="filmIntro" aria-label="长白山冬日序章">
+  <div class="film-sky"><div class="aurora"></div><div class="moon"></div><div class="snow"></div><div class="mountain back"></div><div class="mountain"></div><div class="tree-line"></div></div>
+  <div class="film-content">
+    <div class="film-kicker">YXM PLAN B · WINTER ESCAPE</div>
+    <h1>A Winter Journey<br>to Changbai Mountain.</h1>
+    <p>循着雪线，去长白山赴一场冬日之约。</p>
+    <button class="enter" id="enterBtn">开始这段旅程　↓</button>
   </div>
-</div></header>
-<nav class="etoolbar"><div class="wrap">
-  <a class="site" href="../#contents">YXM Plan B</a>
-  <button class="ebtn" id="editToggle">编辑</button>
-  <button class="ebtn add" id="addBtn">＋ 添加卡片</button>
-  <button class="ebtn" id="exportBtn">导出</button>
-  <button class="ebtn" id="resetBtn">还原默认</button>
-  <span class="hint" id="syncState">多人实时同步：任何人可增删改，所有人即时可见</span>
-</div></nav>
-<main class="wrap"><div id="app"></div></main>
-<footer><div class="wrap">
-  <p>上海 → 长白山滑雪攻略 · 收录于 YXM Plan B · 内容存 Supabase，支持多人实时编辑。</p>
-  <p>气温为预报值，门票 / 开放时间以官方为准。</p>
+  <div class="scroll-hint">SCROLL TO EXPLORE</div>
+</section>
+<header class="top"><div class="wrap"><a class="brand" href="../#contents">YXM Plan B</a><button class="btn" id="editToggle">编辑</button><button class="btn add" id="addBtn">＋ 添加内容</button><button class="btn" id="exportBtn">导出数据</button><button class="btn" id="resetBtn">还原默认</button><span class="sync" id="sync">内容加载中…</span></div></header>
+<main class="wrap main" id="mainContent">
+  <section class="hero">
+    <div class="eyebrow">SHANGHAI TO CHANGBAI MOUNTAIN · WINTER GUIDE</div>
+    <h1>A Winter Journey to Changbai Mountain.</h1>
+    <p class="lead">从上海出发，穿过北国的风与雪。把两天留给粉雪与山地，把一晚交给森林温泉，再把剩下的时间慢慢还给长白山——这是一份可以按季节、雪场与假期长度自由组合的冬日旅行指南。</p>
+    <div class="hero-meta"><span><b>3–7 天</b> 灵活行程</span><span><b>华美胜地</b> 滑雪主线</span><span><b>粉雪 · 温泉 · 林海</b> 冬日体验</span></div>
+  </section>
+  <div class="visuals" aria-label="长白山冬日风景"><div class="visual"><span>长白山 · 粉雪与林海</span></div><div class="visual"><span>雪道 · 山地滑行</span></div><div class="visual"><span>森林温泉 · 飘雪之夜</span></div></div>
+  <div id="app"></div>
+</main>
+<footer class="footer"><div class="wrap">
+  <p>YXM Plan B · 上海—长白山滑雪与冬日旅行指南</p>
+  <div class="sources">
+    <a href="https://www.wandaresorts.com/cn/snow/" target="_blank" rel="noopener">长白山万达滑雪场官方雪况</a>
+    <a href="https://www.wandaresorts.com/cn/route/resort.html" target="_blank" rel="noopener">万达度假区交通指南</a>
+    <a href="https://www.jl.gov.cn/szfzt/jlyhyshjjxs/dxzf/202611/t20261113_3686003.html" target="_blank" rel="noopener">吉林省 2026—27 冰雪旅游信息</a>
+    <a href="https://www.changbaishan.gov.cn/" target="_blank" rel="noopener">长白山管委会官方信息</a>
+  </div>
+  <p>航班、车次、雪道开放、景区开放、接驳班次、票价及活动安排会随季节调整，请以航空公司、铁路、雪场和景区当日公告为准。山地天气变化快，行程请预留弹性。</p>
+  <p>页面内容存储于 Supabase，支持多人实时编辑。旧版行程数据保留在原数据表中，新版内容使用独立的 v2 分组。</p>
 </div></footer>
-<div class="modal" id="modal"><div class="mcard">
-  <h3 id="mTitle">添加卡片</h3>
-  <div class="mrow"><div><label>板块 key</label><input id="f_section" placeholder="如 day2 / food"></div><div><label>排序 sort</label><input id="f_sort" placeholder="如 310"></div></div>
-  <label>板块标题（同板块填一样）</label><input id="f_sectitle" placeholder="如 Day 2 · 11/13 周五 · 沈阳">
-  <label>标题 *</label><input id="f_title" placeholder="如 10:00–11:30 沈阳故宫">
-  <label>副标题</label><input id="f_subtitle" placeholder="可留空">
-  <label>标签</label><input id="f_tag" placeholder="如 推荐 / 航班 / 天气">
-  <label>正文（回车换行；行首“- ”变项目符号）</label><textarea id="f_body"></textarea>
-  <label>备注（黄色提示条，可留空）</label><input id="f_note" placeholder="可留空">
-  <div class="mact"><button class="cancel" id="mCancel">取消</button><button class="save" id="mSave">保存</button></div>
+<div class="modal" id="modal"><div class="panel"><h2 id="modalTitle">编辑内容</h2>
+<label>板块 key</label><input id="f_section" placeholder="如 v2:route">
+<label>板块标题</label><input id="f_sectionTitle">
+<label>标题 *</label><input id="f_title">
+<label>副标题</label><input id="f_subtitle">
+<label>标签</label><input id="f_tag">
+<label>正文（支持换行）</label><textarea id="f_body"></textarea>
+<label>补充提示</label><textarea id="f_note"></textarea>
+<div class="actions"><button class="btn" id="cancelBtn">取消</button><button class="btn primary" id="saveBtn">保存内容</button></div>
 </div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  const PAGE='changbaishan-ski';
-  const SB_URL='https://jfvktpiumonhsgsgwbcc.supabase.co';
-  const SB_KEY='sb_publishable_iwjdJ0BVThvZVEpq2t2tgw_OskNS6U1';
-  const sb=window.supabase.createClient(SB_URL,SB_KEY);
-  const $=s=>document.querySelector(s);
-  const esc=s=>String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  function banner(m){const el=$('#syncState');if(el){el.textContent=m;el.style.color='#d97757';}console.warn(m);}
-  const DEFAULTS=[
-   {section:'intro',sort:100,data:{sectionTitle:'🧭 行程概览',title:'路线 & 日期',subtitle:'11/12 晚 – 11/17 凌晨',tag:'5天4夜',body:'上海浦东 ✈ 沈阳桃仙 🚄 长白山西 🎿 华美滑雪 ✈ 浦东T2\n2 整天滑雪 · 温泉 + 雾凇 + 古城'}},
-   {section:'day1',sort:200,data:{sectionTitle:'Day 1 · 11/12 周四 · 上海飞沈阳',title:'22:00→次日00:35 浦东 ✈ 沈阳桃仙 T3',tag:'航班',body:'约 2h35m，已订。登机前吃好晚饭、备热水，机上小睡。'}},
-   {section:'day1',sort:210,data:{sectionTitle:'Day 1 · 11/12 周四 · 上海飞沈阳',title:'00:35→01:30 桃仙机场 → 橘子酒店(沈阳北)',body:'深夜无地铁，打车约 60–80 元 / 40 分钟到沈阳北站一带。'}},
-   {section:'day1',sort:220,data:{sectionTitle:'Day 1 · 11/12 周四 · 上海飞沈阳',title:'入住 橘子酒店 · 沈阳北',tag:'住宿',body:'洗漱休息，明早睡到自然醒。'}},
-   {section:'day1',sort:230,data:{sectionTitle:'Day 1 · 11/12 周四 · 上海飞沈阳',title:'🌙 天气 & 穿衣',tag:'天气',body:'沈阳夜间约 -2℃、多云。下机即换羽绒服 + 围巾帽子。'}},
-   {section:'day2',sort:300,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'09:30 退房 / 行李寄存',body:'轻装进老城，傍晚回来取或存车站。'}},
-   {section:'day2',sort:310,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'10:00–11:30 沈阳故宫',body:'清朝入关前皇宫，大政殿 / 凤凰楼是精华，建议请讲解。'}},
-   {section:'day2',sort:320,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'11:30–12:30 张氏帅府',body:'紧邻故宫，大青楼 / 小青楼，近代东北史最佳一站。'}},
-   {section:'day2',sort:330,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'12:30–14:00 中街午餐',tag:'推荐',body:'老边饺子 / 马家烧麦 + 锅包肉；逛中街买点伴手礼。'}},
-   {section:'day2',sort:340,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'14:00–15:30 九·一八博物馆 / 北陵公园（二选一）',body:'历史控选博物馆；想轻松选北陵（近沈阳北站，方便收尾）。'}},
-   {section:'day2',sort:350,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'17:27→19:06 沈阳北 🚄 长白山西',tag:'高铁',body:'沈白高铁约 1h40m，已订。务必 16:30 前回到沈阳北站。'}},
-   {section:'day2',sort:360,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'19:06–19:40 西站 → 华美桔子酒店',tag:'住宿',body:'景区公交专线 / 打车 20–30 分钟。'}},
-   {section:'day2',sort:370,data:{sectionTitle:'Day 2 · 11/13 周五 · 沈阳一日游 + 转场',title:'🌤 天气 & 穿衣',tag:'天气',body:'沈阳 6℃/-4℃；傍晚入山约 -1℃。白天保暖防风 + 步行鞋，进山换厚羽绒。'}},
-   {section:'day3',sort:400,data:{sectionTitle:'Day 3 · 11/14 周六 · 华美滑雪（开板日）',title:'08:30–12:00 上午场',body:'租装备（ATOMIC/SALOMON），约滑雪学校入门课，上魔毯 / 初级道。全程戴头盔。'}},
-   {section:'day3',sort:410,data:{sectionTitle:'Day 3 · 11/14 周六 · 华美滑雪（开板日）',title:'13:00–16:00 下午场 + 娱雪乐园',body:'挑战更多初中级道；滑累了玩超级大雪圈、喂驯鹿、雪地摩托。'}},
-   {section:'day3',sort:420,data:{sectionTitle:'Day 3 · 11/14 周六 · 华美滑雪（开板日）',title:'16:30–18:00 灵舍丹姿火山温泉',tag:'必泡',body:'2400 米地下火山温泉，雪中泡露天汤，开板首滑后最治愈。'}},
-   {section:'day3',sort:430,data:{sectionTitle:'Day 3 · 11/14 周六 · 华美滑雪（开板日）',title:'18:30 起 晚餐 + 室内音乐会 / 小镇夜游',body:'瑞士小镇觅食；看 BBC《地球脉动 III》音乐会，或逛灯光夜景喝热红酒。'}},
-   {section:'day3',sort:440,data:{sectionTitle:'Day 3 · 11/14 周六 · 华美滑雪（开板日）',title:'☀️ 天气 & 穿衣',tag:'天气',body:'晴 10℃/-4℃（山下），山上体感 ≤ -10℃。滑雪服 + 速干 + 抓绒，雪镜面罩手套暖宝宝。'}},
-   {section:'day4',sort:500,data:{sectionTitle:'Day 4 · 11/15 周日 · 滑雪进阶',title:'08:30–12:00 上午巩固 + 刷道',body:'从初级道热身过渡到中级；可再约私教纠正动作，进步最快。'}},
-   {section:'day4',sort:510,data:{sectionTitle:'Day 4 · 11/15 周日 · 滑雪进阶',title:'13:00–16:00 下午趣味公园 / 娱雪',body:'体验趣味地形公园；不滑可全程泡娱雪乐园拍照。'}},
-   {section:'day4',sort:520,data:{sectionTitle:'Day 4 · 11/15 周日 · 滑雪进阶',title:'16:30–18:00 二刷火山温泉',tag:'必泡',body:'连滑两天，今晚温泉泡够，放松腰背膝盖。'}},
-   {section:'day4',sort:530,data:{sectionTitle:'Day 4 · 11/15 周日 · 滑雪进阶',title:'18:30 起 犒劳晚餐 + 特产采购',body:'铁锅炖大鹅 / 炭火烤肉 + 冻梨；小镇买人参、蓝莓干、松子。今晚收好行李。'}},
-   {section:'day4',sort:540,data:{sectionTitle:'Day 4 · 11/15 周日 · 滑雪进阶',title:'⛅ 天气 & 穿衣',tag:'天气',body:'多云 9℃/-2℃，山上风大更冷。分层穿，备一套干手套 / 厚袜替换。'}},
-   {section:'day5',sort:600,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'09:00–11:00 雾凇漂流',tag:'主打',body:'雪林溪流漂流、两岸雾凇出片。',note:'11 月中旬雾凇大概率未成形、受天气影响可能停漂；出发前务必确认当天是否开漂，没开走备选。'}},
-   {section:'day5',sort:610,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'11:00–12:30 喂驯鹿 + 雪地撒欢',body:'漂流基地 / 华美萌宠区喂驯鹿、马拉爬犁、雪地摩托。'}},
-   {section:'day5',sort:620,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'12:30–14:00 铁锅炖大鹅午餐'}},
-   {section:'day5',sort:630,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'14:00–16:30 锦江木屋村 / 讷殷古城（二选一）',body:'木屋村：紧邻华美、免费、雪压木屋出片；讷殷古城：女真部落古城，雪中氛围好。'}},
-   {section:'day5',sort:640,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'16:30–17:30 取行李 / 最后泡温泉（可选）'}},
-   {section:'day5',sort:650,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'17:30–18:30 前往长白山机场',body:'距度假区约 18–20km / 20–30 分钟，打车约 100 元或机场巴士。'}},
-   {section:'day5',sort:660,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'22:20→次日01:15 长白山 ✈ 浦东 T2',tag:'航班',body:'约 2h55m，已订。深夜到沪，安排好打车 / 接送。'}},
-   {section:'day5',sort:670,data:{sectionTitle:'Day 5 · 11/16 周一 · 白天 + 夜航返沪',title:'🌨 天气 & 穿衣',tag:'天气',body:'转冷 2℃/-7℃ 或飘雪，最冷一天。长羽绒 + 防水外层 + 雪地靴，漂流戴防水手套。'}},
-   {section:'traffic',sort:700,data:{sectionTitle:'🚗 交通速查',title:'沈阳市内 → 故宫 / 中街',body:'地铁 / 打车约 20 分钟。'}},
-   {section:'traffic',sort:710,data:{sectionTitle:'🚗 交通速查',title:'沈阳北 → 长白山西',body:'沈白高铁约 1h40m（17:27→19:06，已订）。'}},
-   {section:'traffic',sort:720,data:{sectionTitle:'🚗 交通速查',title:'西站 → 华美 / 机场',body:'西站集散中心换乘景区专线直达各度假区；机场距度假区约 20–30 分钟。'}},
-   {section:'traffic',sort:730,data:{sectionTitle:'🚗 交通速查',title:'关于天池',body:'西坡天池冬季关闭。',note:'看天池需去北坡，距松江河约 140km、单程 2h+，当天往返太赶，本行程不排。'}},
-   {section:'ski',sort:800,data:{sectionTitle:'🎿 滑雪攻略（华美）',title:'雪场概况',body:'Wild World 山地滑雪场，15 条超宽道、初中级为主；2026–27 雪季 11/14 正式开板。'}},
-   {section:'ski',sort:810,data:{sectionTitle:'🎿 滑雪攻略（华美）',title:'装备 & 教学',body:'雪具租赁 ATOMIC / SALOMON；新手强烈建议第一天上一节课；头盔必戴。'}},
-   {section:'ski',sort:820,data:{sectionTitle:'🎿 滑雪攻略（华美）',title:'娱雪 + 温泉',body:'娱雪乐园（大雪圈 / 萌宠驯鹿 / 雪地摩托）；灵舍丹姿火山温泉。'}},
-   {section:'food',sort:900,data:{sectionTitle:'🍲 美食',title:'沈阳',body:'老边饺子、马家烧麦、东北鸡架、西塔朝鲜族烤肉冷面。'}},
-   {section:'food',sort:910,data:{sectionTitle:'🍲 美食',title:'长白山',body:'铁锅炖、小鸡炖蘑菇、杀猪菜、锅包肉；冻梨 / 冻柿子。'}},
-   {section:'food',sort:920,data:{sectionTitle:'🍲 美食',title:'特产',body:'人参、蓝莓干、红松子、黑木耳（瑞士小镇 / 万良人参小镇）。'}},
-   {section:'pack',sort:1000,data:{sectionTitle:'🧳 打包 & 提醒',title:'保暖（重中之重）',body:'- 长款厚羽绒 + 防风外层\n- 速干内层 + 抓绒（忌纯棉贴身）\n- 防滑雪地靴 + 厚羊毛袜\n- 防风帽 / 围脖面罩 / 防水厚手套'}},
-   {section:'pack',sort:1010,data:{sectionTitle:'🧳 打包 & 提醒',title:'滑雪 & 防护',body:'- 雪镜 + 头盔\n- 高倍防晒 + 润唇膏\n- 暖宝宝 / 护膝\n- 备用手套袜子'}},
-   {section:'pack',sort:1020,data:{sectionTitle:'🧳 打包 & 提醒',title:'关键提醒',body:'- 首尾为夜间航班，安排好深夜打车\n- 13 日高铁 17:27，16:30 前回沈阳北站\n- 气温为预报，以当天实时为准'}},
-   {section:'planb',sort:1100,data:{sectionTitle:'🔄 备选方案',title:'14 日晚 · 备选',body:'仙人桥温泉泡汤 / 瑞士小镇酒吧街 / 酒店 SPA 早睡。'}},
-   {section:'planb',sort:1110,data:{sectionTitle:'🔄 备选方案',title:'15 日晚 · 备选',body:'讷殷古城夜游（灯光 + 萨满演艺）/ 娱雪乐园夜场雪圈（若开放）。'}},
-   {section:'planb',sort:1120,data:{sectionTitle:'🔄 备选方案',title:'16 日白天 · 备选',body:'漂流停开则全程待华美周边：娱雪乐园 + 喂驯鹿 + 火山温泉；下午木屋村 / 古城 + 万良人参小镇。'}},
-  ];
-  // 渲染：按 section 分组 → 板块标题 + 卡片网格
-  const app=$('#app');
-  function bodyHTML(b){return !b?'':esc(b).split('\n').map(l=>l.startsWith('- ')?'• '+l.slice(2):l).join('<br>');}
-  function cardEl(r){
-    const d=r.data||{};
-    const art=document.createElement('article');art.className='card';art.dataset.id=r.id;
-    art.innerHTML=(d.tag?'<span class="tg">'+esc(d.tag)+'</span>':'')
-      +'<h3>'+esc(d.title||'(未命名)')+'</h3>'
-      +(d.subtitle?'<div class="sub">'+esc(d.subtitle)+'</div>':'')
-      +(d.body?'<div class="bd">'+bodyHTML(d.body)+'</div>':'')
-      +(d.note?'<div class="nt">'+bodyHTML(d.note)+'</div>':'')
-      +'<button class="edit" title="编辑">✎</button><button class="del" title="删除">×</button>';
-    art.querySelector('.del').addEventListener('click',()=>removeCard(r));
-    art.querySelector('.edit').addEventListener('click',()=>openModal(r));
-    return art;
-  }
-  function render(rows){
-    app.innerHTML='';
-    rows=rows.slice().sort((a,b)=>(a.sort||0)-(b.sort||0));
-    const order=[],bySec={};
-    rows.forEach(r=>{const s=r.section||'';if(!bySec[s]){bySec[s]=[];order.push(s);}bySec[s].push(r);});
-    order.forEach(s=>{
-      const sec=document.createElement('section');sec.className='sec';
-      const title=(bySec[s][0].data||{}).sectionTitle||s;
-      sec.innerHTML='<h2>'+esc(title)+'</h2>';
-      const grid=document.createElement('div');grid.className='grid';
-      bySec[s].forEach(r=>grid.appendChild(cardEl(r)));
-      sec.appendChild(grid);app.appendChild(sec);
-    });
-  }
-  async function startup(){
-    let {data,error}=await sb.from('pages_blocks').select('*').eq('page',PAGE);
-    if(error){banner('实时同步未连接：请确认已在 Supabase 建好 pages_blocks 表并授权');return;}
-    if(!data||!data.length){
-      const {error:e2}=await sb.from('pages_blocks').insert(DEFAULTS.map(d=>Object.assign({page:PAGE},d)));
-      if(e2){banner('初始化写入失败：'+e2.message);return;}
-      ({data}=await sb.from('pages_blocks').select('*').eq('page',PAGE));
-    }
-    render(data||[]);
-  }
-  async function refresh(){const {data,error}=await sb.from('pages_blocks').select('*').eq('page',PAGE);if(!error)render(data||[]);}
-  async function removeCard(r){
-    if(!confirm('确定删除「'+((r.data||{}).title||'')+'」？所有人都会同步删除。'))return;
-    const {error}=await sb.from('pages_blocks').delete().eq('id',r.id);
-    if(error){alert('删除失败：'+error.message);return;}
-    await refresh();
-  }
-  $('#editToggle').addEventListener('click',function(){document.body.classList.toggle('editing');this.classList.toggle('on');this.textContent=document.body.classList.contains('editing')?'完成':'编辑';});
-  const modal=$('#modal');let editId=null;
-  function v(id){return $('#'+id).value.trim();}
-  function openModal(r){
-    const d=r?(r.data||{}):{};editId=r?r.id:null;
-    $('#mTitle').textContent=r?'编辑卡片':'添加卡片';
-    $('#f_section').value=r?(r.section||''):'';$('#f_sort').value=r?(r.sort||''):'';
-    $('#f_sectitle').value=d.sectionTitle||'';$('#f_title').value=d.title||'';
-    $('#f_subtitle').value=d.subtitle||'';$('#f_tag').value=d.tag||'';
-    $('#f_body').value=d.body||'';$('#f_note').value=d.note||'';
-    modal.classList.add('open');
-  }
-  $('#addBtn').addEventListener('click',()=>openModal(null));
-  $('#mCancel').addEventListener('click',()=>modal.classList.remove('open'));
-  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
-  $('#mSave').addEventListener('click',async()=>{
-    const title=v('f_title');if(!title){alert('请填写标题');return;}
-    const data={sectionTitle:v('f_sectitle'),title,subtitle:v('f_subtitle'),tag:v('f_tag'),body:$('#f_body').value,note:v('f_note')};
-    const rec={page:PAGE,section:v('f_section')||'custom',sort:parseInt(v('f_sort'))||9999,data};
-    let error;
-    if(editId){({error}=await sb.from('pages_blocks').update(rec).eq('id',editId));}
-    else{({error}=await sb.from('pages_blocks').insert(rec));}
-    if(error){alert('保存失败：'+error.message);return;}
-    await refresh();modal.classList.remove('open');editId=null;
-    if(!document.body.classList.contains('editing'))$('#editToggle').click();
-  });
-  $('#exportBtn').addEventListener('click',async()=>{
-    const {data}=await sb.from('pages_blocks').select('*').eq('page',PAGE);
-    const blob=new Blob([JSON.stringify(data||[],null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=PAGE+'.json';a.click();
-  });
-  $('#resetBtn').addEventListener('click',async()=>{
-    if(!confirm('还原默认会清空本页所有卡片并重置为默认，影响所有人。确定？'))return;
-    await sb.from('pages_blocks').delete().eq('page',PAGE);
-    await sb.from('pages_blocks').insert(DEFAULTS.map(d=>Object.assign({page:PAGE},d)));
-    await refresh();
-  });
-  sb.channel('blocks-'+PAGE).on('postgres_changes',{event:'*',schema:'public',table:'pages_blocks'},refresh).subscribe();
-  startup();
+const PAGE="changbaishan-ski";
+const SB_URL="https://jfvktpiumonhsgsgwbcc.supabase.co";
+const SB_KEY="sb_publishable_iwjdJ0BVThvZVEpq2t2tgw_OskNS6U1";
+const sb=window.supabase.createClient(SB_URL,SB_KEY);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sections=[
+["v2:begin","01","先决定，想怎样与长白山相遇","第一次滑雪、认真练技术，还是把滑雪与温泉和森林旅行放在一起？先选旅行节奏，再选雪场与天数。"],
+["v2:places","02","在雪山之间，找到自己的目的地","华美、万达、北景区与西景区并不在同一片区域。把雪场特色和冬季体验放在一张地图上，路线才不会绕远。"],
+["v2:season","03","把假期交给最好的雪季","11 月到次年 3 月是主要冬季窗口；雪道、娱雪与夜游项目分批开放，月份不同，体验也不同。"],
+["v2:transport","04","从上海出发，穿过山海与雪线","直飞最省时间，高铁更适合串联东北城市；抵达后再安排机场、高铁站与度假区之间的接驳。"],
+["v2:itinerary","05","把五天四夜，过成一场冬日电影","以华美胜地为住宿与滑雪主线，安排两整天滑雪，再留出温泉、雪林与长白山景区的余白。"],
+["v2:ski","06","从第一道弯，滑向更远的雪线","把滑雪日拆成学习、练习、休息与自由滑行。技术成长不靠刷道数量，而靠适合自己的坡度与节奏。"],
+["v2:experiences","07","雪落之后，还有温泉与林海","把滑雪之外的长白山也放进行程：火山温泉、雪地娱乐、雾凇、木屋、东北风味与冬夜灯火。"],
+["v2:prepare","08","出发之前，与冬日认真约定","从衣物、雪具、住宿、预算到安全，把寒冷和变化留在清单里，把轻松留给旅程。"]
+];
+const DEFAULTS=[];
+function add(section,sort,sectionTitle,title,subtitle,tag,body,note){DEFAULTS.push({section:"v2:"+section,sort,data:{sectionTitle,title,subtitle:subtitle||"",tag:tag||"",body:body||"",note:note||""}})}
+add("begin",100,sections[0][2],"第一次去长白山：3 天轻滑与度假","适合：第一次体验滑雪、假期较短","轻松入门","Day 1 抵达长白山机场或长白山西站，入住华美胜地，熟悉雪具大厅与度假区\nDay 2 上午预约教练，完成穿脱雪具、摔倒起身、犁式制动与初级道练习；下午按体力继续练习或转温泉\nDay 3 选择半天轻滑，午后返程","第一次滑雪不要把一天排满。把教学放在上午，下午留给复习、休息和适应寒冷。");
+add("begin",110,sections[0][2],"经典 5 天 4 夜：滑雪 + 温泉 + 雪林","适合：想认真滑两天，也想看见长白山","最均衡","Day 1 上海出发，抵达后接驳入住\nDay 2 华美胜地第一滑：教练课、基础动作与初级道\nDay 3 华美胜地第二滑：巩固技术、尝试适合自己的雪道\nDay 4 选择雾凇/雪林/小镇体验，或安排长白山景区（视开放与天气）\nDay 5 早餐后返程","建议至少安排两晚住在同一度假区，避免每天搬运行李；如果景区天气不佳，就把第四天留给温泉和慢旅行。");
+add("begin",120,sections[0][2],"6—7 天深度雪假：滑雪与长白山慢游","适合：想练技术、体验不同雪场或串联景区","深度探索","前 3 天以华美胜地为基地：两天滑雪，一天温泉与雪地体验\n第 4 天转场万达度假区，比较不同雪场氛围（需重新安排住宿与接驳）\n第 5 天滑雪或休整\n第 6 天安排北/西景区或周边雪村体验\n第 7 天返程","若想体验两个度假区，建议至少留出半天转场，不要把两个雪场安排在同一天。");
+add("begin",130,sections[0][2],"先选体验，再选雪场","不同目标，对应不同的长白山打开方式","路线选择","第一次滑雪 / 亲子：优先华美胜地的初中级雪道与教学服务\n想住滑进滑出、度假配套：比较华美与万达酒店及雪场套餐\n追求更长雪季与多级别雪道：重点了解万达开放雪道和当日索道\n想看天池、瀑布、雪林：把景区单独留出一天，别把景区观光和滑雪硬塞在同一天","长白山不是一个单一景点，而是一片分散的度假区域。先定住宿基地，再决定每天去哪里。");
+
+add("places",200,sections[1][2],"华美胜地 Wild World 山地滑雪场","本指南的主线雪场 · 吉林白山市抚松县漫江镇","初中级 / 亲子","华美胜地以宽幅雪道、大众滑雪与度假配套为特色。2026—27 雪季公开信息显示，雪场配置 14 条宽幅雪道，适合初中级与亲子客群；滑雪大厅引入 ATOMIC、SALOMON 雪具，滑雪学校提供教学服务。","本雪季雪道与项目分批开放。不要把“雪季开板”理解为所有雪道和娱雪设施全部开放；出发前核对官方当日开放图。");
+add("places",210,sections[1][2],"长白山万达国际滑雪场","度假区配套成熟，雪道级别覆盖更广","多级别 / 度假型","万达官方介绍拥有 30 余条雪道、总长度约 33 公里，雪季通常从 11 月中旬延续至次年 4 月初；有初级、中级、高级道、地形公园及夜场等配置。适合希望在一个度假区内安排多日滑行的人。","雪场规模不等于当日开放规模。实时雪况页会逐条列出开放雪道和索道，出发前务必查看。");
+add("places",220,sections[1][2],"长白山西景区与长白山西站","适合把滑雪假期延伸为山岳观光","景区 / 转场","西景区是长白山冬季观光的重要入口之一，长白山西站也连接华美胜地一带。可将景区观光与滑雪分开安排：天气稳定时看山岳雪景，风雪较大时留在度假区。","冬季天池是否开放受风力、能见度和安全条件影响，可能临时关闭。不要把登顶天池当成固定行程。");
+add("places",230,sections[1][2],"长白山北景区与二道白河","更适合安排独立的一天景区体验","温泉 / 雪林 / 景区","北景区集中着天池、长白瀑布、聚龙温泉群、小天池、绿渊潭和地下森林等经典景观。二道白河镇适合住宿、餐饮与景区接驳，也可作为滑雪之外的延伸目的地。","北景区距离华美/万达所在区域较远，不建议与完整滑雪日拼在一起；预留交通时间，并确认冬季景点开放范围。");
+add("places",240,sections[1][2],"松江河镇与池西区域","适合高铁抵达、补给与周边住宿","交通枢纽","松江河镇、池西区域与长白山西站构成西侧交通与生活配套节点。适合希望控制住宿预算、需要餐饮补给，或以高铁进出长白山的旅客。","入住非度假区酒店前，先问清楚到雪场的班车、拼车或网约车方案；雪具携带会增加转乘成本。");
+
+add("season",300,sections[2][2],"11 月：雪季序幕","开板时间逐年变化，前期通常分批开放","初雪时节","适合想赶第一场雪、避开部分旺季人流的旅客。华美胜地 2026—27 雪季于 11 月 14 日正式开板，但雪道和娱雪项目分批开放；早季更要关注造雪进度、气温和开放清单。","若目标是滑雪而不是只看雪景，建议优先确认连续开放的雪道数量，再决定是否出发。");
+add("season",310,sections[2][2],"12 月：雪道与冬日氛围逐渐完整","圣诞、跨年与夜间活动陆续进入旺季","氛围感","随着气温稳定，雪场逐步增加开放雪道，部分度假区的夜游、地形公园和娱雪项目也会陆续上线。适合把滑雪、温泉、灯光活动和节日旅行组合起来。","12 月上旬与下旬的项目开放情况可能差异很大，预订套餐前确认具体日期包含哪些项目。");
+add("season",320,sections[2][2],"1—2 月：核心雪季与春节假期","雪况通常更稳定，也是客流高峰","粉雪黄金期","适合以滑雪为核心的 4—7 天假期。可以安排连续两至三天滑雪，再穿插温泉、雪林和景区观光。春节及周末住宿、雪票、教练和接驳需求集中，建议提前规划。","旺季不要把每天排得太满；天气、排队和接驳都可能拉长时间。尽量选择固定住宿基地。");
+add("season",330,sections[2][2],"3 月：更长白昼与春雪体验","适合错峰、轻松度假与初学者","春雪","白天更长，气温相对温和，适合轻松滑行与家庭度假。雪质会随气温和日照变化，上午通常比午后更适合保持雪面状态。","留意雪场收季时间、雪道缩减与春季营业调整；不要只按往年日期推断。");
+add("season",340,sections[2][2],"4 月：关注收季节奏","并非每个雪场都营业到同一时间","季末窗口","万达官方介绍其雪季通常可延续至 4 月初，但具体收季时间取决于天气和雪场运营。适合行程灵活、以补滑为主的雪友。","出发前直接核对雪场公告、票务页面和索道状态，确认目标日期是否仍有完整滑雪服务。");
+
+add("transport",400,sections[3][2],"方案 A｜上海直飞长白山机场","省去中转，适合 3—5 天短假","优先考虑","2026 冬春航季有上海浦东—长白山直飞航线。春秋航空公开时刻显示，冬航季存在晚班直飞，部分日期还安排早班；航班执行期与时刻会变化。抵达后按酒店/度假区接驳安排前往住宿地。","不要直接照搬搜索到的单一航班时刻。订票时以航空公司实际销售页面为准，并把落地时间发给酒店确认接驳。");
+add("transport",410,sections[3][2],"方案 B｜高铁到长白山西站","适合想避开航班、或串联沈阳/长春","铁路出行","可从上海乘高铁前往沈阳、长春等枢纽，再衔接沈白高铁到长白山西站。长白山西站至华美胜地有定制旅游专线信息，班次会随客流变化。","优先选择白天抵达的车次；到站后确认接驳班次、末班车时间和雪具行李是否方便携带。");
+add("transport",420,sections[3][2],"方案 C｜上海飞沈阳，再转高铁","保留原行程的中转思路","备选路线","先飞沈阳，住一晚或安排半天城市停留，再从沈阳乘沈白高铁到长白山西站。适合机票更合适、想顺路逛沈阳，或直飞时间不理想的情况。","不要为了中转观光压缩长白山滑雪时间；沈阳游览建议单独留半天至一天，并给高铁预留充足进站时间。");
+add("transport",430,sections[3][2],"抵达后的最后一段：机场 / 高铁站 → 度假区","提前把接驳确认好，落地才不会手忙脚乱","地面交通","长白山西站至华美胜地有定制旅游专线信息；长白山机场也有机场巴士、酒店接送或网约车选择。万达官方公布机场距度假区约 18 公里、西站约 18 公里，长白山站约 90 公里。","不同度假区位置不同，万达的距离不能直接套用到华美。预订住宿后，向酒店确认接驳点、班次、预约方式和夜间抵达方案。");
+
+add("itinerary",500,sections[4][2],"Day 1｜从上海出发，抵达雪山脚下","建议：选择白天或傍晚抵达，给接驳留余量","抵达日","上海出发 → 长白山机场 / 长白山西站 → 度假区入住\n办理入住后熟悉酒店、雪具大厅、餐饮与接驳点\n晚餐以热食为主，整理第二天的雪服、雪镜、手套和证件\n早点休息，让身体适应低温与海拔变化","如果是晚班航班，第一晚只安排入住，不建议落地后再赶远距离景点。");
+add("itinerary",510,sections[4][2],"Day 2｜第一场雪：把基础动作交给教练","上午学会控制，下午巩固动作","滑雪日 01","08:30 前后到雪具大厅，领取雪板、雪鞋、头盔并调试\n上午预约教练：穿脱装备、站姿、平地移动、摔倒与起身、犁式制动\n午餐和休息后，在适合的初级区域复习\n下午以稳定和安全为目标，不急着挑战中级道","新手强烈建议第一天安排教练课。不要因为同行朋友会滑，就直接跟随进入陌生雪道。");
+add("itinerary",520,sections[4][2],"Day 3｜第二场雪：从练习走向流畅","按昨天的状态决定是否升级雪道","滑雪日 02","上午热身并复习制动、转弯和速度控制\n在教练建议下逐步增加连续转弯练习\n午后根据体力选择继续滑行、拍摄或休息\n收板后安排温泉，让身体慢慢放松","若第一天仍无法稳定制动，第二天继续练基础比勉强升级更有价值。");
+add("itinerary",530,sections[4][2],"Day 4｜把一天留给长白山的另一面","雪林、温泉、木屋或景区，择一深度体验","慢旅行","天气稳定且景区开放：选择北/西景区中的一处，按官方当日线路游览\n不适合登山：安排森林漫步、木屋村、度假区活动或温泉\n想继续滑雪：可把这一天改成第三个滑雪日，不必为了打卡而赶路","北景区与西侧度假区距离不近，选择一个区域即可。天池受天气影响可能关闭，行程要有替代方案。");
+add("itinerary",540,sections[4][2],"Day 5｜带着雪光返程","预留接驳与机场/车站缓冲时间","返程日","早餐后整理雪具与行李，退房\n按航班或车次时间预约接驳\n如果是晚班返程，可在度假区附近安排轻松午餐，不建议跨区域远行\n抵达上海后，及时晾干雪服、手套和雪鞋","返程当天不建议安排天池、漂流或长距离景点；冬季路况和接驳都需要时间余量。");
+add("itinerary",550,sections[4][2],"如果保留沈阳中转：怎样安排更舒服","将城市游览放在去程或返程，不挤占雪场整日","中转加游","去程可在沈阳住一晚，选择沈阳故宫、张氏帅府、中街中的两处\n次日从沈阳北站乘高铁前往长白山西站\n回程若时间充裕，再安排沈阳半日游\n餐饮可尝试老边饺子、马家烧麦、锅包肉和东北菜","旧版页面中的 2026/11/12—17 航班、高铁班次与预报已过期；这里保留的是路线思路，不再把旧时刻当作当前班次。");
+
+add("ski",600,sections[5][2],"第一次上雪：先学会停下来","新手第一目标不是速度，而是可控","入门","从雪具穿戴、雪鞋适应和热身开始\n学习安全摔倒、起身、平地移动与犁式制动\n在初级练习区完成连续、可控的减速和转向\n头盔全程佩戴，雪镜根据天气选择镜片","如果不能稳定停下，就不要进入更陡的雪道。不要在雪道中间停留或横向占道。");
+add("ski",610,sections[5][2],"从犁式到平行式：把转弯练扎实","第二天开始关注节奏、重心与连续性","初阶进阶","练习重心移动、弯道节奏和视线方向\n逐步减少犁式幅度，建立平行式转弯\n每次只增加一个难度变量：坡度、速度或连续弯数量\n请教练观察动作，比盲目刷道更有效","不同雪场的“初级道”坡度与宽度不完全一样，先看雪道图，再决定是否适合。");
+add("ski",620,sections[5][2],"雪道等级与当日开放：出发前先看图","颜色标识和雪场规则以现场为准","安全判断","提前熟悉雪场地图、雪道难度标识、索道位置和下山路线\n开滑前查看当日开放雪道、风力、能见度和缆车状态\n结伴滑行时约定集合点与失联后的处理方式\n不进入关闭雪道、未开放区域或未经许可的野雪区域","不要只看雪场总雪道数。真正决定当天体验的是已开放雪道、排队情况和雪面状态。");
+add("ski",630,sections[5][2],"两天滑雪的节奏：练习、休息、复盘","每 60—90 分钟主动休息，按体力调整","体能管理","第一天安排教练与基础练习，第二天再巩固和拓展\n午餐补充热量与水分，避免空腹长时间滑行\n出现膝部疼痛、手脚麻木、明显疲劳或注意力下降时及时收板\n晚上做好装备干燥与皮肤保湿","低温会掩盖出汗和疲劳感。保持补水，避免为了雪票“回本”而过度滑行。");
+
+add("experiences",700,sections[6][2],"灵舍丹姿火山温泉：把雪夜泡成暖色","滑雪之后的恢复时刻","温泉","华美胜地公开介绍了灵舍丹姿长白山火山温泉，适合安排在滑雪日傍晚或休整日。室外雪景与温泉蒸汽形成鲜明反差，是长白山冬日旅行的代表体验。","温泉开放时间、预约方式、酒店住客权益和票价以当季官方公告为准；饮酒后、身体不适或过度疲劳时不要泡汤。");
+add("experiences",710,sections[6][2],"娱雪乐园与亲子体验","适合不滑雪的同行者，也适合安排半天","玩雪","关注雪圈、雪地摩托、萌宠互动、冰雪乐园和亲子活动等项目。华美胜地 2026—27 雪季部分娱雪项目计划在 12 月上旬起陆续开放，具体项目按运营安排执行。","项目常因气温、雪量和安全条件调整。出发前确认是否开放、是否需预约，以及票券是否包含在酒店套餐内。");
+add("experiences",720,sections[6][2],"雾凇与雪林：留给天气的一份礼物","清晨、降温、湿度与风共同决定能否遇见","自然风景","雾凇并非每天都有。若前一晚降温、空气湿润且风力较小，清晨更值得留意河谷、林缘与水汽充足的区域。拍摄时保护相机电池，避免镜头从寒冷环境骤然进入暖湿室内。","不要把雾凇漂流当成全年固定项目；漂流是否运营、是否有雾凇都取决于水况与天气。");
+add("experiences",730,sections[6][2],"木屋、雪村与东北冬日烟火","给滑雪之外留一点慢下来的时间","小镇漫游","可以把木屋村、度假区商业街、当地村落与雪地摄影安排成轻松半日。傍晚蓝调时刻适合拍雪屋灯光、林间小路与热饮蒸汽。","前往非度假区景点前确认道路、开放时间和返程车辆；夜间不要独自进入无照明林地。");
+add("experiences",740,sections[6][2],"长白山景区：天池不是冬季必达项","北景区与西景区分开安排","景区观光","北景区常见看点包括天池、长白瀑布、聚龙温泉群、小天池、绿渊潭和地下森林；西景区以开阔山岳视野和景观步道为特色。冬季景区可能因风雪和安全条件调整开放范围。","是否能看到天池取决于天气和景区运营。先看官方公告，再决定是否购买门票和安排跨区交通。");
+
+add("prepare",800,sections[7][2],"穿衣原则：分层，比穿得臃肿更重要","低温、风和长时间户外停留都要考虑","保暖清单","贴身层：速干保暖内衣，避免纯棉吸汗后变冷\n中间层：抓绒或轻薄羽绒，根据当天温度增减\n外层：防风、防水的滑雪服\n配件：护脸/脖套、保暖帽、雪镜、防水手套、厚滑雪袜\n鞋：防滑保暖雪地靴，景区步行不要穿普通运动鞋","手套和袜子建议至少各带一套备用。雪服内不要穿过厚导致活动受限，手脚保暖比单纯堆衣服更重要。");
+add("prepare",810,sections[7][2],"装备怎么准备：租赁与自带的边界","第一次滑雪不必一次买齐所有雪具","装备","建议自带：贴身层、滑雪袜、面罩、手套、雪镜（如已有）、护具\n可以租赁：雪板、雪鞋、雪杖、头盔；现场确认尺寸、固定器和磨损情况\n若已有自己的雪鞋和雪板，提前确认航空托运规则与雪具袋尺寸","头盔必须合适且固定牢靠。新手不建议为了省租赁费购买不合适的二手雪具。");
+add("prepare",820,sections[7][2],"预算怎么拆：把大头花在体验上","机票、住宿、雪票、教练、交通与餐饮","费用规划","预算建议拆为六项：往返交通、住宿、雪票/雪具、教练、接驳与当地交通、餐饮及温泉娱雪\n滑雪初学者优先为教练课和合适住宿留预算\n两人同行可比较含雪票、雪具或温泉权益的套餐总价，不只看房价","当前票价、教练价格和酒店套餐变化频繁，本页不固化过期价格；以官方预订页面的实际日期报价为准。");
+add("prepare",830,sections[7][2],"预订顺序：先锁交通，再锁住宿与雪票","热门周末和春节尤其要提前","预订清单","先确定假期与往返交通，再选住宿基地\n确认住宿到雪场的距离、接驳和雪具存放条件\n核对雪票是否含缆车、雪具、保险和夜场\n新手提前预约教练，确认教学时长、人数和集合点\n最后再安排景区、温泉与娱雪项目","确认取消规则、天气导致停运时的退改政策，以及套餐是否有日期限制。");
+add("prepare",840,sections[7][2],"安全与健康：冬季山地旅行的底线","不追求打卡，不拿天气和身体状态冒险","安全须知","滑雪前热身，遵守雪场规则，不进入封闭雪道和野雪区\n关注大风、暴雪、低能见度和道路结冰预警\n景区观光听从工作人员安排，不擅自离开开放步道\n准备常用药、个人保险信息、充电宝和备用联系方式\n相机与手机注意低温掉电，备用电池贴身保温","出现失温、冻伤、明显头晕或受伤，立即停止活动并寻求现场工作人员帮助。");
+add("prepare",850,sections[7][2],"出发前最后核对","把变化留给天气，把确定留给准备","临行清单","□ 航班/车次与行李规则\n□ 酒店入住、接驳预约与晚到方案\n□ 雪场开放雪道、索道和营业时间\n□ 雪票、雪具、教练预约与保险\n□ 温泉、娱雪和景区项目是否开放\n□ 天气预报、道路情况与返程缓冲\n□ 雪服、手套、雪袜、面罩和备用电源","长白山的冬天有自己的节奏。给天气留出余地，才有机会遇见计划之外的惊喜。");
+
+const app=$("#app");
+let rows=[],editId=null;
+function banner(msg){$("#sync").textContent=msg}
+function bodyHTML(s){return esc(s).split("\n").map(line=>line.startsWith("- ")? "• "+line.slice(2):line).join("<br>")}
+function cardEl(r){const d=r.data||{};const a=document.createElement("article");a.className="card";a.dataset.id=r.id;a.innerHTML=(d.tag?'<span class="tag">'+esc(d.tag)+'</span>':"")+'<h3>'+esc(d.title||"未命名")+'</h3>'+(d.subtitle?'<div class="sub">'+esc(d.subtitle)+'</div>':"")+(d.body?'<div class="body">'+bodyHTML(d.body)+'</div>':"")+(d.note?'<div class="note">'+bodyHTML(d.note)+'</div>':"")+'<button class="edit" title="编辑">✎</button><button class="del" title="删除">×</button>';a.querySelector(".edit").onclick=()=>openModal(r);a.querySelector(".del").onclick=()=>removeCard(r);return a}
+function render(data){rows=data.filter(r=>(r.section||"").startsWith("v2:")).sort((a,b)=>(a.sort||0)-(b.sort||0));app.replaceChildren();sections.forEach(([key,no,title,desc])=>{const list=rows.filter(r=>r.section===key);if(!list.length)return;const sec=document.createElement("section");sec.className="section";sec.id=key.replace(":","-");const head=document.createElement("div");head.className="section-head";head.innerHTML='<div class="section-no">CHAPTER '+no+'</div><h2>'+title+'</h2><p class="section-desc">'+desc+'</p>';sec.append(head);const grid=document.createElement("div");grid.className="grid";list.forEach(r=>grid.append(cardEl(r)));sec.append(grid);app.append(sec)})}
+async function fetchRows(){const {data,error}=await sb.from("pages_blocks").select("*").eq("page",PAGE);if(error)throw error;return (data||[]).filter(r=>(r.section||"").startsWith("v2:"))}
+async function startup(){try{let data=await fetchRows();if(!data.length){const {error}=await sb.from("pages_blocks").insert(DEFAULTS.map(d=>({...d,page:PAGE})));if(error)throw error;data=await fetchRows()}render(data);banner("新版内容已连接 · Supabase 实时同步")}catch(e){banner("实时内容暂不可用："+e.message);console.error(e)}}
+async function refresh(){try{render(await fetchRows())}catch(e){banner("同步暂时中断："+e.message)}}
+async function removeCard(r){if(!confirm("确定删除「"+(r.data?.title||"这张卡片")+"」？删除会同步给所有访问者。"))return;const {error}=await sb.from("pages_blocks").delete().eq("id",r.id);if(error){alert("删除失败："+error.message);return}await refresh()}
+function openModal(r){const d=r?.data||{};editId=r?.id||null;$("#modalTitle").textContent=r?"编辑内容":"添加内容";$("#f_section").value=r?.section||"v2:prepare";$("#f_sectionTitle").value=d.sectionTitle||sections.find(s=>s[0]===$("#f_section").value)?.[2]||"";$("#f_title").value=d.title||"";$("#f_subtitle").value=d.subtitle||"";$("#f_tag").value=d.tag||"";$("#f_body").value=d.body||"";$("#f_note").value=d.note||"";$("#modal").classList.add("open")}
+function val(id){return $("#"+id).value.trim()}
+$("#editToggle").onclick=function(){document.body.classList.toggle("editing");this.classList.toggle("on");this.textContent=document.body.classList.contains("editing")?"完成":"编辑"};
+$("#addBtn").onclick=()=>openModal(null);
+$("#cancelBtn").onclick=()=>$("#modal").classList.remove("open");
+$("#modal").onclick=e=>{if(e.target===$("#modal"))$("#modal").classList.remove("open")};
+$("#saveBtn").onclick=async()=>{const title=val("f_title");if(!title){alert("请填写标题");return}const section=val("f_section").startsWith("v2:")?val("f_section"):"v2:"+val("f_section");const sectionTitle=val("f_sectionTitle")||sections.find(s=>s[0]===section)?.[2]||"自定义内容";const data={sectionTitle,title,subtitle:val("f_subtitle"),tag:val("f_tag"),body:$("#f_body").value,note:$("#f_note").value};const record={page:PAGE,section,sort:editId?(rows.find(r=>r.id===editId)?.sort||9999):9999,data};let error;if(editId){({error}=await sb.from("pages_blocks").update(record).eq("id",editId))}else{({error}=await sb.from("pages_blocks").insert(record))}if(error){alert("保存失败："+error.message);return}$("#modal").classList.remove("open");await refresh();editId=null;if(!document.body.classList.contains("editing"))$("#editToggle").click()};
+$("#exportBtn").onclick=async()=>{try{const data=await fetchRows();const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=PAGE+"-v2.json";a.click();URL.revokeObjectURL(a.href)}catch(e){alert("导出失败："+e.message)}};
+$("#resetBtn").onclick=async()=>{if(!confirm("仅重置新版 v2 内容，旧版行程数据会保留。确定继续？"))return;const {data,error}=await sb.from("pages_blocks").select("id,section").eq("page",PAGE);if(error){alert(error.message);return}const ids=(data||[]).filter(r=>(r.section||"").startsWith("v2:")).map(r=>r.id);if(ids.length){const {error:e}=await sb.from("pages_blocks").delete().in("id",ids);if(e){alert(e.message);return}}const {error:e2}=await sb.from("pages_blocks").insert(DEFAULTS.map(d=>({...d,page:PAGE})));if(e2){alert(e2.message);return}await refresh()};
+sb.channel("blocks-"+PAGE+"-v2").on("postgres_changes",{event:"*",schema:"public",table:"pages_blocks",filter:"page=eq."+PAGE},refresh).subscribe();
+$("#enterBtn").onclick=()=>$("#mainContent").scrollIntoView({behavior:"smooth",block:"start"});
+const film=$("#filmIntro");let ticking=false;function fade(){const y=window.scrollY;const h=window.innerHeight;const p=Math.min(1,Math.max(0,y/(h*.78)));film.style.opacity=String(1-p);film.style.filter="blur("+(p*8)+"px)";film.style.pointerEvents=p>.92?"none":"auto";ticking=false}window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(fade);ticking=true}},{passive:true});fade();
+startup();
 })();
 </script>
-</body>
-</html>
+</body></html>
