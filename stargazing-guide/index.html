@@ -25,14 +25,7 @@ body.sky-locked{overflow:hidden}
 .sky-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
 .sky-stars{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .sky-grain{position:absolute;inset:0;pointer-events:none;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
-.sky-meteor{position:absolute;width:170px;height:1px;pointer-events:none;opacity:0;left:var(--sx);top:var(--sy);transform:rotate(var(--angle));transform-origin:right center;animation:sky-shoot var(--duration,8s) linear var(--delay,0s) infinite}
-.sky-meteor::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(190,216,255,.08) 48%,rgba(205,224,255,.55) 88%,rgba(255,255,255,.98) 100%);box-shadow:0 0 7px rgba(196,220,255,.48);border-radius:100%}
-.sky-meteor::before{content:"";position:absolute;right:-1px;top:-2px;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 10px 2px rgba(213,230,255,.95)}
-@keyframes sky-shoot{0%{opacity:0;transform:translate3d(0,0,0) rotate(var(--angle))}4%{opacity:.95}18%{opacity:.82}36%,100%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) rotate(var(--angle))}}
-.sky-meteor.m1{--sx:76%;--sy:17%;--dx:-34vw;--dy:36vh;--angle:133deg;--duration:8.8s;--delay:.8s}
-.sky-meteor.m2{width:125px;--sx:64%;--sy:42%;--dx:28vw;--dy:25vh;--angle:42deg;--duration:10.2s;--delay:3.7s}
-.sky-meteor.m3{width:150px;--sx:36%;--sy:13%;--dx:39vw;--dy:29vh;--angle:37deg;--duration:11.6s;--delay:6.1s}
-.sky-meteor.m4{width:110px;--sx:88%;--sy:62%;--dx:-41vw;--dy:-22vh;--angle:-152deg;--duration:9.6s;--delay:8.2s}
+.sky-meteors{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .sky-intro-content{position:relative;width:min(900px,calc(100% - 40px));padding:40px 0;text-align:center;animation:sky-arrive 1.4s cubic-bezier(.2,.7,.2,1) both}
 @keyframes sky-arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .sky-brand{font-size:11px;letter-spacing:.28em;color:#b8c6d8;text-transform:uppercase}
@@ -49,15 +42,15 @@ body.sky-locked{overflow:hidden}
 .top .btn.add,.top #exportBtn,.top .sync{display:none}body.editing .top .btn.add,body.editing .top #exportBtn,body.editing .top .sync{display:inline-flex}
 .hero{padding:48px 0 0}.hero h1{font-size:clamp(30px,4.8vw,58px);max-width:900px}.hero-summary{max-width:760px;margin:20px 0 0;color:var(--muted);font-size:16px;line-height:1.95;letter-spacing:.025em}.lead{display:none}.facts,.photo{display:none}.toc{margin-top:22px}.sec{padding-top:66px}.sec h2{margin-bottom:10px}.section-intro{max-width:760px;color:var(--muted);font-size:14px;line-height:1.9;margin:0 0 24px}.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}.card{padding:22px 23px;border-radius:18px}.card h3{font-size:20px;line-height:1.45}.sub{margin-top:7px;font-size:12px;letter-spacing:.02em}.body{font-size:14px;line-height:1.9;margin-top:14px;color:#44433f}.body{white-space:pre-line}.note{font-size:12px;padding:8px 10px}.card .tag{letter-spacing:.06em} .sec:nth-child(2) .card{background:linear-gradient(145deg,#fff 0%,#fbfaf6 100%)}
 footer{margin-top:64px;padding:20px 0 32px}footer p:nth-child(2),footer p:nth-child(3){display:none}
-@media(max-width:600px){.sky-intro-content{width:calc(100% - 36px)}.sky-constellation{height:62px;margin:12px 0}.sky-constellation svg{width:62px;height:62px}.sky-translation{letter-spacing:.08em}.sky-enter{margin-top:36px;padding:13px 22px}.sky-foot{bottom:18px;font-size:9px}.sky-meteor{width:125px}}
-@media(prefers-reduced-motion:reduce){.sky-intro,.sky-intro-content{transition:none;animation:none}.sky-meteor{display:none}.sky-enter{transition:none}html{scroll-behavior:auto}}
+@media(max-width:600px){.sky-intro-content{width:calc(100% - 36px)}.sky-constellation{height:62px;margin:12px 0}.sky-constellation svg{width:62px;height:62px}.sky-translation{letter-spacing:.08em}.sky-enter{margin-top:36px;padding:13px 22px}.sky-foot{bottom:18px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.sky-intro,.sky-intro-content{transition:none;animation:none}.sky-meteors{display:none}.sky-enter{transition:none}html{scroll-behavior:auto}}
 
 </style></head><body>
 
 <div class="sky-intro" id="skyIntro" role="dialog" aria-modal="true" aria-label="观星攻略星空入口">
   <canvas class="sky-stars" id="skyStars" aria-hidden="true"></canvas>
   <div class="sky-grain" aria-hidden="true"></div>
-  <i class="sky-meteor m1" aria-hidden="true"></i><i class="sky-meteor m2" aria-hidden="true"></i><i class="sky-meteor m3" aria-hidden="true"></i><i class="sky-meteor m4" aria-hidden="true"></i>
+  <canvas class="sky-meteors" id="skyMeteors" aria-hidden="true"></canvas>
   <div class="sky-intro-content">
     
     <div class="sky-constellation" aria-hidden="true">
@@ -105,33 +98,63 @@ sb.channel("blocks-"+PAGE+"-v2").on("postgres_changes",{event:"*",schema:"public
 <script>
 (()=> {
   const intro=document.getElementById('skyIntro');
-  const canvas=document.getElementById('skyStars');
-  const ctx=canvas&&canvas.getContext('2d');
-  if(ctx){
-    let stars=[];
-    const drawStars=()=>{
-      const w=window.innerWidth,h=window.innerHeight,dpr=Math.min(window.devicePixelRatio||1,1.5);
-      canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
-      const count=Math.min(260,Math.round(w*h/4800));stars=[];
-      for(let i=0;i<count;i++){
-        const x=Math.random()*w,y=Math.random()*h,r=Math.random()*1.25+.25,a=Math.random()*.62+.18;
-        stars.push({x,y,r,a});
-      }
-      stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(235,241,250,'+s.a+')';ctx.fill()});
-    };
-    drawStars();
-    let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(drawStars,160)},{passive:true});
-  }
+  const starCanvas=document.getElementById('skyStars');
+  const meteorCanvas=document.getElementById('skyMeteors');
+  const starCtx=starCanvas&&starCanvas.getContext('2d');
+  const meteorCtx=meteorCanvas&&meteorCanvas.getContext('2d');
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let width=0,height=0,dpr=1,stars=[],meteors=[],sparks=[],raf=0,last=0,nextSpawn=0,elapsed=0,stopped=false;
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const resize=()=>{
+    width=window.innerWidth;height=window.innerHeight;dpr=Math.min(window.devicePixelRatio||1,1.5);
+    [starCanvas,meteorCanvas].forEach(canvas=>{if(!canvas)return;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);canvas.style.width=width+'px';canvas.style.height=height+'px'});
+    if(starCtx){starCtx.setTransform(dpr,0,0,dpr,0,0);starCtx.clearRect(0,0,width,height);stars=Array.from({length:Math.min(320,Math.round(width*height/3900))},()=>({x:Math.random()*width,y:Math.random()*height,r:rand(.25,1.35),a:rand(.18,.7),phase:rand(0,Math.PI*2),speed:rand(.35,1.1),warm:Math.random()<.16}));}
+    if(meteorCtx)meteorCtx.setTransform(dpr,0,0,dpr,0,0);
+  };
+  const spawnMeteor=(edge)=>{
+    const side=edge||['top','left','right'][Math.floor(Math.random()*3)];
+    let x,y,angle;
+    if(side==='top'){x=rand(width*.08,width*.96);y=rand(-35,height*.22);angle=rand(34,58)*Math.PI/180}
+    else if(side==='left'){x=rand(-35,width*.16);y=rand(height*.04,height*.62);angle=rand(22,48)*Math.PI/180}
+    else{x=rand(width*.78,width+35);y=rand(height*.02,height*.55);angle=rand(122,151)*Math.PI/180}
+    const speed=rand(520,930),length=rand(115,260),life=rand(.72,1.28);
+    meteors.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life,age:0,length,width:rand(1.1,2.1),glow:rand(8,17),hue:Math.random()<.22?'#d9e8ff':'#fff4dc',sparkAt:0});
+  };
+  const burst=()=>{const edge=['top','left','right'][Math.floor(Math.random()*3)];spawnMeteor(edge);setTimeout(()=>{if(!stopped&&!document.hidden)spawnMeteor(edge)},rand(110,260));setTimeout(()=>{if(!stopped&&!document.hidden)spawnMeteor()},rand(280,520));};
+  const drawStars=(time)=>{
+    if(!starCtx)return;starCtx.clearRect(0,0,width,height);
+    for(const s of stars){const twinkle=.68+.32*Math.sin(time*.0007*s.speed+s.phase);starCtx.globalAlpha=s.a*twinkle;starCtx.fillStyle=s.warm?'#ffe8c5':'#e8f1ff';starCtx.beginPath();starCtx.arc(s.x,s.y,s.r,0,Math.PI*2);starCtx.fill();if(s.r>1.05){starCtx.globalAlpha*=.24;starCtx.fillRect(s.x-3,s.y-.35,6,.7);starCtx.fillRect(s.x-.35,s.y-3,.7,6)}}starCtx.globalAlpha=1;
+  };
+  const drawMeteor=(m)=>{
+    const p=Math.min(1,m.age/m.life),fade=Math.min(1,p*8,(1-p)*5),x=m.x,y=m.y,tx=x-m.vx/m.speed*m.length,ty=y-m.vy/m.speed*m.length;
+    const g=meteorCtx.createLinearGradient(tx,ty,x,y);g.addColorStop(0,'rgba(130,170,230,0)');g.addColorStop(.48,'rgba(166,198,245,.12)');g.addColorStop(.82,'rgba(214,229,255,.58)');g.addColorStop(1,m.hue);
+    meteorCtx.save();meteorCtx.globalAlpha=fade;meteorCtx.lineCap='round';meteorCtx.strokeStyle=g;meteorCtx.lineWidth=m.width;meteorCtx.shadowColor='#b8d4ff';meteorCtx.shadowBlur=m.glow;meteorCtx.beginPath();meteorCtx.moveTo(tx,ty);meteorCtx.lineTo(x,y);meteorCtx.stroke();
+    meteorCtx.shadowBlur=m.glow*1.5;meteorCtx.fillStyle='#fff';meteorCtx.beginPath();meteorCtx.arc(x,y,m.width*1.15,0,Math.PI*2);meteorCtx.fill();
+    meteorCtx.restore();
+  };
+  const frame=(now)=>{
+    if(stopped||!intro||intro.hidden||document.hidden)return;
+    const dt=Math.min((now-last)/1000||0,.04);last=now;elapsed+=dt;
+    drawStars(now);
+    if(meteorCtx){meteorCtx.clearRect(0,0,width,height);if(elapsed>nextSpawn){if(Math.random()<.13)burst();else spawnMeteor();nextSpawn=elapsed+rand(1.1,2.8)}
+      for(let i=meteors.length-1;i>=0;i--){const m=meteors[i];m.age+=dt;m.x+=m.vx*dt;m.y+=m.vy*dt;if(m.age>=m.life||m.x<-400||m.x>width+400||m.y>height+400){meteors.splice(i,1);continue}drawMeteor(m)}
+    }
+    raf=requestAnimationFrame(frame);
+  };
+  const start=()=>{if(reduced||stopped||raf)return;last=performance.now();raf=requestAnimationFrame(frame)};
+  const pause=()=>{if(raf)cancelAnimationFrame(raf);raf=0};
   const enter=document.getElementById('skyEnter');
   const close=()=>{
     if(!intro||intro.classList.contains('is-leaving'))return;
     intro.classList.add('is-leaving');document.body.classList.remove('sky-locked');
-    window.setTimeout(()=>{intro.hidden=true;intro.setAttribute('aria-hidden','true')},950);
+    window.setTimeout(()=>{intro.hidden=true;intro.setAttribute('aria-hidden','true');stopped=true;pause()},950);
   };
+  resize();if(!reduced)start();
+  let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,140)},{passive:true});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();else if(!stopped)start()});
   document.body.classList.add('sky-locked');
   if(enter)enter.addEventListener('click',close);
-  if(intro){intro.addEventListener('keydown',e=>{if(e.key==='Escape')close()});}
+  if(intro)intro.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 })();
 </script>
 
