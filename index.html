@@ -95,18 +95,25 @@ button{font:inherit}
 .content-head .kicker{font-size:10px;letter-spacing:.25em;color:#a47e52;text-transform:uppercase}
 .content-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,4.8rem);line-height:1.05;letter-spacing:-.04em;margin-top:18px}
 .content-head p{color:#777269;margin-top:18px;font-size:14px;letter-spacing:.04em}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:38px 0 96px}
-.card{position:relative;display:flex;flex-direction:column;min-height:250px;background:#faf9f5;border:1px solid #e4e0d6;
- padding:28px 28px 24px;color:inherit;transition:transform .35s,border-color .35s,box-shadow .35s}
-.card:hover{transform:translateY(-4px);border-color:#b7a58a;box-shadow:0 18px 44px rgba(39,32,22,.07);text-decoration:none}
-.card .tg{align-self:flex-start;font-size:9px;letter-spacing:.16em;color:#9a7852;text-transform:uppercase;
- border:1px solid #e7dfd2;padding:5px 10px;margin-bottom:20px}
-.card h3{font-family:var(--serif);font-weight:500;font-size:clamp(19px,2.3vw,25px);line-height:1.35}
-.card .st{font-size:11px;color:#8b857a;margin-top:7px;letter-spacing:.035em}
-.card p{font-size:13px;color:#59564f;margin-top:16px;line-height:1.85}
-.card .go{margin-top:auto;padding-top:22px;font-size:10px;letter-spacing:.15em;color:#a16e45}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:38px 0 96px}
+.card{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(330px,38vw,470px);
+ padding:30px 26px;color:#fff;background:#172b3b;transition:transform .45s,box-shadow .45s}
+.card::before{content:"";position:absolute;inset:0;z-index:-2;background-position:center;background-size:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,10,16,.05) 12%,rgba(5,10,16,.18) 42%,rgba(5,10,16,.82) 100%)}
+.card:hover{transform:translateY(-5px);box-shadow:0 24px 54px rgba(10,16,22,.22);text-decoration:none}
+.card:hover::before{transform:scale(1.055)}
+.card:focus-visible{outline:2px solid #c6a77a;outline-offset:4px}
+.card.changbai::before{background-image:linear-gradient(145deg,rgba(157,177,188,.12),rgba(11,27,43,.12)),url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85");filter:saturate(.68) hue-rotate(4deg)}
+.card.ski-cn::before{background-image:url("https://www.harbinice.com/public/richfiles/photos/northeast%20china/Wanda-Changbaishan-Resort/Wanda-Changbaishan-International-Tourism-Ski-Resort-7.jpg");filter:saturate(.78)}
+.card.stars::before{background-image:radial-gradient(ellipse at 50% 32%,rgba(68,94,133,.42),transparent 42%),linear-gradient(180deg,rgba(12,25,46,.1),rgba(5,12,26,.15)),url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=85");filter:saturate(.78)}
+.card-copy{width:100%}
+.card .tg{display:block;font-size:9px;letter-spacing:.2em;color:rgba(255,245,228,.78);text-transform:uppercase;margin-bottom:15px}
+.card h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,27px);line-height:1.25;letter-spacing:-.015em;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.24)}
+.card h3 span{display:block;margin-top:8px;font-family:var(--sans);font-size:clamp(14px,1.35vw,17px);font-weight:400;letter-spacing:.045em;color:rgba(255,248,238,.9)}
+.card .go{display:inline-block;padding-top:22px;font-size:10px;letter-spacing:.18em;color:#e5c79e}
+
 footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;font-size:10px;letter-spacing:.1em;display:flex;justify-content:space-between}
-@media(max-width:640px){
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:360px}}\n@media(max-width:640px){
  .intro{min-height:100svh;height:100svh}
  .film-frame{inset:14px 0}
  .hero-copy{width:94vw;padding-inline:8px}
@@ -167,28 +174,28 @@ footer.wrap{border-top:1px solid #dedbd1;padding-block:22px 40px;color:#8b857a;f
         <p>把想去的地方、想做的事，慢慢拍成我们自己的故事。</p>
       </header>
       <div class="grid">
-        <a class="card" href="./changbaishan-ski/">
-          <span class="tg">Winter · Travel Journal</span>
-          <h3>上海 → 长白山滑雪 5 天</h3>
-          <div class="st">11/12 晚出发 · 沈阳中转 · 华美胜地</div>
-          <p>逐日时间线、交通班次、天气穿衣、美食与打包清单，含漂流停开时的备选方案。</p>
-          <div class="go">EXPLORE THE JOURNEY　↗</div>
+        <a class="card changbai" href="./changbaishan-ski/" aria-label="A Winter Journey to Changbai Mountain. 循着雪线，去长白山赴一场冬日之约。">
+          <div class="card-copy">
+            <span class="tg">WINTER · CHANGBAI MOUNTAIN</span>
+            <h3>A Winter Journey to Changbai Mountain.<span>循着雪线，去长白山赴一场冬日之约。</span></h3>
+            <span class="go">DISCOVER THE JOURNEY　↗</span>
+          </div>
         </a>
-        <a class="card" href="./china-ski-guide/">
-          <span class="tg">Winter · Field Guide</span><h3>中国滑雪场与冬日旅行攻略</h3>
-          <div class="st">雪场参考 · 雪季日历 · 装备成长 · 多日路线</div>
-          <p>合并全国重点雪场参考与目的地旅行攻略，从第一次上雪道到追逐粉雪，附上海出发行程、装备、安全和当季雪况提示。</p>
-          <div class="go">FOLLOW THE SNOWLINE　↗</div>
+        <a class="card ski-cn" href="./china-ski-guide/" aria-label="Where Winter Becomes a Journey. 循着雪线，奔赴冬日山野。">
+          <div class="card-copy">
+            <span class="tg">WINTER · SKIING IN CHINA</span>
+            <h3>Where Winter Becomes a Journey.<span>循着雪线，奔赴冬日山野。</span></h3>
+            <span class="go">EXPLORE THE SNOW　↗</span>
+          </div>
         </a>
-        <a class="card" href="./stargazing-guide/">
-          <span class="tg">Night · Star Stories</span>
-          <h3>中国观星地点与全年天象</h3>
-          <div class="st">暗夜地点 · 流星雨 · 月相 · 入门知识</div>
-          <p>从阿里、那曲到城市近郊，按观星目标选择地点和时间，附 2026 年重点天象、活动方向、装备与安全清单。</p>
-          <div class="go">CHASE THE STARS　↗</div>
+        <a class="card stars" href="./stargazing-guide/" aria-label="Chasing Stars, Discovering Worlds. 追逐星辰，探索世界。">
+          <div class="card-copy">
+            <span class="tg">NIGHT · UNDER THE STARS</span>
+            <h3>Chasing Stars, Discovering Worlds.<span>追逐星辰，探索世界。</span></h3>
+            <span class="go">CHASE THE STARS　↗</span>
+          </div>
         </a>
-      </div>
-    </div>
+      </div>    </div>
     <footer class="wrap"><span>YXM PLAN B · A FILM BY US</span><span>THE NEXT CHAPTER IS OURS.</span></footer>
   </section>
 </main>
