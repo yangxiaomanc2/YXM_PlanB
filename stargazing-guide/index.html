@@ -43,7 +43,12 @@ body.sky-locked{overflow:hidden}
 .hero{padding:48px 0 0}.hero h1{font-size:clamp(30px,4.8vw,58px);max-width:900px}.hero-summary{max-width:760px;margin:20px 0 0;color:var(--muted);font-size:16px;line-height:1.95;letter-spacing:.025em}.lead{display:none}.facts,.photo{display:none}.toc{margin-top:22px}.sec{padding-top:66px}.sec h2{margin-bottom:10px}.section-intro{max-width:760px;color:var(--muted);font-size:14px;line-height:1.9;margin:0 0 24px}.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}.card{padding:22px 23px;border-radius:18px}.card h3{font-size:20px;line-height:1.45}.sub{margin-top:7px;font-size:12px;letter-spacing:.02em}.body{font-size:14px;line-height:1.9;margin-top:14px;color:#44433f}.body{white-space:pre-line}.note{font-size:12px;padding:8px 10px}.card .tag{letter-spacing:.06em} .sec:nth-child(2) .card{background:linear-gradient(145deg,#fff 0%,#fbfaf6 100%)}
 footer{margin-top:64px;padding:20px 0 32px}footer p:nth-child(2),footer p:nth-child(3){display:none}
 @media(max-width:600px){.sky-intro-content{width:calc(100% - 36px)}.sky-constellation{height:62px;margin:12px 0}.sky-constellation svg{width:62px;height:62px}.sky-translation{letter-spacing:.08em}.sky-enter{margin-top:36px;padding:13px 22px}.sky-foot{bottom:18px;font-size:9px}}
-@media(prefers-reduced-motion:reduce){.sky-intro,.sky-intro-content{transition:none;animation:none}.sky-meteors{display:none}.sky-enter{transition:none}html{scroll-behavior:auto}}
+.sky-intro{transform:translateY(0);transition:opacity .9s ease,visibility .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.sky-intro.is-leaving{transform:translateY(-2.5vh)}
+body>:not(#skyIntro){transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+body.guide-main-hidden>:not(#skyIntro){opacity:0;transform:translateY(22px);pointer-events:none}
+body.guide-main-visible>:not(#skyIntro){opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.sky-intro,.sky-intro-content,body>:not(#skyIntro){transition:none;animation:none}.sky-meteors{display:none}.sky-enter{transition:none}html{scroll-behavior:auto}}
 
 </style></head><body>
 
@@ -118,7 +123,7 @@ sb.channel("blocks-"+PAGE+"-v2").on("postgres_changes",{event:"*",schema:"public
     else if(side==='left'){x=rand(-35,width*.16);y=rand(height*.04,height*.62);angle=rand(22,48)*Math.PI/180}
     else{x=rand(width*.78,width+35);y=rand(height*.02,height*.55);angle=rand(122,151)*Math.PI/180}
     const speed=rand(520,930),length=rand(115,260),life=rand(.72,1.28);
-    meteors.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life,age:0,length,width:rand(1.1,2.1),glow:rand(8,17),hue:Math.random()<.22?'#d9e8ff':'#fff4dc',sparkAt:0});
+    meteors.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,speed,life,age:0,length,width:rand(1.1,2.1),glow:rand(8,17),hue:Math.random()<.22?'#d9e8ff':'#fff4dc',sparkAt:0});
   };
   const burst=()=>{const edge=['top','left','right'][Math.floor(Math.random()*3)];spawnMeteor(edge);setTimeout(()=>{if(!stopped&&!document.hidden)spawnMeteor(edge)},rand(110,260));setTimeout(()=>{if(!stopped&&!document.hidden)spawnMeteor()},rand(280,520));};
   const drawStars=(time)=>{
@@ -144,15 +149,34 @@ sb.channel("blocks-"+PAGE+"-v2").on("postgres_changes",{event:"*",schema:"public
   const start=()=>{if(reduced||stopped||raf)return;last=performance.now();raf=requestAnimationFrame(frame)};
   const pause=()=>{if(raf)cancelAnimationFrame(raf);raf=0};
   const enter=document.getElementById('skyEnter');
+  let transitionTimer=0,touchStartY=0,touchStartX=0;
   const close=()=>{
-    if(!intro||intro.classList.contains('is-leaving'))return;
-    intro.classList.add('is-leaving');document.body.classList.remove('sky-locked');
-    window.setTimeout(()=>{intro.hidden=true;intro.setAttribute('aria-hidden','true');stopped=true;pause()},950);
+    if(!intro||intro.classList.contains('is-leaving')||intro.hidden)return;
+    intro.classList.add('is-leaving');document.body.classList.remove('sky-locked','guide-main-hidden');document.body.classList.add('guide-main-visible');
+    window.clearTimeout(transitionTimer);
+    transitionTimer=window.setTimeout(()=>{intro.hidden=true;intro.setAttribute('aria-hidden','true')},920);
   };
+  const showIntro=()=>{
+    if(!intro||!intro.hidden||window.scrollY>4)return;
+    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+    intro.hidden=false;intro.setAttribute('aria-hidden','false');intro.classList.remove('is-leaving');
+    document.body.classList.remove('guide-main-visible');document.body.classList.add('guide-main-hidden','sky-locked');
+    stopped=false;meteors=[];elapsed=0;nextSpawn=.35;start();
+  };
+  const bindSwipe=(node,onDown,onUp)=>{
+    if(!node)return;
+    node.addEventListener('touchstart',e=>{const t=e.changedTouches[0];touchStartY=t.clientY;touchStartX=t.clientX},{passive:true});
+    node.addEventListener('touchend',e=>{const t=e.changedTouches[0],dy=t.clientY-touchStartY,dx=t.clientX-touchStartX;if(Math.abs(dy)>65&&Math.abs(dy)>Math.abs(dx)*1.2){if(dy>0)onDown();else onUp()}},{passive:true});
+  };
+  bindSwipe(intro,close,()=>{});
+  bindSwipe(document,()=>{},showIntro);
+  intro&&intro.addEventListener('wheel',e=>{if(e.deltaY>25){e.preventDefault();close()}},{passive:false});
+  window.addEventListener('wheel',e=>{if(intro&&intro.hidden&&window.scrollY<=4&&e.deltaY< -25){e.preventDefault();showIntro()}},{passive:false});
+  window.addEventListener('keydown',e=>{if(intro&&intro.hidden&&window.scrollY<=4&&(e.key==='ArrowUp'||e.key==='PageUp')&&!e.metaKey&&!e.ctrlKey)showIntro()});
   resize();if(!reduced)start();
   let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(resize,140)},{passive:true});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();else if(!stopped)start()});
-  document.body.classList.add('sky-locked');
+  document.body.classList.add('sky-locked','guide-main-hidden');
   if(enter)enter.addEventListener('click',close);
   if(intro)intro.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 })();
