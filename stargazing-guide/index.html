@@ -19,6 +19,7 @@ footer{border-top:1px solid var(--line);margin-top:92px;padding:26px 0 56px;colo
 @media(max-width:600px){.wrap{padding:0 18px}.hero{padding-top:56px}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.sec{padding-top:56px}.grid{grid-template-columns:1fr}.top .wrap{padding-left:18px;padding-right:18px}.photo img{max-height:220px}}
 
 /* 星空序章：进入观星攻略前的沉浸式入口 */
+body.sky-locked{overflow:hidden}
 .sky-intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 42%,#1a2c49 0%,#101d33 42%,#080f1d 100%);color:#f7f3e9;opacity:1;visibility:visible;transition:opacity .9s ease,visibility .9s ease}
 .sky-intro::before{content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,rgba(117,145,180,.13),transparent 48%),radial-gradient(ellipse at 16% 20%,rgba(93,119,158,.12),transparent 38%);filter:blur(18px)}
 .sky-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
